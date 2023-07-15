@@ -1,0 +1,293 @@
+h_hospflg,j_flag,medcode,readoxmisterm,read_code
+5. AE non-specific,Poss,98135,,8HJJ.00
+5. AE non-specific,Poss,51882,Accident & emergency,9b8D.00
+4. Other specific hosp,,21308,Admission to hospice,8HX..00
+4. Other specific hosp,,36435,Admission to hospice for respite,8HX2.00
+"3. Admission, unknown ",Poss,9821,Admission to hospital,8Hd..00
+4. Other specific hosp,,95896,Admission to special care baby unit,8H16.00
+1. COPD-related hosp/refrl,Def,11019,Admit COPD emergency,8H2R.00
+4. Other specific hosp,,11486,Admit ENT emergency,8H29.00
+4. Other specific hosp,,37543,Admit dermatology emergency,8H2D.00
+4. Other specific hosp,,7059,Admit diabetic emergency,8H2J.00
+"3. Admission, unknown ",Poss,30002,Admit geriatric emergency,8H24.00
+4. Other specific hosp,,6109,Admit gynaecological emergency,8H26.00
+4. Other specific hosp,,35333,Admit haematology emergency,8H2H.00
+"3. Admission, unknown ",Poss,6885,Admit hospital emergency NOS,8H2Z.00
+"3. Admission, unknown ",Poss,18512,Admit medical emergency unsp.,8H21.00
+4. Other specific hosp,,29836,Admit neurology emergency,8H2E.00
+4. Other specific hosp,,28923,Admit neurosurgical emergency,8H2N.00
+4. Other specific hosp,,24655,Admit obstetric emergency,8H27.00
+4. Other specific hosp,,25221,Admit ophthalmological emerg.,8H2B.00
+4. Other specific hosp,,54704,Admit oral surgical emergency,8H2K.00
+4. Other specific hosp,,23106,Admit orthopaedic emergency,8H28.00
+4. Other specific hosp,,11963,Admit paediatric emergency,8H25.00
+4. Other specific hosp,,12243,Admit plastic surgery emergenc,8H2I.00
+4. Other specific hosp,,7503,Admit psychiatric emergency,8H23.00
+4. Other specific hosp,,29816,Admit psychogeriatric emergency,8H2L.00
+4. Other specific hosp,,46824,Admit radiotherapy emergency,8H2G.00
+4. Other specific hosp,,35328,Admit renal medicine emergency,8H2M.00
+4. Other specific hosp,,29190,Admit rheumatology emergency,8H2C.00
+4. Other specific hosp,,11822,Admit surgical emergency unsp.,8H22.00
+"3. Admission, unknown ",Poss,8265,Admit to I.T.U.,8H1..11
+4. Other specific hosp,,52773,Admit to burns unit,8H15.00
+"3. Admission, unknown ",Poss,22374,Admit to intensive c.u. NOS,8H1Z.00
+"3. Admission, unknown ",Poss,11413,Admit to intensive care unit,8H1..00
+4. Other specific hosp,,66764,Admit to metabolic ITU,8H14.00
+4. Other specific hosp,,65512,Admit to neurological ITU,8H13.00
+2. Other respiratory hosp,Poss,67786,Admit to respiratory ITU,8H12.00
+4. Other specific hosp,,19209,Admit trauma emergency,8H2A.00
+4. Other specific hosp,,12038,Admit urology emergency,8H2F.00
+4. Other specific hosp,,95705,Air embolism due to surgery,SP31100
+7. AE Resp emergency,,47337,Asthma accident and emergency attendance since last visit,663m.00
+8. AE COPD emergency,Def,19106,COPD accident and emergency attendance since last visit,66Yd.00
+4. Other specific hosp,,53709,Cardiothoracic surgery,9b8B.00
+"3. Admission, unknown ",,30327,Dead on arrival at hospital,9498
+"3. Admission, unknown ",,9059,Death in hospital,8HG..11
+"3. Admission, unknown ",,28801,Death notif. from hospital,9451
+4. Other specific hosp,,618,Delivery by emergency caesarean section,L398400
+"3. Admission, unknown ",,1868,Died in hospital,8HG..00
+"3. Admission, unknown ",,37697,Discharge by ITU specialist,ZLD2G11
+5. AE non-specific,Poss,32515,Discharge by accident and emergency doctor,ZLD2100
+"3. Admission, unknown ",Poss,46901,Discharge by adult ITU specialist,ZLD2H11
+"3. Admission, unknown ",Poss,68130,Discharge by adult intensive care specialist,ZLD2H00
+5. AE non-specific,Poss,47432,Discharge by casualty doctor,ZLD2111
+"3. Admission, unknown ",,47108,Discharge by intensive care specialist,ZLD2G00
+"3. Admission, unknown ",,50833,Discharge by paediatric ITU specialist,ZLD2I11
+"3. Admission, unknown ",,41952,Discharge by paediatric intensive care specialist,ZLD2I00
+5. AE non-specific,Poss,32564,Discharge from accident and emergency service,ZLE1.00
+"3. Admission, unknown ",Poss,47585,Discharge from adult ITU service,ZLE5111
+"3. Admission, unknown ",Poss,53495,Discharge from adult intensive care service,ZLE5100
+"3. Admission, unknown ",,48490,Discharge from casualty service,ZLE1.11
+"3. Admission, unknown ",Poss,10866,Discharge from hospital,ZLF2.00
+"3. Admission, unknown ",,42177,Discharge from intensive care service,ZLE5.00
+"3. Admission, unknown ",,42044,Discharge from paediatric intensive care service,ZLE5200
+"3. Admission, unknown ",,41976,Discharge to hospital,ZLG6.00
+4. Other specific hosp,,73177,Discharge to long stay hospital,ZLG6100
+"3. Admission, unknown ",,36885,Discharge to tertiary referral hospital,ZLG6400
+"3. Admission, unknown ",,43900,Discharge to tertiary referring hospital,ZLG6500
+5. AE non-specific,Poss,26436,Discharged from accident and emergency,8HE8.00
+"3. Admission, unknown ",Poss,480,Discharged from hospital,8HE..00
+"3. Admission, unknown ",Poss,4774,Discharged from inpatient care,8HE2.00
+"3. Admission, unknown ",,56256,Duration of in-patient stay,8HN..00
+4. Other specific hosp,,95573,Emerg aortic bypass by anastomosis axillary to femoral art,7A10000
+4. Other specific hosp,,66810,Emerg bypass ascending aorta by anastom aorta to aorta NEC,7A15000
+4. Other specific hosp,,48755,Emerg bypass bifurc aorta by anast aorta to femoral artery,7A12000
+4. Other specific hosp,,68141,Emerg bypass comm iliac art by aorta/com iliac art anast NEC,7A41400
+4. Other specific hosp,,99676,Emerg bypass femoral art by fem/peron art anast c prosth NEC,7A47800
+4. Other specific hosp,,52342,Emerg bypass femoral art by fem/pop a anast c vein graft NEC,7A47200
+4. Other specific hosp,,43651,Emerg bypass femoral art by fem/pop art anast c prosth NEC,7A47000
+4. Other specific hosp,,96255,Emerg bypass femoral art by fem/tib a anast c vein graft NEC,7A47600
+4. Other specific hosp,,66820,Emerg bypass femoral art by fem/tib art anast c prosth NEC,7A47400
+4. Other specific hosp,,48939,Emerg bypass femoral artery by fem/fem art anastomosis NEC,7A47C00
+4. Other specific hosp,,44250,Emerg bypass iliac art by iliac/femoral art anastomosis NEC,7A41000
+4. Other specific hosp,,72448,Emerg bypass iliac artery by femoral/femoral art anast NEC,7A41200
+4. Other specific hosp,,98082,Emerg bypass infrarenal aorta by anastom aorta to aorta NEC,7A15300
+4. Other specific hosp,,66917,Emerg bypass leg artery by aorta/com fem art anastomosis NEC,7A41600
+4. Other specific hosp,,62775,Emerg bypass pop art by pop/peron art anast c vein graft NEC,7A47B00
+4. Other specific hosp,,60693,Emerg bypass pop art by pop/pop art anast c vein graft NEC,7A47300
+4. Other specific hosp,,66879,Emerg bypass pop art by pop/tib art anast c vein graft NEC,7A47700
+4. Other specific hosp,,67818,Emerg bypass popliteal art by pop/pop art anast c prosth NEC,7A47100
+4. Other specific hosp,,70922,Emerg bypass popliteal artery by pop/fem art anastomosis NEC,7A47D00
+4. Other specific hosp,,3488,Emerg psychiatric admiss MHA,8H23000
+4. Other specific hosp,,96654,Emerg repl aneurysm bifurc aorta by anast aorta to fem art,7A11000
+4. Other specific hosp,,69922,Emerg repl aneurysm bifurc aorta by anast aorta to iliac a,7A11200
+4. Other specific hosp,,99068,Emerg replace aneurys pop art by pop/pop a anast c vein graf,7A45300
+4. Other specific hosp,,54192,Emerg replace aneurysm abdom aorta by anast aorta/aorta NEC,7A13400
+4. Other specific hosp,,99722,Emerg replace aneurysm asc aorta by anastom aorta to aorta,7A13000
+4. Other specific hosp,,62025,Emerg replace aneurysm fem art by fem/pop anast c vein graft,7A45200
+4. Other specific hosp,,55476,Emerg replace aneurysm fem art by fem/pop art anast c prosth,7A45000
+4. Other specific hosp,,96699,Emerg replace aneurysm iliac art by iliac/femoral art anast,7A40000
+4. Other specific hosp,,66232,Emerg replace aneurysm infrarenal aorta by anast aorta/aorta,7A13300
+4. Other specific hosp,,89470,Emerg replace aneurysm pop art by pop/tib anast c vein graft,7A45700
+4. Other specific hosp,,55394,Emerg replace aneurysm pop artery by pop/fem art anastomosis,7A45D00
+4. Other specific hosp,,93060,Emerg replace aneurysm thor aorta by anastom aorta to aorta,7A13100
+1. COPD-related hosp/refrl,Def,19003,Emergency COPD admission since last appointment,66Ye.00
+2. Other respiratory hosp,,7058,"Emergency admission, asthma",8H2P.00
+4. Other specific hosp,,3141,Emergency appendicectomy,7700.11
+4. Other specific hosp,,7832,Emergency appendicectomy NEC,7700300
+2. Other respiratory hosp,,24479,Emergency asthma admission since last appointment,663d.00
+4. Other specific hosp,,12118,Emergency caesarean section,7F13300
+4. Other specific hosp,,33538,Emergency excision of abnormal appendix NEC,7700100
+4. Other specific hosp,,23344,Emergency excision of abnormal appendix and drainage HFQ,7700000
+4. Other specific hosp,,10830,Emergency excision of appendix,7700
+4. Other specific hosp,,33826,Emergency excision of appendix NOS,7700z00
+4. Other specific hosp,,33534,Emergency excision of normal appendix,7700200
+4. Other specific hosp,,43648,Emergency femoro-femoral prosthetic cross over graft,7A41211
+"3. Admission, unknown ",Poss,314,Emergency hospital admission,8H2..00
+"3. Admission, unknown ",Poss,71820,Emergency laryngeal intubation,8712
+4. Other specific hosp,,7242,Emergency operation NOC,7M30000
+4. Other specific hosp,,17220,Emergency repair of aortic aneurysm,7A13.11
+4. Other specific hosp,,94784,Emergency replacement aneurysmal superficial femoral artery,7A45.15
+4. Other specific hosp,,61666,Emergency replacement of aneurysmal femoral/popliteal artery,7A45.00
+4. Other specific hosp,,46125,Emergency replacement of aneurysmal popliteal artery,7A45.14
+4. Other specific hosp,,31613,Emergency replacement of aneurysmal segment of aorta,7A13.00
+4. Other specific hosp,,45474,Emergency replacement of aneurysmal segment of aorta NOS,7A13z00
+4. Other specific hosp,,45477,Emergency replacement of aneurysmal segment of aorta OS,7A13y00
+4. Other specific hosp,,95163,Emergency voluntary psychiatric admission Mental Health Act,8H2T.00
+4. Other specific hosp,,9206,Endoscopic emergency appendicectomy,7700400
+4. Other specific hosp,,70680,FP22-in mental hospital,9239
+"3. Admission, unknown ",Poss,43828,Hospital admission note,9b0K.00
+"3. Admission, unknown ",,28927,Hospital death disch. NOS,945Z.00
+"3. Admission, unknown ",,28879,Hospital death discharge notif,945..00
+"3. Admission, unknown ",Poss,10533,Hospital inpatient,13F8.11
+"3. Admission, unknown ",Poss,63999,Hospital inpatient report,9b0L.00
+"3. Admission, unknown ",Poss,23536,Hospital patient,13F8.00
+"3. Admission, unknown ",Poss,21529,Hospital reference number:,9R6..00
+4. Other specific hosp,,33012,Implantation of emergency intravenous cardiac pacemaker,7936500
+"3. Admission, unknown ",Poss,43149,In-patient stay 1 day,8HN1.00
+"3. Admission, unknown ",Poss,62574,In-patient stay 10 days,8HNA.00
+"3. Admission, unknown ",Poss,36131,In-patient stay 11 days,8HNB.00
+"3. Admission, unknown ",Poss,62579,In-patient stay 12 days,8HNC.00
+"3. Admission, unknown ",Poss,62569,In-patient stay 13 days,8HND.00
+"3. Admission, unknown ",Poss,60689,In-patient stay 14 days,8HNE.00
+"3. Admission, unknown ",Poss,62571,In-patient stay 2 days,8HN2.00
+"3. Admission, unknown ",Poss,62573,In-patient stay 3 days,8HN3.00
+"3. Admission, unknown ",Poss,62576,In-patient stay 4 days,8HN4.00
+"3. Admission, unknown ",Poss,57174,In-patient stay 5 days,8HN5.00
+"3. Admission, unknown ",Poss,62575,In-patient stay 6 days,8HN6.00
+"3. Admission, unknown ",Poss,62578,In-patient stay 7 days,8HN7.00
+"3. Admission, unknown ",Poss,62570,In-patient stay 8 days,8HN8.00
+"3. Admission, unknown ",Poss,62577,In-patient stay 9 days,8HN9.00
+"3. Admission, unknown ",Poss,62572,In-patient stay > 12 hours,8HN0.00
+"3. Admission, unknown ",Poss,21153,In-patient stay NOS,8HNZ.00
+"3. Admission, unknown ",Poss,35252,Inpatient care,8CO..00
+"3. Admission, unknown ",Poss,51466,Inpatient care,Z177800
+"3. Admission, unknown ",,45334,Intensive care monitoring,8A8..00
+4. Other specific hosp,,48729,Involuntary admission,8Hb..00
+4. Other specific hosp,,27707,Listed for Cardiology admiss'n,8HM4.00
+2. Other respiratory hosp,Poss,37814,Listed for Chest Med admission,8HMB.00
+4. Other specific hosp,,45354,Listed for Dermatology admissn,8HM3.00
+4. Other specific hosp,,72333,Listed for Diabetology admissn,8HME.00
+4. Other specific hosp,,36429,Listed for E.N.T. admission,8HMJ.00
+4. Other specific hosp,,44382,Listed for Gastroenterol admis,8HM8.00
+4. Other specific hosp,,40166,Listed for Gen Medicine admiss,8HM1.00
+4. Other specific hosp,,25298,Listed for Gen Surgery admissn,8HMG.00
+4. Other specific hosp,,41431,Listed for Geriatrics admiss'n,8HM7.00
+4. Other specific hosp,,31873,Listed for Gynae admission,8HMO.00
+4. Other specific hosp,,61141,Listed for Immunology admiss'n,8HM5.00
+4. Other specific hosp,,41030,Listed for Neurology admission,8HM6.00
+4. Other specific hosp,,42718,Listed for Neurosurgical admis,8HML.00
+4. Other specific hosp,,48200,Listed for Obstetric admission,8HMN.00
+4. Other specific hosp,,48172,Listed for Oncology admission,8HMD.00
+4. Other specific hosp,,31981,Listed for Ophthalmology admis,8HMH.00
+4. Other specific hosp,,30158,Listed for Oral Surgery admiss,8HMQ.00
+4. Other specific hosp,,41924,Listed for Orthopaedic admissn,8HMK.00
+4. Other specific hosp,,25302,Listed for Paed Surgery admiss,8HMM.00
+4. Other specific hosp,,45348,Listed for Paediatric admiss'n,8HM2.00
+4. Other specific hosp,,21676,Listed for Plastic Surg admiss,8HMP.00
+4. Other specific hosp,,21625,Listed for Psychiatric admissn,8HM9.00
+4. Other specific hosp,,59159,Listed for Psychogeriatr admis,8HMC.00
+4. Other specific hosp,,45525,Listed for Rheumatology admiss,8HMA.00
+4. Other specific hosp,,28449,Listed for Urology admission,8HMR.00
+"3. Admission, unknown ",Poss,9744,Listed for admission to hosp.,8HM..00
+"3. Admission, unknown ",Poss,25524,Listed for hosp admission NOS,8HMZ.00
+4. Other specific hosp,,48169,Listed for other medical admis,8HMF.00
+4. Other specific hosp,,31385,Long stay hospital inpatient,13F8100
+4. Other specific hosp,,47591,Long stay hospital inpatient,13FS.00
+1. COPD-related hosp/refrl,Def,46036,Multiple COPD emergency hospital admissions,66Yi.00
+"3. Admission, unknown ",,46759,Night hospital care,8H32.00
+4. Other specific hosp,,662,Non emergency appendicectomy,7701.11
+4. Other specific hosp,,18317,Non-urgent ENT admission,8H3E.00
+4. Other specific hosp,,33470,Non-urgent cardiological admission,8H3V.00
+4. Other specific hosp,,17904,Non-urgent cardiothoracic admission,8H3T.00
+4. Other specific hosp,,17683,Non-urgent dermatology admisn.,8H3I.00
+4. Other specific hosp,,35321,Non-urgent diabetic admission,8H3O.00
+4. Other specific hosp,,35323,Non-urgent geriatric admission,8H39.00
+4. Other specific hosp,,19215,Non-urgent gynaecol.admission,8H3B.00
+4. Other specific hosp,,35314,Non-urgent haematology admisn.,8H3M.00
+"3. Admission, unknown ",Poss,38467,Non-urgent hosp.admission unsp,8H31.00
+"3. Admission, unknown ",Poss,8508,Non-urgent hospital admission,8H3..00
+"3. Admission, unknown ",Poss,18043,Non-urgent medical admission,8H36.00
+4. Other specific hosp,,25879,Non-urgent neurology admission,8H3J.00
+4. Other specific hosp,,38452,Non-urgent neurosurgical admission,8H3S.00
+4. Other specific hosp,,22929,Non-urgent obstetric admission,8H3C.00
+4. Other specific hosp,,35302,Non-urgent ophthalmolog.admisn,8H3G.00
+4. Other specific hosp,,21597,Non-urgent oral Surg.admission,8H3U.00
+4. Other specific hosp,,12714,Non-urgent orthopaedic admisn.,8H3D.00
+"3. Admission, unknown ",,17405,Non-urgent paediatric admisn.,8H3A.00
+4. Other specific hosp,,21900,Non-urgent plastic surg.admisn,8H3N.00
+4. Other specific hosp,,4711,Non-urgent psychiatric admisn.,8H38.00
+4. Other specific hosp,,25220,Non-urgent psychogeriatric admission,8H3Q.00
+4. Other specific hosp,,45087,Non-urgent radiotherapy admisn,8H3L.00
+4. Other specific hosp,,35347,Non-urgent renal medicine admission,8H3R.00
+2. Other respiratory hosp,Poss,35324,Non-urgent respiratory admission,8H3P.00
+4. Other specific hosp,,35322,Non-urgent rheumatology admisn,8H3H.00
+4. Other specific hosp,,9703,Non-urgent surgical admission,8H37.00
+4. Other specific hosp,,6594,Non-urgent trauma admission,8H3F.00
+4. Other specific hosp,,31926,Non-urgent urology admission,8H3K.00
+4. Other specific hosp,,72491,Other emerg bypass femoral or popliteal art by anastomosis,7A47.11
+4. Other specific hosp,,100113,Other emergency bypass of common femoral artery,7A47.12
+4. Other specific hosp,,63238,Other emergency bypass of deep femoral artery,7A47.13
+4. Other specific hosp,,11766,Other emergency bypass of femoral artery,7A47.16
+4. Other specific hosp,,9099,Other emergency bypass of femoral artery or popliteal artery,7A47.00
+4. Other specific hosp,,68320,Other emergency bypass of femoral or popliteal artery NOS,7A47z00
+4. Other specific hosp,,65692,Other emergency bypass of femoral or popliteal artery OS,7A47y00
+4. Other specific hosp,,39776,Other emergency bypass of popliteal artery,7A47.14
+4. Other specific hosp,,31822,Other emergency bypass of segment of aorta,7A15.00
+4. Other specific hosp,,97606,Other emergency bypass of superficial femoral artery,7A47.15
+"3. Admission, unknown ",Poss,1047,Other hospital admission NOS,8H3Z.00
+4. Other specific hosp,,60360,Other specified emergency excision of appendix,7700y00
+4. Other specific hosp,,88142,Other specified operations following glaucoma surgery,7259y00
+4. Other specific hosp,,66743,Other specified percutaneous renal stone surgery,7B07y00
+4. Other specific hosp,,26036,Other specified preprosthetic oral surgery,7513y00
+4. Other specific hosp,,91189,Paediatric surgery,9b8C.00
+"3. Admission, unknown ",,30357,Patient died in community hospital,949B.00
+"3. Admission, unknown ",,6897,Patient died in hospital,9495
+"3. Admission, unknown ",Poss,61893,Patient in hospital,9144
+5. AE non-specific,Poss,60440,Patient seen in casualty dept.,9N19.11
+4. Other specific hosp,,8190,Percutaneous renal stone surgery,7B07.00
+4. Other specific hosp,,7119,Percutaneous renal stone surgery NOS,7B07z00
+4. Other specific hosp,,45873,"Place of occurrence of accident or poisoning, hospital",T772.00
+4. Other specific hosp,,51802,Plastic surgery,9b8A.00
+4. Other specific hosp,,5969,Plastic surgery D.V. done,8HLP.00
+4. Other specific hosp,,37779,Plastic surgery D.V. requested,8HKP.00
+4. Other specific hosp,,20014,Plastic surgery self-referral,8HJI.00
+5. AE non-specific,,9409,Refer to A. & E. department,8HC1.00
+5. AE non-specific,Poss,13706,Refer to casualty officer,8H63.00
+5. AE non-specific,Poss,12257,Refer to casualty officer,ZL51.11
+5. AE non-specific,,32506,Refer to hosp. paeds casualty,8HC3.00
+"3. Admission, unknown ",Poss,3975,Refer to hospital,8H7a.00
+"3. Admission, unknown ",Poss,2558,Refer to hospital OPD,8HD..00
+5. AE non-specific,Poss,1158,Refer to hospital casualty,8HC..00
+5. AE non-specific,Poss,22296,Refer to hospital casualty NOS,8HCZ.00
+"3. Admission, unknown ",Poss,69617,Referral to ITU specialist,ZL56.11
+5. AE non-specific,Poss,13651,Referral to accident and emergency doctor,ZL51.00
+5. AE non-specific,,94792,Referral to adult intensive care specialist,ZL56100
+5. AE non-specific,Poss,13655,Referral to casualty doctor,ZL51.13
+5. AE non-specific,Poss,33836,Referral to emergency clinic,8HTF.00
+"3. Admission, unknown ",,42668,Referral to intensive care specialist,ZL56.00
+"3. Admission, unknown ",,57388,Referral to paediatric ITU specialist,ZL56211
+"3. Admission, unknown ",,25637,Referral to paediatric intensive care specialist,ZL56200
+4. Other specific hosp,,55330,Routine admission to hospice,8HX1.00
+4. Other specific hosp,,7304,Section 2 form - compulsory admission for assessment,9H4..00
+4. Other specific hosp,,8100,Section 3 form - compulsory admission for treatment,9H5..00
+"3. Admission, unknown ",Poss,53496,Seen by ITU specialist,ZL96.11
+5. AE non-specific,Poss,9331,Seen by accident and emergency doctor,ZL91.00
+"3. Admission, unknown ",Poss,53501,Seen by adult ITU specialist,ZL96111
+"3. Admission, unknown ",,40768,Seen by adult intensive care specialist,ZL96100
+5. AE non-specific,Poss,9332,Seen by casualty doctor,ZL91.12
+"3. Admission, unknown ",,48543,Seen by paediatric ITU specialist,ZL96211
+"3. Admission, unknown ",,28749,Seen by paediatric intensive care specialist,ZL96200
+4. Other specific hosp,,31100,Seen by trauma surgeon,ZL9GQ00
+5. AE non-specific,Poss,8082,Seen in emergency clinic,9N04.00
+5. AE non-specific,Poss,16588,Seen in emergency clinic,9N1y300
+5. AE non-specific,Poss,140,Seen in hospital casualty,9N19.00
+"3. Admission, unknown ",Poss,6527,Seen in hospital ward,9N1B.00
+"3. Admission, unknown ",Poss,21264,Self-referral to hospital,8HJ..00
+"3. Admission, unknown ",Poss,38567,Self-referral to hospital NOS,8HJZ.00
+"3. Admission, unknown ",,8091,Transferred from hospital,8HF..12
+4. Other specific hosp,,63408,Tube graft abdominal Aortic aneurysm (emergency),7A13411
+"3. Admission, unknown ",Poss,42924,Under care of ITU specialist,ZL16.11
+5. AE non-specific,Poss,24582,Under care of accident and emergency doctor,ZL11.00
+"3. Admission, unknown ",Poss,43881,Under care of adult ITU specialist,ZL16111
+"3. Admission, unknown ",,12839,Under care of adult intensive care specialist,ZL16100
+"3. Admission, unknown ",Poss,59130,Under care of casualty doctor,ZL11.12
+"3. Admission, unknown ",,18522,Under care of intensive care specialist,ZL16.00
+"3. Admission, unknown ",,42570,Under care of paediatric ITU specialist,ZL16211
+"3. Admission, unknown ",,10573,Under care of paediatric intensive care specialist,ZL16200
+4. Other specific hosp,,26154,Urgent admission to hospice,8HX0.00
+4. Other specific hosp,,34184,Voluntary admission,8Ha..00
+4. Other specific hosp,,92925,Y graft of abdominal Aortic aneurysm (emergency),7A11211
+4. Other specific hosp,,98878,[V]Level 2 intensive care (high dep int care) admin neonate,ZV29300
+4. Other specific hosp,,47540,[V]Neonatal care on ITU,ZV29211
+4. Other specific hosp,,28758,[V]Newborn receiving intensive care,ZV29200

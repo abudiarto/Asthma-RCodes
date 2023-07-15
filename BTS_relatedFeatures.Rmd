@@ -1,0 +1,376 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Let us develop the FSM model to help determine the BTS stage of a patient
+
+```{r}
+#source("AsthmaMedicationCodes.R", local = knitr::knit_global())
+
+#asth_med_SABA_codes <-func_asth_med_SABA_codes()
+
+
+# load libraries and set initial settings
+library(tictoc)
+library(tidyverse)
+data_folder='ServerData_13Oct2020'
+
+# or sys.source("your-script.R", envir = knitr::knit_global())
+
+
+
+# define ashtma medications
+asth_med_SABA_codes <- c("x01Cq", "x01Cr", "c14r.", "c141.", "c14a.",
+                         "c14y.", "c149.", "c14c.", "c14z.", "c142.",
+                         "c14b.", "x006b", "c14t.", "c144.", "c14u.",
+                         "c145.", "c14v.", "c146.", "c14j.", "c14f.",
+                         "c14w.", "c147.", "c14x.", "c14i.", "c14g.",
+                         "x01Cs", "c14s.", "c143.", "c14h.", "c14e.",
+                         "c14..", "c14k.", "c148.", "x00Af", "x05Fg",
+                         "c11x.", "c111.", "c113.", "c115.", "c11e.",
+                         "c118.", "c11v.", "c112.", "c114.", "c116.",
+                         "c11y.", "c11k.", "c11a.", "c11d.", "c11n.",
+                         "c11p.", "c11o.", "c11q.", "c11w.", "c117.",
+                         "c11z.", "c11m.", "c11D.", "c11g.", "c11h.",
+                         "c11b.", "x05Fi", "c13v.", "c13a.", "c131.",
+                         "c132.", "c13p.", "c13H.", "c133.", "c13h.",
+                         "c13i.", "c134.", "c13J.", "c13I.", "c13Z.",
+                         "c13Y.", "c13T.", "c13R.", "c1E7.", "c13N.",
+                         "c13P.", "c13G.", "x00CE", "c13c.", "c131.",
+                         "c13n.", "c13K.", "c13O.", "c13U.", "c13V.",
+                         "c1E1.", "c13S.", "c13Q.", "c13L.", "c1E8.",
+                         "c1E2.", "c13M.", "c13x.", "c13q.", "c136.",
+                         "c13y.", "c13r.", "c137.", "c13C.", "x025g",
+                         "c13d.", "c1E3.", "c13D.", "x025h", "c13e.",
+                         "c1E4.", "c13E.", "x025i", "c13f.", "c1E5.",
+                         "c13F.", "x025j", "c13g.", "c1E6.", "c13w.",
+                         "c13W.", "c13A.", "c135.", "c13o.", "c13X.",
+                         "c13B.", "c13m.", "c13z.", "c139.", "c13j.",
+                         "x05Fh", "c12x.", "c124.", "c121.", "c12y.",
+                         "c125.", "c122.", "c12z.", "c126.", "c123.",
+                         "c12w.", "c1E9.", "c1EA.", "c1EB.", "c1EC.",
+                         "c1ED.", "c1EE.", "c11..", "c11A.", "c11B.",
+                         "c11C.", "c13..", "c138.", "c13b.", "c13s.",
+                         "c12..", "c1E..", "c51H.", "c51B.", "c51x.",
+                         "x0100", "x00zz", "c51v.", "c51w.", "c51C.",
+                         "c51D.", "c51F.", "c51E.", "c531.", "c51A.",
+                         "c51i.")
+
+asth_med_LABA_codes <- c("c1C..", "c1C1.", "c1C2.", "c1C3.", "c1C4.",
+                         "c1C5.", "c1C6.", "c1C7.", "c1C8.", "c1Cy.",
+                         "c1Cz.", "c19..", "c191.", "c192.", "c193.",
+                         "c194.", "c195.", "c196.", "c197.", "c198.",
+                         "c199.", "c19A.", "c19B.", "c19z.", "c1b..",
+                         "c1b1.", "c1b2.", "c1b3.", "c1b4.", "c1d..",
+                         "c1d1.", "c1d2.")
+
+asth_med_SAMA_codes <- c("x01Db", "c31..", "c31x.", "c311.", "c31z.",
+                         "c313.", "c31t.", "c31G.", "c31u.", "c315.",
+                         "c31A.", "c318.", "c31B.", "c319.", "c31v.",
+                         "c314.", "c31C.", "c316.", "c31E.", "c31w.",
+                         "c312.", "c31D.", "c317.", "c31F.", "c31y.",
+                         "l86..", "c51A.", "c51i.", "c51B.", "c51x.",
+                         "x0100", "x00zz", "c51v.", "c51w.", "c51C.",
+                         "c51D.", "c51F.", "c51E.", "c531.")
+
+asth_med_methylx_codes <- c("c43..", "c431.", "c432.", "c433.", "c434.",
+                            "c435.", "c436.", "c437.", "c438.", "c439.",
+                            "c43A.", "c43B.", "c43a.", "c43b.", "c43c.",
+                            "c43d.", "c43e.", "c43f.", "c43g.", "c43h.",
+                            "c43i.", "c43j.", "c43k.", "c43m.", "c43n.",
+                            "c43o.", "c43p.", "c43q.", "c43r.", "c43s.",
+                            "c43t.", "c43u.", "c43v.", "c43w.", "c43x.",
+                            "c43y.", "c43z.", "c41..", "c411.", "c412.",
+                            "c413.", "c414.", "c415.", "c416.", "c417.",
+                            "c418.", "c419.", "c41A.", "c41B.", "c41C.",
+                            "c41a.", "c41b.", "c41c.", "c41d.", "c41e.",
+                            "c41f.", "c41g.", "c41h.", "c41i.", "c41j.",
+                            "c41k.", "c41m.", "c42..", "c42w.", "c421.",
+                            "c42x.", "c422.", "c42z.", "c424.", "c42y.",
+                            "c423.", "x01Ej", "x01Ek")
+
+asth_med_SABA_SAMA_codes <- c("c51A.", "c51B.", "c51C.", "c51D.", "c51E.",
+                              "c51F.", "c51G.", "c51H.", "c51v.", "c51w.",
+                              "c51x.", "c531.", "c51i.", "x0100", "x00zz")
+
+asth_med_ICS_codes <- c("c61..", "c611.", "c612.", "c613.", "c614.",
+                        "c615.", "c616.", "c617.", "c619.", "c61A.",
+                        "c61a.", "c61B.", "c61b.", "c61C.", "c61c.",
+                        "c61D.", "c61d.", "c61E.", "c61e.", "c61F.",
+                        "c61f.", "c61G.", "c61g.", "c61H.", "c61h.",
+                        "c61i.", "c61J.", "c61j.", "c61K.", "c61k.",
+                        "c61L.", "c61l.", "c61M.", "c61m.", "c61N.",
+                        "c61n.", "c61O.", "c61P.", "c61p.", "c61Q.",
+                        "c61q.", "c61R.", "c61r.", "c61S.", "c61s.",
+                        "c61T.", "c61t.", "c61U.", "c61u.", "c61V.",
+                        "c61v.", "c61W.", "c61w.", "c61X.", "c61x.",
+                        "c61Y.", "c61y.", "c61Z.", "c61z.", "c64..",
+                        "c641.", "c642.", "c643.", "c644.", "c645.",
+                        "c647.", "c648.", "c649.", "c64A.", "c64a.",
+                        "c64B.", "c64b.", "c64C.", "c64c.", "c64D.",
+                        "c64d.", "c64E.", "c64e.", "c64F.", "c64G.",
+                        "c64g.", "c64H.", "c64h.", "c64I.", "c64i.",
+                        "c64J.", "c64j.", "c64K.", "c64k.", "c64L.",
+                        "c64l.", "c64M.", "c64m.", "c64N.", "c64n.",
+                        "c64o.", "c64p.", "c64u.", "c64v.", "c64w.",
+                        "c64x.", "c64y.", "c64z.", "c65..", "c651.",
+                        "c652.", "c653.", "c654.", "c655.", "c656.",
+                        "c657.", "c658.", "c659.", "c65A.", "c65a.",
+                        "c65B.", "c65b.", "c65C.", "c65c.", "c65D.",
+                        "c65d.", "c65E.", "c65e.", "c65F.", "c65f.",
+                        "c65G.", "c65g.", "c65H.", "c65I.", "c65J.",
+                        "c65K.", "c65L.", "c65M.", "c65N.", "c65O.",
+                        "c65P.", "c65Q.", "c65R.", "c65S.", "c65T.",
+                        "c65U.", "c65V.", "c65W.", "c65X.", "c65Y.",
+                        "c65Z.", "c66..", "c661.", "c662.", "c663.",
+                        "c664.", "c665.", "c666.", "c667.", "c668.",
+                        "c669.", "c66A.", "c66a.", "c66B.", "c66b.",
+                        "c66C.", "c66c.", "c66D.", "c66d.", "c66E.",
+                        "c66e.", "c66F.", "c66f.", "c66G.", "c66g.",
+                        "c66H.", "c66h.", "c66I.", "c66J.", "c66K.",
+                        "c66L.", "c66M.", "c66N.", "c66P.", "c66Q.",
+                        "c66R.", "c66S.", "c66T.", "c66U.", "c66V.",
+                        "c66W.", "c66X.", "c66Y.", "c66Z.", "c681.",
+                        "c682.", "c683.", "c684.", "c691.", "c692.",
+                        "c69y.", "c69z.", "x00bU", "x00bV", "x00gE",
+                        "x00gF", "x00gG", "x00Hx", "x00Hy", "x00Hz",
+                        "x00I0", "x00I1", "x00I2", "x00I3", "x00I4",
+                        "x00QU", "x00QV", "x00z6", "x029g")
+
+asth_med_ICS_LABA_codes <- c("c67..", "c671.", "c672.", "c673.", "c674.",
+                             "c675.", "c67x.", "c67y.", "c67z.", "c6B..",
+                             "c6B1.", "c6B2.", "c6B3.", "c6B4.", "c1D..",
+                             "c1D1.", "c1D2.", "c1D3.", "c1D4.", "c1D5.",
+                             "c1D6.", "c1Du.", "c1Dv.", "c1Dw.", "c1Dx.",
+                             "c1Dy.", "c1Dz.", "c1c..", "c1c1.", "c1c2.",
+                             "c1c3.", "c1cx.", "c1cy.", "c1cz.", "c6A..",
+                             "c6A1.", "c6A2.", "c6Ay.", "c6Az.")
+
+asth_med_LTRA_codes <- c("cA...", "cA1..", "cA11.", "cA12.", "cA13.",
+                         "cA14.", "cA15.", "cA16.", "cA1y.", "cA1z.",
+                         "cA2..", "cA21.", "cA22.")
+
+asth_med_omalizumab_codes <- c("ck1..", "ck11.", "ck12.", "ck13.", "ck14.",
+                               "ck15.", "ck16.")
+
+asth_med_OCS_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
+                        "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
+                        "fe3r.", "fe3s.", "fe3u.", "fe4..", "fe41.",
+                        "fe42.", "fe43.", "fe44.", "fe45.", "fe4e.",
+                        "fe4f.", "fe4g.", "fe4h.", "fe5..", "fe51.",
+                        "fe52.", "fe53.", "fe5f.", "fe5m.", "fe5n.",
+                        "fe5o.", "fe5p.", "fe61.", "fe62.", "fe64.",
+                        "fe65.", "fe66.", "fe67.", "fe68.", "fe69.",
+                        "fe6a.", "fe6c.", "fe6d.", "fe6e.", "fe6f.",
+                        "fe6g.", "fe6h.", "fe6i.", "fe6j.", "fe6k.",
+                        "fe6l.", "fe6m.", "fe6n.", "fe6o.", "fe6p.",
+                        "fe6q.", "fe6r.", "fe6s.", "fe6t.", "fe6v.",
+                        "fe6w.", "fe6z.", "fe7..", "fe71.", "fe72.",
+                        "fe73.", "fe74.", "fe75.", "fe76.", "fe77.",
+                        "fe78.", "fe79.", "fe7x.", "fe7y.", "fe7z.",
+                        "x00yP", "x01Mh", "x01Na", "x01Nb", "fe11.",
+                        "fe12.", "fe1x.", "fe1y.", "fe21.", "fe22.",
+                        "fe23.", "fe24.", "fe25.", "fe26.", "x01MW")
+
+antibiotics<-read_csv("./ClinicalCodes/dl_antibiotic.txt")
+antibiotics<-antibiotics$read_code
+
+asthma_medications <- unique(c(asth_med_SABA_codes,
+                               asth_med_LABA_codes,
+                               asth_med_SAMA_codes,
+                               asth_med_methylx_codes,
+                               asth_med_SABA_SAMA_codes,
+                               asth_med_ICS_codes,
+                               asth_med_ICS_LABA_codes,
+                               asth_med_LTRA_codes,
+                               asth_med_omalizumab_codes,
+                               asth_med_OCS_codes,
+                               antibiotics))
+
+
+# let us now get the dosage information
+load(paste(data_folder,"/d_dosage.Rdata",sep=''))
+
+quantityinfo <- read.csv("./ClinicalCodes/ICSQuantityInfo_v2.csv") # taken from BTS 2016 guidelines tables
+quantityinfo<-dplyr::select(quantityinfo,c("code_id","Uncertainty","MedType","MedName","Strength"))
+
+doseinfo=d_dosage
+# doseinfo$asneeded<-ifelse(str_detect(doseinfo$text_dose,"P.R.N")==T |
+#                             str_detect(doseinfo$text_dose,"PRN")==T |
+#                             str_detect(doseinfo$text_dose,"AS NEED")==T |
+#                             str_detect(doseinfo$text_dose,"WHEN NEED")==T |
+#                             str_detect(doseinfo$text_dose,"A S NEED")==T |
+#                             str_detect(doseinfo$text_dose," S NEED")==T |
+#                             str_detect(doseinfo$text_dose,"A SNEED")==T |
+#                             str_detect(doseinfo$text_dose,"A NEED")==T |
+#                             str_detect(doseinfo$text_dose,"ASNEED")==T |
+#                             (str_detect(doseinfo$text_dose,"IF NEED")==T &
+#                                str_detect(doseinfo$text_dose,"INCREASE IF NEED")==F) |
+#                             str_detect(doseinfo$text_dose,"AS REQ")==T |
+#                             str_detect(doseinfo$text_dose,"WHEN REQ")==T |
+#                             str_detect(doseinfo$text_dose,"A S REQ")==T |
+#                             str_detect(doseinfo$text_dose," S REQ")==T |
+#                             str_detect(doseinfo$text_dose,"A SREQ")==T |
+#                             str_detect(doseinfo$text_dose,"A REQ")==T |
+#                             str_detect(doseinfo$text_dose,"ASREQ")==T |
+#                             (str_detect(doseinfo$text_dose,"IF REQ")==T &
+#                                str_detect(doseinfo$text_dose,"INCREASE IF REQ")==F),
+#                           TRUE,
+#                           FALSE)
+
+load('selectedPatients_13Oct2020.Rdata')
+
+## set parameters for loading files
+chunk_size=10000
+num_files=ceiling(length(selectedPatients$patid)/chunk_size)
+num_patients=length(selectedPatients$patid)
+# foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopar%{
+for (kc in c(1:num_files)){
+  tic()
+  print(paste('Processing File Number:',kc,', Total files:',num_files))
+  
+  load(paste(data_folder,'/f_therapy_part',kc,'.Rdata',sep=''))
+  
+  ##############
+  ### Setup the flag variables
+  f_therapy_part$flag_SABA<-f_therapy_part$code_id %in% asth_med_SABA_codes
+  f_therapy_part$flag_LABA<-f_therapy_part$code_id %in% asth_med_LABA_codes
+  f_therapy_part$flag_SAMA<-f_therapy_part$code_id %in% asth_med_SAMA_codes
+  f_therapy_part$flag_methylx<-f_therapy_part$code_id %in% asth_med_methylx_codes
+  f_therapy_part$flag_SABA_SAMA<-f_therapy_part$code_id %in% asth_med_SABA_SAMA_codes
+  f_therapy_part$flag_ICS<-f_therapy_part$code_id %in% asth_med_ICS_codes
+  f_therapy_part$flag_ICS_LABA<-f_therapy_part$code_id %in% asth_med_ICS_LABA_codes
+  f_therapy_part$flag_LTRA<-f_therapy_part$code_id %in% asth_med_LTRA_codes
+  f_therapy_part$flag_omalizumab<-f_therapy_part$code_id %in% asth_med_omalizumab_codes
+  f_therapy_part$flag_OCS<-f_therapy_part$code_id %in% asth_med_OCS_codes
+  
+
+  # keep only those with medication
+  f_therapy_part<-f_therapy_part[which(f_therapy_part$code_id %in% asthma_medications),]
+  
+  f_therapy_part <- merge(f_therapy_part,
+                          doseinfo[ ,c("dose_id", "actual_dosage","ind_as_needed")],
+                          by="dose_id",
+                          all.x=TRUE, all.y=FALSE)
+  
+  f_therapy_part <- merge(f_therapy_part,
+                          quantityinfo,
+                          by="code_id",
+                          all.x=TRUE, all.y=FALSE)
+  
+  # add the default numdose of 4 if none provided and calculate the daily maximum dose
+  f_therapy_part <-f_therapy_part%>%
+    mutate(numdose=actual_dosage)%>%
+    mutate(numdose=replace(numdose,is.na(numdose),4))%>%
+    mutate(daily_dose_max=ifelse(!is.na(Strength),Strength*numdose,NA))
+  
+  
+  f_therapy_part$MedType=as.character(f_therapy_part$MedType)
+  # separate out BecD types depending on whether they have QVAR or not
+  f_therapy_part<-f_therapy_part%>%
+    mutate(MedType=replace(MedType,(str_detect(toupper(MedName),"QVAR") & MedType=="BecD"),"BecDQVAR"))
+  
+  f_therapy_part<-f_therapy_part%>%
+    mutate(ICS_dose = case_when(
+      MedType=="Bec+Form" & daily_dose_max>=0 &daily_dose_max<=200 ~ "low",
+      MedType=="Bec+Form" & daily_dose_max>200 & daily_dose_max<=400 ~ "medium",
+      MedType=="Bec+Form" & daily_dose_max>400 & daily_dose_max<=4000 ~ "high",
+      MedType=="BecDQVAR" & daily_dose_max>=0 &daily_dose_max<=200 ~ "low",
+      MedType=="BecDQVAR" & daily_dose_max>200 & daily_dose_max<=400 ~ "medium",
+      MedType=="BecDQVAR" & daily_dose_max>400 & daily_dose_max<=4000 ~ "high",
+      MedType=="BecD" & daily_dose_max>=0 &daily_dose_max<=200 ~ "very low",
+      MedType=="BecD" & daily_dose_max>200 & daily_dose_max<=400 ~ "low",
+      MedType=="BecD" & daily_dose_max>400 & daily_dose_max<=1000 ~ "medium",
+      MedType=="BecD" & daily_dose_max>1000 & daily_dose_max<=4000 ~ "high",
+      MedType=="BuD" & daily_dose_max>=0 &daily_dose_max<=200 ~ "very low",
+      MedType=="BuD" & daily_dose_max>200 &daily_dose_max<=400 ~ "low",
+      MedType=="BuD" & daily_dose_max>400 & daily_dose_max<=800 ~ "medium",
+      MedType=="BuD" & daily_dose_max>800 & daily_dose_max<=4000 ~ "high",
+      MedType=="BuD+Form" & daily_dose_max>=0 &daily_dose_max<=200 ~ "very low",
+      MedType=="BuD+Form" & daily_dose_max>200 &daily_dose_max<=400 ~ "low",
+      MedType=="BuD+Form" & daily_dose_max>400 & daily_dose_max<=800 ~ "medium",
+      MedType=="BuD+Form" & daily_dose_max>800 & daily_dose_max<=4000 ~ "high",
+      MedType=="Cic" & daily_dose_max>=0 &daily_dose_max<=160 ~ "low",
+      MedType=="Cic" & daily_dose_max>160 & daily_dose_max<=320 ~ "medium",
+      MedType=="Cic" & daily_dose_max>320 & daily_dose_max<=4000 ~ "high",
+      MedType=="Fl" & daily_dose_max>=0 &daily_dose_max<=100 ~ "very low",
+      MedType=="Fl" & daily_dose_max>=100 &daily_dose_max<=200 ~ "low",
+      MedType=="Fl" & daily_dose_max>200 & daily_dose_max<=500 ~ "medium",
+      MedType=="Fl" & daily_dose_max>500 & daily_dose_max<=4000 ~ "high",
+      MedType=="Fl+Form" & daily_dose_max>=0 &daily_dose_max<=200 ~ "low",
+      MedType=="Fl+Form" & daily_dose_max>200 & daily_dose_max<=500 ~ "medium",
+      MedType=="Fl+Form" & daily_dose_max>500 & daily_dose_max<=4000 ~ "high",
+      MedType=="Fl+Salm" & daily_dose_max>=0 &daily_dose_max<=200 ~ "low",
+      MedType=="Fl+Salm" & daily_dose_max>200 & daily_dose_max<=500 ~ "medium",
+      MedType=="Fl+Salm" & daily_dose_max>500 & daily_dose_max<=4000 ~ "high",
+      MedType=="Fl+Vilan" & daily_dose_max>=0 &daily_dose_max<=92 ~ "medium",
+      MedType=="Fl+Vilan" & daily_dose_max>92 & daily_dose_max<=1000 ~ "high",
+      MedType=="MomF" & daily_dose_max>0 & daily_dose_max<=400 ~ "low",
+      MedType=="MomF" & daily_dose_max>400 &daily_dose_max<=800 ~ "medium",
+      MedType=="MomF" & daily_dose_max>800 &daily_dose_max<=4000 ~ "high",
+      MedType=="BecOnly" & daily_dose_max>0 & daily_dose_max<=200 ~ "low",
+      MedType=="BecOnly" & daily_dose_max>200 &daily_dose_max<=400 ~ "medium",
+      MedType=="BecOnly" & daily_dose_max>400 &daily_dose_max<=4000 ~ "high",
+      TRUE ~ "not ICS"
+    ))
+  
+  
+  # let us now extract the BTS step for every therapy entry
+   f_therapy_part<-f_therapy_part%>%
+    mutate(BTS_step = case_when(
+      flag_SABA & !(flag_LABA | flag_SAMA | flag_methylx | flag_SABA_SAMA | flag_ICS | flag_ICS_LABA | flag_LTRA | flag_omalizumab |flag_OCS) ~ "0",
+      flag_ICS & ICS_dose=='low' & !(flag_LABA | flag_SAMA | flag_methylx | flag_SABA_SAMA | flag_ICS_LABA | flag_LTRA | flag_omalizumab |flag_OCS) ~ "1",
+            (flag_ICS_LABA | (flag_ICS & flag_LABA)) & ICS_dose=='low' & !(flag_SAMA | flag_methylx | flag_SABA_SAMA | flag_LTRA | flag_omalizumab |flag_OCS) ~ "2",
+      (flag_ICS_LABA | flag_ICS ) & ICS_dose=='medium' & !(flag_OCS) ~ "3",
+      (flag_ICS_LABA | flag_ICS ) & ICS_dose=='high' & !(flag_OCS) ~ "4",
+      flag_OCS ~ "5",
+      TRUE ~ "unknown"))
+  
+   # let us get the BTS step for each patient
+   f_therapy_part_BTS<-f_therapy_part%>%
+     filter(BTS_step!='unknown')%>%
+     select(patid,event_date,BTS_step)
+   
+   # now that BTS step has been calculated, let us now compute the other features related to ICS
+   
+   
+   ICS_info=readxl::read_xlsx('./ClinicalCodes/ICS_info.xlsx')
+   
+   # ICS-related features first
+   # limit to baseline year
+   library(lubridate)
+   f_therapy_part_ICS<-f_therapy_part%>%
+     filter(year(event_date)==2016)%>%
+     filter(flag_ICS | flag_ICS_LABA)%>%
+     group_by(patid)%>%
+     arrange(patid,event_date)%>%
+     mutate(average_daily_dose_ICS=mean(daily_dose_max))%>%
+     mutate(prescribed_daily_dose_ICS=daily_dose_max[n()])%>%
+     mutate(prescribed_OCS=any(flag_OCS))%>%
+     mutate(number_OCS=sum(flag_OCS))%>%
+     left_join(ICS_info,by='code_id')
+   #put 0 for any nebuliser/not available categories for medication possession ratio
+   IC=which(is.na(f_therapy_part_ICS$TotalActuations))
+   f_therapy_part_ICS$TotalActuations[IC]=0
+     
+     
+   
+   f_therapy_part_ICS<-f_therapy_part_ICS%>%
+     mutate(ICS_medication_possesion_ratio=((as.numeric(TotalActuations)/numdose)/365.25))%>%
+     select(patid,event_date,average_daily_dose_ICS,prescribed_daily_dose_ICS,ICS_medication_possesion_ratio,DeviceType,Spacer)
+   
+   
+   feature_BTSstep=f_therapy_part_BTS
+   feature_ICSinfo=f_therapy_part_ICS
+   
+   save(feature_BTSstep,file=paste('./PrepareData/BTS_Step/feature_BTSstep_',kc,'.Rdata',sep=''))
+   save(feature_ICSinfo,file=paste('./PrepareData/ICS_info/feature_ICSinfo',kc,'.Rdata',sep=''))
+  
+  
+  ##############
+  toc()
+}
+
+
+```

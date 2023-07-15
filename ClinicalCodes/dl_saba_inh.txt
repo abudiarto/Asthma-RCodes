@@ -1,0 +1,88 @@
+read_code,MX_PRODUCT_CODE,MX_PRODUCT_NAME,MX_DRUG_SUBSTANCE_NAME,mcg,doses_in_pack,device,device_type,MX_FORM,MX_STRENGTH,MX_GENERIC_NAME,MX_BNF_CODE,MX_BNF_HEADER
+c12w.,02914001,SALBUTAMOL inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+c131.,02414001,ASMAVEN inh 100micrograms,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c133.,01193003,SALBULIN inh,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c134.,01020001,VENTOLIN inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c136.,01021001,VENTOLIN rcap 200micrograms,SALBUTAMOL SULPHATE,200,200,DPI,,inh,200,SALBUTAMOL inh caps 200micrograms,03010101,Selective beta-2-agonists
+c137.,01021002,VENTOLIN rcap 400micrograms,SALBUTAMOL SULPHATE,400,200,DPI,,inh,400,SALBUTAMOL inh caps 400micrograms,03010101,Selective beta-2-agonists
+c13C.,05544001,SALBUTAMOL disc 200micrograms,SALBUTAMOL SULPHATE,200,112,DPI,,dsc,200,,03010101,Selective beta-2-agonists
+c13D.,05544002,SALBUTAMOL disc 400micrograms,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,,03010101,Selective beta-2-agonists
+c13E.,05153002,VENTODISKS disc 400micrograms/blister,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,SALBUTAMOL disc 400micrograms,03010101,Selective beta-2-agonists
+c13F.,05153001,VENTODISKS disc 200micrograms/blister,SALBUTAMOL SULPHATE,200,112,DPI,,dsc,200,SALBUTAMOL disc 200micrograms,03010101,Selective beta-2-agonists
+c13G.,05153002,VENTODISKS disc 400micrograms/blister,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,SALBUTAMOL disc 400micrograms,03010101,Selective beta-2-agonists
+c13H.,01195001,SALAMOL inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,easi-breathe,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13I.,08602001,AIROMIR cfc free inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL cfc free inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13J.,01020001,VENTOLIN inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13K.,08715001,SALAMOL EASI-BREATHE breath act inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,easi-breathe,inh,100,SALBUTAMOL breath act inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c13L.,01020002,VENTOLIN ACCUHALER 200micrograms/actuation,SALBUTAMOL SULPHATE,200,60,DPI,,inh,200,SALBUTAMOL breath act pwdr inh 200micrograms/actuation,03010101,Selective beta-2-agonists
+c13M.,01020002,VENTOLIN ACCUHALER 200micrograms/actuation,SALBUTAMOL SULPHATE,200,60,DPI,,inh,200,SALBUTAMOL breath act pwdr inh 200micrograms/actuation,03010101,Selective beta-2-agonists
+c13N.,09580001,SALBUTAMOL vortex inh 100micrograms/inhalation,SALBUTAMOL,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+c13P.,09581001,SALBUTAMOL spacehaler 100micrograms/inhalation,SALBUTAMOL,100,200,MDI,,inh,100,SALBUTAMOL vortex inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13Q.,03973009,SALBUTAMOL CYCLOCAPS inh caps 200micrograms [APS],SALBUTAMOL SULPHATE,200,112,DPI,,cap,200,SALBUTAMOL inh caps 200micrograms,03010101,Selective beta-2-agonists
+c13R.,05616002,SALBUTAMOL breath act pwdr inh 200micrograms/actuation,SALBUTAMOL SULPHATE,200,100,DPI,,inh,200,,03010101,Selective beta-2-agonists
+c13S.,05616003,SALBUTAMOL breath act pwdr inh 95micrograms,SALBUTAMOL SULPHATE,100,200,DPI,,inh,95,,03010101,Selective beta-2-agonists
+c13T.,01020001,VENTOLIN inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13U.,05616001,SALBUTAMOL breath act inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,prob easi-breathe,inh,100,,03010101,Selective beta-2-agonists
+c13V.,02914001,SALBUTAMOL inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+c13Y.,01195001,SALAMOL inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,easi-breathe,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13c.,05138001,AEROLIN AUTOHALER breath act inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,,inh,100,SALBUTAMOL breath act inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c13d.,05153001,VENTODISKS disc 200micrograms/blister,SALBUTAMOL SULPHATE,200,112,DPI,,dsc,200,SALBUTAMOL disc 200micrograms,03010101,Selective beta-2-agonists
+c13e.,05153002,VENTODISKS disc 400micrograms/blister,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,SALBUTAMOL disc 400micrograms,03010101,Selective beta-2-agonists
+c13f.,05153001,VENTODISKS disc 200micrograms/blister,SALBUTAMOL SULPHATE,200,112,DPI,,dsc,200,SALBUTAMOL disc 200micrograms,03010101,Selective beta-2-agonists
+c13g.,05153002,VENTODISKS disc 400micrograms/blister,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,SALBUTAMOL disc 400micrograms,03010101,Selective beta-2-agonists
+c13h.,05470001,SALBUVENT inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13l.,05138001,AEROLIN AUTOHALER breath act inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,,inh,100,SALBUTAMOL breath act inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c13n.,05138001,AEROLIN AUTOHALER breath act inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,,inh,100,SALBUTAMOL breath act inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c13p.,05800001,MAXIVENT inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c13q.,01340001,SALBUTAMOL inh caps 200micrograms,SALBUTAMOL SULPHATE,200,112,DPI,,cap,200,,03010101,Selective beta-2-agonists
+c13r.,01340002,SALBUTAMOL inh caps 400micrograms,SALBUTAMOL SULPHATE,400,112,DPI,,cap,400,,03010101,Selective beta-2-agonists
+c13v.,02914001,SALBUTAMOL inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+c13x.,01340001,SALBUTAMOL inh caps 200micrograms,SALBUTAMOL SULPHATE,200,112,DPI,,cap,200,,03010101,Selective beta-2-agonists
+c13y.,01340002,SALBUTAMOL inh caps 400micrograms,SALBUTAMOL SULPHATE,400,112,DPI,,cap,400,,03010101,Selective beta-2-agonists
+c144.,00121001,BRICANYL inh,TERBUTALINE SULPHATE,250,200,MDI,,inh,250,TERBUTALINE inh 250micrograms/actuation,03010101,Selective beta-2-agonists
+c145.,02757001,BRICANYL refill canister,TERBUTALINE SULPHATE,250,400,MDI,,inh,250,TERBUTALINE refill canister 250micrograms/actuation,03010101,Selective beta-2-agonists
+c146.,00121003,BRICANYL spacer inh,TERBUTALINE SULPHATE,250,400,MDI,,inh,250,TERBUTALINE spacer inh 250micrograms/actuation,03010101,Selective beta-2-agonists
+c14f.,00121002,BRICANYL TURBOHALER 500micrograms,TERBUTALINE SULPHATE,500,100,DPI,,inh,500,TERBUTALINE breath act inh 500micrograms,03010101,Selective beta-2-agonists
+c14g.,00121002,BRICANYL TURBOHALER 500micrograms,TERBUTALINE SULPHATE,500,100,DPI,,inh,500,TERBUTALINE breath act inh 500micrograms,03010101,Selective beta-2-agonists
+c14j.,00121002,BRICANYL TURBOHALER 500micrograms,TERBUTALINE SULPHATE,500,100,DPI,,inh,500,TERBUTALINE breath act inh 500micrograms,03010101,Selective beta-2-agonists
+c14t.,04785001,TERBUTALINE inh 250micrograms/actuation,TERBUTALINE SULPHATE,250,400,MDI,,inh,250,,03010101,Selective beta-2-agonists
+c14u.,04785001,TERBUTALINE inh 250micrograms/actuation,TERBUTALINE SULPHATE,250,400,MDI,,inh,250,,03010101,Selective beta-2-agonists
+c14v.,04785001,TERBUTALINE inh 250micrograms/actuation,TERBUTALINE SULPHATE,250,400,MDI,,inh,250,,03010101,Selective beta-2-agonists
+c151.,00106001,BEROTEC inh 200micrograms/actuation,FENOTEROL HYDROBROMIDE,200,200,BAI,,inh,200,FENOTEROL inh 200micrograms/actuation,03010101,Selective beta-2-agonists
+c153.,00106003,BEROTEC inh 100micrograms/actuation,FENOTEROL HYDROBROMIDE,100,200,BAI,,inh,100,FENOTEROL inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c154.,03445003,FENOTEROL inh 100micrograms/actuation,FENOTEROL HYDROBROMIDE,100,200,BAI,,inh,100,,03010101,Selective beta-2-agonists
+c15y.,03445001,FENOTEROL inh 200micrograms/actuation,FENOTEROL HYDROBROMIDE,200,200,BAI,,inh,200,,03010101,Selective beta-2-agonists
+c173.,00128001,BRONCHODIL inh 500micrograms/dose,REPROTEROL HYDROCHLORIDE,100,200,MDI,,inh,500,REPROTEROL inh 500micrograms/dose,03010101,Selective beta-2-agonists
+c17y.,04672001,REPROTEROL inh 500micrograms/dose,REPROTEROL HYDROCHLORIDE,100,200,MDI,,inh,500,,03010101,Selective beta-2-agonists
+c181.,00801001,PULMADIL inh,RIMITEROL HYDROBROMIDE,100,200,MDI,,inh,100,RIMITEROL inh,03010101,Selective beta-2-agonists
+c182.,00801001,PULMADIL inh,RIMITEROL HYDROBROMIDE,100,200,MDI,,inh,100,RIMITEROL inh,03010101,Selective beta-2-agonists
+c183.,01192001,PULMADIL AUTO inh,RIMITEROL HYDROBROMIDE,100,200,MDI,,inh,100,RIMITEROL inh,03010101,Selective beta-2-agonists
+c18z.,04689001,RIMITEROL inh,RIMITEROL HYDROBROMIDE,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+c1E1.,08715001,SALAMOL EASI-BREATHE breath act inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,easi-breathe,inh,100,SALBUTAMOL breath act inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c1E2.,10652001,PULVINAL SALBUTAMOL breath act pwdr inh 200micrograms/actuation,SALBUTAMOL SULPHATE,200,100,DPI,,inh,200,SALBUTAMOL breath act pwdr inh 200micrograms/actuation,03010101,Selective beta-2-agonists
+c1E3.,05153001,VENTODISKS disc 200micrograms/blister,SALBUTAMOL SULPHATE,200,112,DPI,,dsc,200,SALBUTAMOL disc 200micrograms,03010101,Selective beta-2-agonists
+c1E4.,05153002,VENTODISKS disc 400micrograms/blister,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,SALBUTAMOL disc 400micrograms,03010101,Selective beta-2-agonists
+c1E5.,05153001,VENTODISKS disc 200micrograms/blister,SALBUTAMOL SULPHATE,200,112,DPI,,dsc,200,SALBUTAMOL disc 200micrograms,03010101,Selective beta-2-agonists
+c1E6.,05153002,VENTODISKS disc 400micrograms/blister,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,SALBUTAMOL disc 400micrograms,03010101,Selective beta-2-agonists
+c1E7.,12723001,EASYHALER SALBUTAMOL breath act pwdr inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,DPI,,inh,100,SALBUTAMOL breath act pwdr inh 100micrograms/actuation,03010101,Selective beta-2-agonists
+c1E8.,12724001,EASYHALER SALBUTAMOL breath act pwdr inh 200micrograms/actuation,SALBUTAMOL SULPHATE,200,100,DPI,,inh,200,SALBUTAMOL breath act pwdr inh 200micrograms/actuation,03010101,Selective beta-2-agonists
+c1E9.,01193003,SALBULIN inh,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+c1EA.,12722001,SALBUTAMOL breath act pwdr inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,DPI,,inh,100,,03010101,Selective beta-2-agonists
+c1EC.,05544002,SALBUTAMOL disc 400micrograms,SALBUTAMOL SULPHATE,400,112,DPI,,dsc,400,,03010101,Selective beta-2-agonists
+c51A.,00281001,DUOVENT inh 40micrograms + 100micrograms/actuation,FENOTEROL HYDROBROMIDE,100,200,BAI,,inh,40,FENOTEROL + IPRATROPIUM BROMIDE inh 100micrograms + 40micrograms/actuation,03010101,Selective beta-2-agonists
+c51B.,03446002,FENOTEROL + IPRATROPIUM BROMIDE breath act inh 100micrograms + 40micrograms/actuation,FENOTEROL HYDROBROMIDE,100,200,BAI,,inh,100,,03010101,Selective beta-2-agonists
+c51C.,07244001,IPRATROPIUM BROMIDE + SALBUTAMOL inh 20mcg + 100mcg,SALBUTAMOL SULPHATE,100,200,MDI,,inh,20,,03010101,Selective beta-2-agonists
+c51D.,07243001,COMBIVENT inh 20mcg + 100mcg,SALBUTAMOL SULPHATE,100,200,MDI,,inh,20,IPRATROPIUM BROMIDE + SALBUTAMOL inh 20mcg + 100mcg,03010101,Selective beta-2-agonists
+c51i.,00281001,DUOVENT inh 40micrograms + 100micrograms/actuation,FENOTEROL HYDROBROMIDE,100,200,BAI,,inh,40,FENOTEROL + IPRATROPIUM BROMIDE inh 100micrograms + 40micrograms/actuation,03010101,Selective beta-2-agonists
+c51x.,07105001,DUOVENT AUTOHALER breath act inh,FENOTEROL HYDROBROMIDE,100,200,BAI,,inh,100,FENOTEROL + IPRATROPIUM BROMIDE breath act inh 100micrograms + 40micrograms/actuation,03010101,Selective beta-2-agonists
+c621.,01419001,VENTIDE inh,SALBUTAMOL,100,200,MDI,,inh,100,SALBUTAMOL + BECLOMETASONE inh 100mcg + 50mcg,03010101,Selective beta-2-agonists
+c622.,01021001,VENTOLIN rcap 200micrograms,SALBUTAMOL SULPHATE,200,200,DPI,,inh,200,SALBUTAMOL inh caps 200micrograms,03010101,Selective beta-2-agonists
+c623.,05150002,VENTIDE paed rcap,SALBUTAMOL,200,100,DPI,,inh,200,SALBUTAMOL + BECLOMETASONE inh caps 200micrograms + 100micrograms,03010101,Selective beta-2-agonists
+c722.,06268001,AEROCROM inh,SALBUTAMOL,100,200,MDI,,inh,100,SODIUM CROMOGLICATE + SALBUTAMOL inh,03010101,Selective beta-2-agonists
+c72y.,06267002,SODIUM CROMOGLICATE + SALBUTAMOL inh & spacer,SALBUTAMOL,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+c72z.,06267001,SODIUM CROMOGLICATE + SALBUTAMOL inh,SALBUTAMOL,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+i966.,01020001,VENTOLIN inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+x00Af,02914001,SALBUTAMOL inh 100micrograms/inhalation,SALBUTAMOL SULPHATE,100,200,MDI,,inh,100,,03010101,Selective beta-2-agonists
+x02Xr,07243001,COMBIVENT inh 20mcg + 100mcg,SALBUTAMOL SULPHATE,100,200,MDI,,inh,20,IPRATROPIUM BROMIDE + SALBUTAMOL inh 20mcg + 100mcg,03010101,Selective beta-2-agonists
+x02qI,01195001,SALAMOL inh 100micrograms/actuation,SALBUTAMOL SULPHATE,100,200,BAI,easi-breathe,inh,100,SALBUTAMOL inh 100micrograms/inhalation,03010101,Selective beta-2-agonists
+x02uD,01020002,VENTOLIN ACCUHALER 200micrograms/actuation,SALBUTAMOL SULPHATE,200,60,DPI,,inh,200,SALBUTAMOL breath act pwdr inh 200micrograms/actuation,03010101,Selective beta-2-agonists

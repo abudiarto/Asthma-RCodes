@@ -1,0 +1,13 @@
+Read Code,Description,Category
+XE2rP,60-80% of predicted peak flow rate,60-80
+XE2rQ,Less than 60% of predicted peak flow rate,Less than 60
+XE2rO,More than 80% of predicted peak flow rate,More than 80
+X77RQ,60-80% of predicted peak expiratory flow rate,60-80
+X77RR,More than 80% of predicted peak expiratory flow rate,More than 80
+X77RP,Less than 60% of predicted peak expiratory flow rate,Less than 60
+339F.,60-80% of predicted peak flow rate,60-80
+339E.,More than 80% of predicted peak flow rate,More than 80
+339G.,Less than 60% of predicted peak flow rate,Less than 60
+339p.,Predicted peak expiratory flow rate using EN 13826 standard,Number
+XaKbt,Predicted peak expiratory flow rate using EN 13826 standard,Number
+339H.,Predicted peak flow,Number
