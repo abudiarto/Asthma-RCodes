@@ -9,8 +9,8 @@ Features
 ```{r}
 rm(list=ls())
 library(tidyverse)
-load('selectedPatients_13Oct2020.Rdata')
-data_load_folder='PrepareData'
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
+data_load_folder='../PrepareData'
 num_files=74
 data_features=selectedPatients
 

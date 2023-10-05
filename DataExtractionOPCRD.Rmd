@@ -281,9 +281,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
 rm(list=ls())
 source('./ParallelCode.R')
 library(tidyverse)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Ethnicity'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 Ethnicity <- read.csv('./ClinicalCodes/EthinicityNHS.csv')
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
 chunk_size=10000
@@ -305,7 +305,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'), .verbose=TRUE)%do
            ethnic_group=Ethnicity$Group[which(Ethnicity$ReadCode==code_id)])%>%
     select(patid,ethnicity, ethnic_group)
   
-  save(feature_Ethnicity,file=paste('./PrepareData/',data_save_folder,'/feature_Ethnicity_',kc,'.Rdata',sep=''))
+  save(feature_Ethnicity,file=paste('../PrepareData/',data_save_folder,'/feature_Ethnicity_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -638,11 +638,14 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 #Features 21-27: Asthma outcome related features
 ```{r}
 rm(list=ls())
+source('./ParallelCode.R')
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+library(mltools)
+library(data.table)
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='CompoundFeatures'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 # let us now get related codes for hospitalization, LRTI, asthma codes etc.
 asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
@@ -680,7 +683,7 @@ load('DefiniteAsthmaCodes.Rdata')
 chunk_size=10000
 num_files=ceiling(length(selectedPatients$patid)/chunk_size)
 num_patients=length(selectedPatients$patid)
-foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopar%{
+foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate', 'mltools', 'data.table'))%dopar%{
   print(paste('Processing File Number:',kc,', Total files:',num_files))
   load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep='')) 
   load(paste(data_load_folder,'/f_therapy_part',kc,'.Rdata',sep=''))
@@ -934,7 +937,12 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     filter(row_number()==1)%>%
     select(patid,numAsthmaAttacks) 
   
-  
+  #Feature 27_extended (month of asthma attacks)
+  feature_asthmaAttacks_month <- features_compound%>%
+    filter((OCS_Keep==3 & eventType=='OCS')| (Hosp_Keep==3 & eventType=='OtherHospitalisation') | eventType=='exacerbation' | eventType=='hospitalisation') %>% 
+    mutate(month=as.factor(month(ymd(event_date)))) %>% 
+    select(patid,month)
+  feature_asthmaAttacks_month <- as_tibble(one_hot(as.data.table(feature_asthmaAttacks_month)))
   
     #Feature 21
   save(feature_numAntibiotics,file=paste('PrepareData/',data_save_folder,'/feature_numAntibiotics_',kc,'.Rdata',sep=''))
@@ -950,6 +958,8 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   save(feature_numHospitals,file=paste('PrepareData/',data_save_folder,'/feature_numHospitals_',kc,'.Rdata',sep=''))
   #Feature 27
   save(feature_asthmaAttacks,file=paste('PrepareData/',data_save_folder,'/feature_asthmaAttacks_',kc,'.Rdata',sep=''))
+  #Feature 27_extended
+save(feature_asthmaAttacks_month,file=paste('PrepareData/',data_save_folder,'/feature_asthmaAttacksMonth_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -958,9 +968,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 source('./ParallelCode.R')
 library(tidyverse)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Comorbidity'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 comorbid_code = read.csv('./ClinicalCodes/comorbid.csv')
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
 chunk_size=10000
@@ -974,7 +984,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
   # get comorbidity data
   feature_comorbid<-f_clinical_part%>%
     filter((event_date)<ymd('2017/1/1'))%>%
-    filter(code_id %in% comorbid_code$ReadCodes)%>%
+    # filter(code_id %in% comorbid_code$ReadCodes)%>%
     mutate(comorbid_rhinitis = ifelse (code_id %in% comorbid_code$ReadCodes[which(comorbid_code$Comorbid=='Rhinitis')], 1, 0),
            comorbid_cardiovascular = ifelse (code_id %in% comorbid_code$ReadCodes[which(comorbid_code$Comorbid=='Cardiovascular')],1,0),
            comorbid_heartfailure = ifelse (code_id %in% comorbid_code$ReadCodes[which(comorbid_code$Comorbid=='Heart Failure')],1,0),
@@ -1000,7 +1010,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
             count_nasalpolyps=sum(comorbid_nasalpolyps))
 
   
-  save(feature_comorbid,file=paste('PrepareData/',data_save_folder,'/feature_comorbid_',kc,'.Rdata',sep=''))
+  save(feature_comorbid,file=paste('../PrepareData/',data_save_folder,'/feature_comorbid_',kc,'.Rdata',sep=''))
 
 
   
@@ -1008,14 +1018,13 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
 ```
 
 # Feature : Comedication
-
 ```{r}
 rm(list=ls())
 source('./ParallelCode.R')
 library(tidyverse)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Comedication'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 comedication_code = read.csv('./ClinicalCodes/comedication.csv')
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
 chunk_size=10000
@@ -1029,7 +1038,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
   # get the latest weight value of the patient
   feature_comedication<-f_clinical_part%>%
     filter((event_date)<ymd('2017/1/1'))%>%
-    filter(code_id %in% comedication_code$Read.Codes)%>%
+    # filter(code_id %in% comedication_code$Read.Codes)%>%
     mutate(comedication_paracetamol = ifelse (code_id %in% comedication_code$Read.Codes[which(comedication_code$Comedication=='Paracetamol')], 1, 0),
            comedication_nsaids = ifelse (code_id %in% comedication_code$Read.Codes[which(comedication_code$Comedication=='nsaids')],1,0),
            comedication_betablocker = ifelse (code_id %in% comedication_code$Read.Codes[which(comedication_code$Comedication=='beta blocker')],1,0))
@@ -1041,7 +1050,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
             count_betablocker=sum(comedication_betablocker))
 
   
-  save(feature_comedication,file=paste('PrepareData/',data_save_folder,'/feature_comedication_',kc,'.Rdata',sep=''))
+  save(feature_comedication,file=paste('../PrepareData/',data_save_folder,'/feature_comedication_',kc,'.Rdata',sep=''))
 
 
   
