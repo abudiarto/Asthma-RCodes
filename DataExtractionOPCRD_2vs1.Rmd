@@ -45,7 +45,7 @@ selectedPatients<-fclinical_selected_2016_2018 %>%
   group_by(patid) %>%
   filter(row_number()==1)%>%
   select(patid)
-save(selectedPatients,file='selectedPatients_13Oct2020.Rdata')
+save(selectedPatients,file='../FinalData/selectedPatients_13Oct2020.Rdata')
 ```
 # Step 2A: Now that the above block has been run, you will have a list of patients for whom you will download all the data for these selected patients until 31/12/2018
 
@@ -60,13 +60,13 @@ library(dplyr)
 dw <- config::get()
 con <- odbcConnect("opcrd_dsn", uid=dw$uid, pwd=dw$pwd)
 ## load the selected paients (IDs)
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 ## set parameters for downloading
 chunk_size=10000
 num_files=ceiling(length(selectedPatients$patid)/chunk_size)
 num_patients=length(selectedPatients$patid)
-data_folder='ServerData_13Oct2020'
+data_folder='../ServerData_13Oct2020'
 
 
 ## download f_clinical
@@ -173,7 +173,7 @@ save(d_dosage,file=paste(data_folder,'/d_dosage.Rdata',sep = ''))
 ```{r}
 rm(list=ls())
 library(dplyr)
-data_folder='ServerData_13Oct2020'
+data_folder='../ServerData_13Oct2020'
 load(paste(data_folder,'/d_practice.Rdata',sep=''))
 ONS_PostCodes=read.csv('./National_Statistics_Postcode_Lookup_UK.csv')
 
@@ -216,9 +216,9 @@ save(d_practice,file=paste(data_folder,'/d_practice.Rdata',sep=''))
 ```{r}
 rm(list=ls())
 library(tidyverse)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='SexAndAge'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
 chunk_size=10000
 num_files=ceiling(length(selectedPatients$patid)/chunk_size)
@@ -230,7 +230,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'), .verbose = TRUE)%
     mutate(sex=sex_coded)%>%
     mutate(age=2016-year_of_birth)%>%
     select(patid,practice_id,sex,age)
-  save(feature_sex_age,file=paste('PrepareData/',data_save_folder,'/feature_sex_age_',kc,'.Rdata',sep=''))
+  save(feature_sex_age,file=paste('../PrepareDataNew/',data_save_folder,'/feature_sex_age_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -239,9 +239,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'), .verbose = TRUE)%
 rm(list=ls())
 source('./ParallelCode.R')
 library(tidyverse)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='BMI'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
 chunk_size=10000
 num_files=ceiling(length(selectedPatients$patid)/chunk_size)
@@ -253,7 +253,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
   # get the latest weight value of the patient
   process_Weight<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     filter(code_id=='22A..')%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     filter(row_number()==1)%>%
@@ -261,7 +261,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
   # get the latest height value of the patient
   process_Height<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     filter(code_id=='229..')%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     filter(row_number()==1)%>%
@@ -272,7 +272,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
     mutate(BMI=weight/height^2)%>%
     select(patid,BMI, weight, height)
   
-  save(feature_BMI,file=paste('PrepareData/',data_save_folder,'/feature_BMI_',kc,'.Rdata',sep=''))
+  save(feature_BMI,file=paste('../PrepareDataNew/',data_save_folder,'/feature_BMI_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -297,7 +297,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'), .verbose=TRUE)%do
   # get the latest smoking status of the patient
   feature_Ethnicity<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     filter(code_id %in% Ethnicity$ReadCode)%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     filter(row_number()==1)%>%
@@ -305,7 +305,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'), .verbose=TRUE)%do
            ethnic_group=Ethnicity$Group[which(Ethnicity$ReadCode==code_id)])%>%
     select(patid,ethnicity, ethnic_group)
   
-  save(feature_Ethnicity,file=paste('../PrepareData/',data_save_folder,'/feature_Ethnicity_',kc,'.Rdata',sep=''))
+  save(feature_Ethnicity,file=paste('../PrepareDataNew/',data_save_folder,'/feature_Ethnicity_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -314,9 +314,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'), .verbose=TRUE)%do
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Smoking'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # load smoking codes
 SmokingCodes=read.csv('./ClinicalCodes/SmokingReadcodes.csv')
 smoking_never <-SmokingCodes%>%
@@ -337,7 +337,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   # get the latest smoking status of the patient
   feature_Smoking<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     filter(code_id %in% SmokingCodes$Read.Code)%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     filter(row_number()==1)%>%
@@ -347,7 +347,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
                                    TRUE ~ 'unknown'))%>%
     select(patid,smokingStatus)
   
-  save(feature_Smoking,file=paste('PrepareData/',data_save_folder,'/feature_Smoking_',kc,'.Rdata',sep=''))
+  save(feature_Smoking,file=paste('../PrepareDataNew/',data_save_folder,'/feature_Smoking_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -356,9 +356,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='CharlsonCI'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # load smoking codes
 CharlsonCodes=read.csv('./ClinicalCodes/12874_2019_753_MOESM1_ESM.csv')
 # remove the term id and only keep the read code
@@ -374,7 +374,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   
   # get all the f_clinical until the baseline date
   f_clinical_part<-f_clinical_part%>%
-    filter((event_date)<ymd('2017/1/1'))
+    filter((event_date)<ymd('2018/1/1'))
   #let us now loop through each patient and get the CharlsonScore
   PatIDs=unique(f_clinical_part$patid)
   
@@ -395,7 +395,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     rm(CharlsonCodes_patient)
   }
     
-  save(feature_CharlsonScore,file=paste('PrepareData/',data_save_folder,'/feature_CharlsonScore_',kc,'.Rdata',sep=''))
+  save(feature_CharlsonScore,file=paste('../PrepareDataNew/',data_save_folder,'/feature_CharlsonScore_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -404,9 +404,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='PredictedPEF'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # load % predicted PEF Codes 
 PredicedPEFCodes=read.csv('./ClinicalCodes/PeakFlowCodes.csv')
 
@@ -433,7 +433,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   # get the latest peak flow status of the patient
   feature_PEF<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     filter(code_id %in% PEF_Categories$Read.Code)%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     filter(row_number()==1)%>%
@@ -443,7 +443,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
                                    TRUE ~ 'unknown'))
   
     
-  save(feature_PEF,file=paste('PrepareData/',data_save_folder,'/feature_PEF_',kc,'.Rdata',sep=''))
+  save(feature_PEF,file=paste('../PrepareDataNew/',data_save_folder,'/feature_PEF_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -452,9 +452,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='EosinophilCount'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # load Blood Eosinophil Count Codes 
 BloodEosinophilCodes=read.csv('./ClinicalCodes/EosinophilCount.csv')
 
@@ -476,7 +476,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     # get the latest Eosinophil number status of the patient
   feature_Eosinophil<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     filter(code_id %in% Eosinophil_number$Read.Code)%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     filter(row_number()==1)%>%
@@ -486,7 +486,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     select(patid,EosinophilLevel,event_date)
 
   
-  save(feature_Eosinophil,file=paste('PrepareData/',data_save_folder,'/feature_Eosinophil_',kc,'.Rdata',sep=''))
+  save(feature_Eosinophil,file=paste('../PrepareDataNew/',data_save_folder,'/feature_Eosinophil_',kc,'.Rdata',sep=''))
 }
 ```
 #these features are processed in BTS_relatedFeatures.Rmd
@@ -501,9 +501,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='OralOCSUSe'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 # get oral OCS codes now
 asth_med_OCS_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
                         "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
@@ -537,14 +537,14 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   ### Setup the OCS flag variable
   feature_OCS<-f_therapy_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1') & (event_date)>ymd('2015/12/31'))%>%
+    filter((event_date)<ymd('2018/1/1') & (event_date)>ymd('2015/12/31'))%>%
     filter(code_id %in% asth_med_OCS_codes)%>%
     arrange(desc(event_date),.by_group=TRUE)%>%
     mutate(numOCS=length(unique(event_date)))%>%
     filter(row_number()==1)%>%
     select(patid,numOCS)
    rm(f_therapy_part)
-   save(feature_OCS,file=paste('PrepareData/',data_save_folder,'/feature_OCS_',kc,'.Rdata',sep=''))
+   save(feature_OCS,file=paste('../PrepareDataNew/',data_save_folder,'/feature_OCS_',kc,'.Rdata',sep=''))
 }
 ```
 # Feature 18: Prior Asthma Education
@@ -552,9 +552,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='PriorAsthmaEducation'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 PriorEducationCodes=read.csv('./ClinicalCodes/AsthmaEducationReadCodes.csv')
 
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
@@ -567,13 +567,13 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
  
   feature_priorAsthmaEducation<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     mutate(PriorEducation=if(any(code_id %in% PriorEducationCodes$ReadCode)) 1 else 0)%>%
     filter(row_number()==1)%>%
     select(patid,code_id,PriorEducation,event_date)
   
    rm(f_clinical_part)
-   save(feature_priorAsthmaEducation,file=paste('PrepareData/',data_save_folder,'/feature_priorAsthmaEducation',kc,'.Rdata',sep=''))
+   save(feature_priorAsthmaEducation,file=paste('../PrepareDataNew/',data_save_folder,'/feature_priorAsthmaEducation',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -582,9 +582,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='PrimaryCareConsults'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
 chunk_size=10000
@@ -595,12 +595,12 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep=''))
   feature_primarycare<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1') & (event_date)>ymd('2015/12/31'))%>%
+    filter((event_date)<ymd('2018/1/1') & (event_date)>ymd('2015/12/31'))%>%
     mutate(numPCS=length(unique(event_date)))%>%
     filter(row_number()==1)%>%
     select(patid,numPCS)
    rm(f_clinical_part)
-   save(feature_primarycare,file=paste('PrepareData/',data_save_folder,'/feature_primarycare',kc,'.Rdata',sep=''))
+   save(feature_primarycare,file=paste('../PrepareDataNew/',data_save_folder,'/feature_primarycare',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -609,9 +609,9 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='PrimaryCareConsultsAsthma'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 load('./DefiniteAsthmaCodes.Rdata')
 
 # use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
@@ -623,7 +623,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep=''))
   feature_primarycareasthma<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1') & (event_date)>ymd('2015/12/31'))%>%
+    filter((event_date)<ymd('2018/1/1') & (event_date)>ymd('2015/12/31'))%>%
     filter(code_id %in% definite_asthma_codes$readcode_new)%>%
     mutate(numPCS=length(unique(event_date)))%>%
     filter(row_number()==1)%>%
@@ -631,7 +631,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   
   
    rm(f_clinical_part)
-   save(feature_primarycareasthma,file=paste('PrepareData/',data_save_folder,'/feature_primarycareasthma',kc,'.Rdata',sep=''))
+   save(feature_primarycareasthma,file=paste('../PrepareDataNew/',data_save_folder,'/feature_primarycareasthma',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -652,7 +652,7 @@ asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s
 asthma_hospitalisations_codes <- c("663m.","663d.", "8H2P.")
 resp_review_file = read.csv('./ClinicalCodes/cl_lower_resp_events.txt')
 resp_review_codes=resp_review_file$read_code
-antibiotic_codes = read.csv('./ClinicalCodes//dl_antibiotic.txt')
+antibiotic_codes = read.csv('./ClinicalCodes/dl_antibiotic.txt')
 oral_ocs_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
                        "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
                        "fe3r.", "fe3s.", "fe3u.", "fe4..", "fe41.",
@@ -691,10 +691,10 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate', 'mlto
   # first make sure that you are only dealing with data in the baseline year
   f_clinical_part<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1') & (event_date)>ymd('2015/12/31'))
+    filter((event_date)<ymd('2018/1/1') & (event_date)>ymd('2015/12/31'))
   f_therapy_part<-f_therapy_part%>%
     group_by(patid)%>%
-    filter((event_date)<ymd('2017/1/1') & (event_date)>ymd('2015/12/31'))
+    filter((event_date)<ymd('2018/1/1') & (event_date)>ymd('2015/12/31'))
   
   events_exac <- f_clinical_part %>%
     select(patid,event_date,code_id) %>%
@@ -945,21 +945,21 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate', 'mlto
   feature_asthmaAttacks_month <- as_tibble(one_hot(as.data.table(feature_asthmaAttacks_month)))
   
     #Feature 21
-  save(feature_numAntibiotics,file=paste('../PrepareData/',data_save_folder,'/feature_numAntibiotics_',kc,'.Rdata',sep=''))
+  save(feature_numAntibiotics,file=paste('../PrepareDataNew/',data_save_folder,'/feature_numAntibiotics_',kc,'.Rdata',sep=''))
     #Feature 22
-  save(feature_acuteRespEvents,file=paste('../PrepareData/',data_save_folder,'/feature_acuteRespEvents_',kc,'.Rdata',sep=''))
+  save(feature_acuteRespEvents,file=paste('../PrepareDataNew/',data_save_folder,'/feature_acuteRespEvents_',kc,'.Rdata',sep=''))
     #Feature 23
-  save(feature_numOCS,file=paste('../PrepareData/',data_save_folder,'/feature_numOCS_',kc,'.Rdata',sep=''))
+  save(feature_numOCS,file=paste('../PrepareDataNew/',data_save_folder,'/feature_numOCS_',kc,'.Rdata',sep=''))
     #Feature 24
-  save(feature_numOCSwithLRTI,file=paste('../PrepareData/',data_save_folder,'/feature_numOCSwithLRTI_',kc,'.Rdata',sep=''))
+  save(feature_numOCSwithLRTI,file=paste('../PrepareDataNew/',data_save_folder,'/feature_numOCSwithLRTI_',kc,'.Rdata',sep=''))
     #Feature 25
-  save(feature_numAntibioticswithLRTI,file=paste('../PrepareData/',data_save_folder,'/feature_numAntibioticswithLRTI_',kc,'.Rdata',sep=''))
+  save(feature_numAntibioticswithLRTI,file=paste('../PrepareDataNew/',data_save_folder,'/feature_numAntibioticswithLRTI_',kc,'.Rdata',sep=''))
     #Feature 26
-  save(feature_numHospitals,file=paste('../PrepareData/',data_save_folder,'/feature_numHospitals_',kc,'.Rdata',sep=''))
+  save(feature_numHospitals,file=paste('../PrepareDataNew/',data_save_folder,'/feature_numHospitals_',kc,'.Rdata',sep=''))
   #Feature 27
-  save(feature_asthmaAttacks,file=paste('../PrepareData/',data_save_folder,'/feature_asthmaAttacks_',kc,'.Rdata',sep=''))
+  save(feature_asthmaAttacks,file=paste('../PrepareDataNew/',data_save_folder,'/feature_asthmaAttacks_',kc,'.Rdata',sep=''))
   #Feature 27_extended
-save(feature_asthmaAttacks_month,file=paste('../PrepareData/',data_save_folder,'/feature_asthmaAttacksMonth_',kc,'.Rdata',sep=''))
+save(feature_asthmaAttacks_month,file=paste('../PrepareDataNew/',data_save_folder,'/feature_asthmaAttacksMonth_',kc,'.Rdata',sep=''))
 }
 ```
 
@@ -983,7 +983,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
   
   # get comorbidity data
   feature_comorbid<-f_clinical_part%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     # filter(code_id %in% comorbid_code$ReadCodes)%>%
     mutate(comorbid_rhinitis = ifelse (code_id %in% comorbid_code$ReadCodes[which(comorbid_code$Comorbid=='Rhinitis')], 1, 0),
            comorbid_cardiovascular = ifelse (code_id %in% comorbid_code$ReadCodes[which(comorbid_code$Comorbid=='Cardiovascular')],1,0),
@@ -1010,7 +1010,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
             count_nasalpolyps=sum(comorbid_nasalpolyps))
 
   
-  save(feature_comorbid,file=paste('../PrepareData/',data_save_folder,'/feature_comorbid_',kc,'.Rdata',sep=''))
+  save(feature_comorbid,file=paste('../PrepareDataNew/',data_save_folder,'/feature_comorbid_',kc,'.Rdata',sep=''))
 
 
   
@@ -1037,7 +1037,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
   
   # get the latest weight value of the patient
   feature_comedication<-f_clinical_part%>%
-    filter((event_date)<ymd('2017/1/1'))%>%
+    filter((event_date)<ymd('2018/1/1'))%>%
     # filter(code_id %in% comedication_code$Read.Codes)%>%
     mutate(comedication_paracetamol = ifelse (code_id %in% comedication_code$Read.Codes[which(comedication_code$Comedication=='Paracetamol')], 1, 0),
            comedication_nsaids = ifelse (code_id %in% comedication_code$Read.Codes[which(comedication_code$Comedication=='nsaids')],1,0),
@@ -1050,7 +1050,7 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
             count_betablocker=sum(comedication_betablocker))
 
   
-  save(feature_comedication,file=paste('../PrepareData/',data_save_folder,'/feature_comedication_',kc,'.Rdata',sep=''))
+  save(feature_comedication,file=paste('../PrepareDataNew/',data_save_folder,'/feature_comedication_',kc,'.Rdata',sep=''))
 
 
   
@@ -1060,16 +1060,16 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse'))%dopar%{
 
 # Outcome Coding
 
-# outcome 1 : exacerbation attack in 3 months (1st January 2017-31st March 2017)
+# outcome 1 : exacerbation attack in 3 months (1st January 2018-31st March 2018)
 ```{r}
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
 library(tictoc)
 tic()
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Outcome_3months'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 # let us now get related codes for hospitalization, LRTI, asthma codes etc.
 asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
@@ -1114,10 +1114,10 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   # first make sure that you are only dealing with data in the appropriate outcome period
   f_clinical_part<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/3/31') & (event_date)>=ymd('2017/1/1'))
+    filter((event_date)<=ymd('2018/3/31') & (event_date)>=ymd('2018/1/1'))
   f_therapy_part<-f_therapy_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/3/31') & (event_date)>=ymd('2017/1/1'))
+    filter((event_date)<=ymd('2018/3/31') & (event_date)>=ymd('2018/1/1'))
   
   events_exac <- f_clinical_part %>%
     select(patid,event_date,code_id) %>%
@@ -1245,19 +1245,19 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     filter(row_number()==1)%>%
     select(patid,outcome_3months) 
   
-  save(asthmaAttacks_3months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_3months_',kc,'.Rdata',sep=''))
+  save(asthmaAttacks_3months,file=paste('../PrepareDataNew/',data_save_folder,'/asthmaAttacks_3months_',kc,'.Rdata',sep=''))
 }
 toc()
 ```
 
-# outcome 2 : exacerbation attack in 6 months (01st April 2017 -30th June 2017)
+# outcome 2 : exacerbation attack in 6 months (01st April 2018 -30th June 2018)
 ```{r}
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Outcome_6months'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 # let us now get related codes for hospitalization, LRTI, asthma codes etc.
 asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
@@ -1302,10 +1302,10 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   # first make sure that you are only dealing with data in the appropriate outcome period
   f_clinical_part<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/6/30') & (event_date)>=ymd('2017/4/1'))
+    filter((event_date)<=ymd('2018/6/30') & (event_date)>=ymd('2018/4/1'))
   f_therapy_part<-f_therapy_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/6/30') & (event_date)>=ymd('2017/4/1'))
+    filter((event_date)<=ymd('2018/6/30') & (event_date)>=ymd('2018/4/1'))
   
   events_exac <- f_clinical_part %>%
     select(patid,event_date,code_id) %>%
@@ -1433,18 +1433,18 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     filter(row_number()==1)%>%
     select(patid,outcome_6months) 
   
-  save(asthmaAttacks_6months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_6months_',kc,'.Rdata',sep=''))
+  save(asthmaAttacks_6months,file=paste('../PrepareDataNew/',data_save_folder,'/asthmaAttacks_6months_',kc,'.Rdata',sep=''))
 }
 ```
 
-# outcome 3 : exacerbation attack in 9 months (1st July 2017- 30th Sep 2017)
+# outcome 3 : exacerbation attack in 9 months (1st July 2018- 30th Sep 2018)
 ```{r}
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Outcome_9months'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 # let us now get related codes for hospitalization, LRTI, asthma codes etc.
 asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
@@ -1489,10 +1489,10 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   # first make sure that you are only dealing with data in the appropriate outcome period
   f_clinical_part<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/9/30') & (event_date)>=ymd('2017/7/1'))
+    filter((event_date)<=ymd('2018/9/30') & (event_date)>=ymd('2018/7/1'))
   f_therapy_part<-f_therapy_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/9/30') & (event_date)>=ymd('2017/7/1'))
+    filter((event_date)<=ymd('2018/9/30') & (event_date)>=ymd('2018/7/1'))
   
   events_exac <- f_clinical_part %>%
     select(patid,event_date,code_id) %>%
@@ -1620,18 +1620,18 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     filter(row_number()==1)%>%
     select(patid,outcome_9months) 
   
-  save(asthmaAttacks_9months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_9months_',kc,'.Rdata',sep=''))
+  save(asthmaAttacks_9months,file=paste('../PrepareDataNew/',data_save_folder,'/asthmaAttacks_9months_',kc,'.Rdata',sep=''))
 }
 ```
 
-# outcome 4 : exacerbation attack in 12 months (1st October 2017-31st Dec 2017)
+# outcome 4 : exacerbation attack in 12 months (1st October 2018-31st Dec 2018)
 ```{r}
 rm(list=ls())
 library(tidyverse)
 library(lubridate)
-data_load_folder='ServerData_13Oct2020'
+data_load_folder='../ServerData_13Oct2020'
 data_save_folder='Outcome_12months'
-load('selectedPatients_13Oct2020.Rdata')
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
 
 # let us now get related codes for hospitalization, LRTI, asthma codes etc.
 asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
@@ -1676,10 +1676,10 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
   # first make sure that you are only dealing with data in the appropriate outcome period
   f_clinical_part<-f_clinical_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/12/31') & (event_date)>=ymd('2017/10/1'))
+    filter((event_date)<=ymd('2018/12/31') & (event_date)>=ymd('2018/10/1'))
   f_therapy_part<-f_therapy_part%>%
     group_by(patid)%>%
-    filter((event_date)<=ymd('2017/12/31') & (event_date)>=ymd('2017/10/1'))
+    filter((event_date)<=ymd('2018/12/31') & (event_date)>=ymd('2018/10/1'))
   
   events_exac <- f_clinical_part %>%
     select(patid,event_date,code_id) %>%
@@ -1807,756 +1807,6 @@ foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopa
     filter(row_number()==1)%>%
     select(patid,outcome_12months) 
   
-  save(asthmaAttacks_12months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_12months_',kc,'.Rdata',sep=''))
+  save(asthmaAttacks_12months,file=paste('../PrepareDataNew/',data_save_folder,'/asthmaAttacks_12months_',kc,'.Rdata',sep=''))
 }
 ```
-
-# outcome 5 : exacerbation attack in 15 months (1st January 2018-31st March 2018)
-```{r}
-rm(list=ls())
-library(tidyverse)
-library(lubridate)
-data_load_folder='ServerData_13Oct2020'
-data_save_folder='Outcome_15months'
-load('selectedPatients_13Oct2020.Rdata')
-
-# let us now get related codes for hospitalization, LRTI, asthma codes etc.
-asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
-asthma_hospitalisations_codes <- c("663m.","663d.", "8H2P.")
-resp_review_file = read.csv('./ClinicalCodes/cl_lower_resp_events.txt')
-resp_review_codes=resp_review_file$read_code
-oral_ocs_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
-                       "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
-                       "fe3r.", "fe3s.", "fe3u.", "fe4..", "fe41.",
-                       "fe42.", "fe43.", "fe44.", "fe45.", "fe4e.",
-                       "fe4f.", "fe4g.", "fe4h.", "fe5..", "fe51.",
-                       "fe52.", "fe53.", "fe5f.", "fe5m.", "fe5n.",
-                       "fe5o.", "fe5p.", "fe61.", "fe62.", "fe64.",
-                       "fe65.", "fe66.", "fe67.", "fe68.", "fe69.",
-                       "fe6a.", "fe6c.", "fe6d.", "fe6e.", "fe6f.",
-                       "fe6g.", "fe6h.", "fe6i.", "fe6j.", "fe6k.",
-                       "fe6l.", "fe6m.", "fe6n.", "fe6o.", "fe6p.",
-                       "fe6q.", "fe6r.", "fe6s.", "fe6t.", "fe6v.",
-                       "fe6w.", "fe6z.", "fe7..", "fe71.", "fe72.",
-                       "fe73.", "fe74.", "fe75.", "fe76.", "fe77.",
-                       "fe78.", "fe79.", "fe7x.", "fe7y.", "fe7z.",
-                       "x00yP", "x01Mh", "x01Na", "x01Nb", "fe11.",
-                       "fe12.", "fe1x.", "fe1y.", "fe21.", "fe22.",
-                       "fe23.", "fe24.", "fe25.", "fe26.", "x01MW")
-
-other_hospitalisation_codes = read.csv('./ClinicalCodes/HospitalisationCodes.csv')
-# remove term id from these codes
-other_hospitalisation_codes<-other_hospitalisation_codes %>%
-  mutate(readcode_new=substr(read_code,1,5))
-# also get the specific asthma codes
-load('DefiniteAsthmaCodes.Rdata')
-
-# use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
-chunk_size=10000
-num_files=ceiling(length(selectedPatients$patid)/chunk_size)
-num_patients=length(selectedPatients$patid)
-foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopar%{
-  print(paste('Processing File Number:',kc,', Total files:',num_files))
-  load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep='')) 
-  load(paste(data_load_folder,'/f_therapy_part',kc,'.Rdata',sep=''))
-  
-  # first make sure that you are only dealing with data in the appropriate outcome period
-  f_clinical_part<-f_clinical_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/3/31') & (event_date)>=ymd('2018/1/1'))
-  f_therapy_part<-f_therapy_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/3/31') & (event_date)>=ymd('2018/1/1'))
-  
-  events_exac <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_exacerbations_codes)%>%
-    mutate(eventType='exacerbation')
-  events_hospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_hospitalisations_codes)%>%
-    mutate(eventType='hospitalisation')
-  events_respReview <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% resp_review_codes)%>%
-    mutate(eventType='respiratoryReview')
-  events_OCS <- f_therapy_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% oral_ocs_codes)%>%
-    mutate(eventType='OCS')
-  events_OtherHospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% other_hospitalisation_codes$readcode_new)%>%
-    mutate(eventType='OtherHospitalisation')
-  events_DefiniteAsthmaCodes <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% definite_asthma_codes$readcode_new)%>%
-    mutate(eventType='DefiniteAsthma')
-  
-   # combine all in one big dataframe
-  events_all=rbind(events_exac,events_hospitalisation,events_OCS,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  rm(events_OCS,events_hospitalisation,events_exac,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  events_all <-events_all %>%
-    arrange(patid,ymd(event_date))
- 
- # get id of all patients
-  patients_subset<-events_all%>%
-    group_by(patid)%>%
-    filter(row_number()==1)%>%
-    select(patid)
-  
-  ### Let's start by getting a flag next to OCS,  and Other Hospitalization to confirm if they are present when there was a respiratory review
-  
-  OCS_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$OCS_Keep=OCS_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_P=which(events_all$patid==selectedPatient_ID & events_all$eventType=='respiratoryReview')
-    I_OCS=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OCS')
-    #if no OCS and no respiratory review episodes
-    if(length(I_P)==0 & length(I_OCS)==0){
-      next
-    }
-    #if OCS episodes but no respiratory review
-    if(length(I_P)==0 & length(I_OCS)>0){
-      events_all$OCS_Keep[I_OCS]=1
-      next
-    }
-    #if no OCS episodes but respiratory review
-    if(length(I_OCS)==0 & length(I_P)>0){
-      events_all$OCS_Keep[I_P]=5
-      next
-    }
-    if(length(I_OCS)>0 & length(I_P)>0) # if both OCS and respiratory review episodes present
-    {
-      for (k_ocs in c(1:length(I_OCS))) # loop through each OCS episode
-      {
-        date_OCS=events_all$event_date[I_OCS[k_ocs]]
-        date_respReview=events_all$event_date[I_P]
-        
-        # create two weeks around OCS date interval
-        int = interval((ymd(date_OCS)-14),(ymd(date_OCS)+14))
-        # check if any respiratory review in interval
-        IC=which(ymd(date_respReview) %within% int)
-        if(length(IC)>0)
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=3 # both present and within 2 weeks
-        }
-        else
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=2 # both present but not within 2 weeks
-        }
-      }
-    }
-    
-  }
-  
-  Hosp_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$Hosp_Keep=Hosp_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_OH=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OtherHospitalisation')
-    I_DA=which(events_all$patid==selectedPatient_ID & events_all$eventType=='DefiniteAsthma')
-  
-      #if no definite asthma and no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)==0){
-      next
-    }
-    #if definite asthma but no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)>0){
-      events_all$Hosp_Keep[I_DA]=1
-      next
-    }
-    #if no definite asthma but other hospitalisation code present
-    if(length(I_DA)==0 & length(I_OH)>0){
-      events_all$Hosp_Keep[I_OH]=2
-      next
-    }
-    if(length(I_DA)>0 & length(I_OH)>0) # if both definite asthma and other hospitalisation present
-    {
-      dates_OH=events_all$event_date[I_OH]
-      dates_DA=events_all$event_date[I_DA]
-      IS=which(dates_OH %in% dates_DA) # only get those dates which have definite asthma
-      events_all$Hosp_Keep[I_OH[IS]]=3
-    }
-  }
-    
-
-  # let us now extract the outcome from events_all
- 
- 
-  #Asthma Attacks (in 15 months) 
-  asthmaAttacks_15months<-events_all%>%
-    group_by(patid)%>%
-    mutate(outcome_15months=if(any((OCS_Keep==3 & eventType=='OCS')| (Hosp_Keep==3 & eventType=='OtherHospitalisation') | eventType=='exacerbation' | eventType=='hospitalisation'))1 else 0)%>%
-    filter(row_number()==1)%>%
-    select(patid,outcome_15months) 
-  
-  save(asthmaAttacks_15months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_15months_',kc,'.Rdata',sep=''))
-}
-```
-
-# outcome 6 : exacerbation attack in 18 months (1st April 2018-30th June 2018)
-```{r}
-rm(list=ls())
-library(tidyverse)
-library(lubridate)
-data_load_folder='ServerData_13Oct2020'
-data_save_folder='Outcome_18months'
-load('selectedPatients_13Oct2020.Rdata')
-
-# let us now get related codes for hospitalization, LRTI, asthma codes etc.
-asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
-asthma_hospitalisations_codes <- c("663m.","663d.", "8H2P.")
-resp_review_file = read.csv('./ClinicalCodes/cl_lower_resp_events.txt')
-resp_review_codes=resp_review_file$read_code
-oral_ocs_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
-                       "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
-                       "fe3r.", "fe3s.", "fe3u.", "fe4..", "fe41.",
-                       "fe42.", "fe43.", "fe44.", "fe45.", "fe4e.",
-                       "fe4f.", "fe4g.", "fe4h.", "fe5..", "fe51.",
-                       "fe52.", "fe53.", "fe5f.", "fe5m.", "fe5n.",
-                       "fe5o.", "fe5p.", "fe61.", "fe62.", "fe64.",
-                       "fe65.", "fe66.", "fe67.", "fe68.", "fe69.",
-                       "fe6a.", "fe6c.", "fe6d.", "fe6e.", "fe6f.",
-                       "fe6g.", "fe6h.", "fe6i.", "fe6j.", "fe6k.",
-                       "fe6l.", "fe6m.", "fe6n.", "fe6o.", "fe6p.",
-                       "fe6q.", "fe6r.", "fe6s.", "fe6t.", "fe6v.",
-                       "fe6w.", "fe6z.", "fe7..", "fe71.", "fe72.",
-                       "fe73.", "fe74.", "fe75.", "fe76.", "fe77.",
-                       "fe78.", "fe79.", "fe7x.", "fe7y.", "fe7z.",
-                       "x00yP", "x01Mh", "x01Na", "x01Nb", "fe11.",
-                       "fe12.", "fe1x.", "fe1y.", "fe21.", "fe22.",
-                       "fe23.", "fe24.", "fe25.", "fe26.", "x01MW")
-
-other_hospitalisation_codes = read.csv('./ClinicalCodes/HospitalisationCodes.csv')
-# remove term id from these codes
-other_hospitalisation_codes<-other_hospitalisation_codes %>%
-  mutate(readcode_new=substr(read_code,1,5))
-# also get the specific asthma codes
-load('DefiniteAsthmaCodes.Rdata')
-
-# use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
-chunk_size=10000
-num_files=ceiling(length(selectedPatients$patid)/chunk_size)
-num_patients=length(selectedPatients$patid)
-foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopar%{
-  print(paste('Processing File Number:',kc,', Total files:',num_files))
-  load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep='')) 
-  load(paste(data_load_folder,'/f_therapy_part',kc,'.Rdata',sep=''))
-  
-  # first make sure that you are only dealing with data in the appropriate outcome period
-  f_clinical_part<-f_clinical_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/6/30') & (event_date)>=ymd('2018/4/1'))
-  f_therapy_part<-f_therapy_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/6/30') & (event_date)>=ymd('2018/4/1'))
-  
-  events_exac <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_exacerbations_codes)%>%
-    mutate(eventType='exacerbation')
-  events_hospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_hospitalisations_codes)%>%
-    mutate(eventType='hospitalisation')
-  events_respReview <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% resp_review_codes)%>%
-    mutate(eventType='respiratoryReview')
-  events_OCS <- f_therapy_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% oral_ocs_codes)%>%
-    mutate(eventType='OCS')
-  events_OtherHospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% other_hospitalisation_codes$readcode_new)%>%
-    mutate(eventType='OtherHospitalisation')
-  events_DefiniteAsthmaCodes <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% definite_asthma_codes$readcode_new)%>%
-    mutate(eventType='DefiniteAsthma')
-  
-   # combine all in one big dataframe
-  events_all=rbind(events_exac,events_hospitalisation,events_OCS,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  rm(events_OCS,events_hospitalisation,events_exac,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  events_all <-events_all %>%
-    arrange(patid,ymd(event_date))
- 
- # get id of all patients
-  patients_subset<-events_all%>%
-    group_by(patid)%>%
-    filter(row_number()==1)%>%
-    select(patid)
-  
-  ### Let's start by getting a flag next to OCS,  and Other Hospitalization to confirm if they are present when there was a respiratory review
-  
-  OCS_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$OCS_Keep=OCS_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_P=which(events_all$patid==selectedPatient_ID & events_all$eventType=='respiratoryReview')
-    I_OCS=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OCS')
-    #if no OCS and no respiratory review episodes
-    if(length(I_P)==0 & length(I_OCS)==0){
-      next
-    }
-    #if OCS episodes but no respiratory review
-    if(length(I_P)==0 & length(I_OCS)>0){
-      events_all$OCS_Keep[I_OCS]=1
-      next
-    }
-    #if no OCS episodes but respiratory review
-    if(length(I_OCS)==0 & length(I_P)>0){
-      events_all$OCS_Keep[I_P]=5
-      next
-    }
-    if(length(I_OCS)>0 & length(I_P)>0) # if both OCS and respiratory review episodes present
-    {
-      for (k_ocs in c(1:length(I_OCS))) # loop through each OCS episode
-      {
-        date_OCS=events_all$event_date[I_OCS[k_ocs]]
-        date_respReview=events_all$event_date[I_P]
-        
-        # create two weeks around OCS date interval
-        int = interval((ymd(date_OCS)-14),(ymd(date_OCS)+14))
-        # check if any respiratory review in interval
-        IC=which(ymd(date_respReview) %within% int)
-        if(length(IC)>0)
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=3 # both present and within 2 weeks
-        }
-        else
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=2 # both present but not within 2 weeks
-        }
-      }
-    }
-    
-  }
-  
-  Hosp_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$Hosp_Keep=Hosp_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_OH=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OtherHospitalisation')
-    I_DA=which(events_all$patid==selectedPatient_ID & events_all$eventType=='DefiniteAsthma')
-  
-      #if no definite asthma and no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)==0){
-      next
-    }
-    #if definite asthma but no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)>0){
-      events_all$Hosp_Keep[I_DA]=1
-      next
-    }
-    #if no definite asthma but other hospitalisation code present
-    if(length(I_DA)==0 & length(I_OH)>0){
-      events_all$Hosp_Keep[I_OH]=2
-      next
-    }
-    if(length(I_DA)>0 & length(I_OH)>0) # if both definite asthma and other hospitalisation present
-    {
-      dates_OH=events_all$event_date[I_OH]
-      dates_DA=events_all$event_date[I_DA]
-      IS=which(dates_OH %in% dates_DA) # only get those dates which have definite asthma
-      events_all$Hosp_Keep[I_OH[IS]]=3
-    }
-  }
-    
-
-  # let us now extract the outcome from events_all
- 
- 
-  #Asthma Attacks (in 18 months) 
-  asthmaAttacks_18months<-events_all%>%
-    group_by(patid)%>%
-    mutate(outcome_18months=if(any((OCS_Keep==3 & eventType=='OCS')| (Hosp_Keep==3 & eventType=='OtherHospitalisation') | eventType=='exacerbation' | eventType=='hospitalisation'))1 else 0)%>%
-    filter(row_number()==1)%>%
-    select(patid,outcome_18months) 
-  
-  save(asthmaAttacks_18months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_18months_',kc,'.Rdata',sep=''))
-}
-```
-
-# outcome 7 : exacerbation attack in 21 months (1st July 2018-30th Sep 2018)
-```{r}
-rm(list=ls())
-library(tidyverse)
-library(lubridate)
-data_load_folder='ServerData_13Oct2020'
-data_save_folder='Outcome_21months'
-load('selectedPatients_13Oct2020.Rdata')
-
-# let us now get related codes for hospitalization, LRTI, asthma codes etc.
-asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
-asthma_hospitalisations_codes <- c("663m.","663d.", "8H2P.")
-resp_review_file = read.csv('./ClinicalCodes/cl_lower_resp_events.txt')
-resp_review_codes=resp_review_file$read_code
-oral_ocs_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
-                       "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
-                       "fe3r.", "fe3s.", "fe3u.", "fe4..", "fe41.",
-                       "fe42.", "fe43.", "fe44.", "fe45.", "fe4e.",
-                       "fe4f.", "fe4g.", "fe4h.", "fe5..", "fe51.",
-                       "fe52.", "fe53.", "fe5f.", "fe5m.", "fe5n.",
-                       "fe5o.", "fe5p.", "fe61.", "fe62.", "fe64.",
-                       "fe65.", "fe66.", "fe67.", "fe68.", "fe69.",
-                       "fe6a.", "fe6c.", "fe6d.", "fe6e.", "fe6f.",
-                       "fe6g.", "fe6h.", "fe6i.", "fe6j.", "fe6k.",
-                       "fe6l.", "fe6m.", "fe6n.", "fe6o.", "fe6p.",
-                       "fe6q.", "fe6r.", "fe6s.", "fe6t.", "fe6v.",
-                       "fe6w.", "fe6z.", "fe7..", "fe71.", "fe72.",
-                       "fe73.", "fe74.", "fe75.", "fe76.", "fe77.",
-                       "fe78.", "fe79.", "fe7x.", "fe7y.", "fe7z.",
-                       "x00yP", "x01Mh", "x01Na", "x01Nb", "fe11.",
-                       "fe12.", "fe1x.", "fe1y.", "fe21.", "fe22.",
-                       "fe23.", "fe24.", "fe25.", "fe26.", "x01MW")
-
-other_hospitalisation_codes = read.csv('./ClinicalCodes/HospitalisationCodes.csv')
-# remove term id from these codes
-other_hospitalisation_codes<-other_hospitalisation_codes %>%
-  mutate(readcode_new=substr(read_code,1,5))
-# also get the specific asthma codes
-load('DefiniteAsthmaCodes.Rdata')
-
-# use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
-chunk_size=10000
-num_files=ceiling(length(selectedPatients$patid)/chunk_size)
-num_patients=length(selectedPatients$patid)
-foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopar%{
-  print(paste('Processing File Number:',kc,', Total files:',num_files))
-  load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep='')) 
-  load(paste(data_load_folder,'/f_therapy_part',kc,'.Rdata',sep=''))
-  
-  # first make sure that you are only dealing with data in the appropriate outcome period
-  f_clinical_part<-f_clinical_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/9/30') & (event_date)>=ymd('2018/7/1'))
-  f_therapy_part<-f_therapy_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/9/30') & (event_date)>=ymd('2018/7/1'))
-  
-  events_exac <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_exacerbations_codes)%>%
-    mutate(eventType='exacerbation')
-  events_hospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_hospitalisations_codes)%>%
-    mutate(eventType='hospitalisation')
-  events_respReview <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% resp_review_codes)%>%
-    mutate(eventType='respiratoryReview')
-  events_OCS <- f_therapy_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% oral_ocs_codes)%>%
-    mutate(eventType='OCS')
-  events_OtherHospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% other_hospitalisation_codes$readcode_new)%>%
-    mutate(eventType='OtherHospitalisation')
-  events_DefiniteAsthmaCodes <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% definite_asthma_codes$readcode_new)%>%
-    mutate(eventType='DefiniteAsthma')
-  
-   # combine all in one big dataframe
-  events_all=rbind(events_exac,events_hospitalisation,events_OCS,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  rm(events_OCS,events_hospitalisation,events_exac,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  events_all <-events_all %>%
-    arrange(patid,ymd(event_date))
- 
- # get id of all patients
-  patients_subset<-events_all%>%
-    group_by(patid)%>%
-    filter(row_number()==1)%>%
-    select(patid)
-  
-  ### Let's start by getting a flag next to OCS,  and Other Hospitalization to confirm if they are present when there was a respiratory review
-  
-  OCS_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$OCS_Keep=OCS_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_P=which(events_all$patid==selectedPatient_ID & events_all$eventType=='respiratoryReview')
-    I_OCS=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OCS')
-    #if no OCS and no respiratory review episodes
-    if(length(I_P)==0 & length(I_OCS)==0){
-      next
-    }
-    #if OCS episodes but no respiratory review
-    if(length(I_P)==0 & length(I_OCS)>0){
-      events_all$OCS_Keep[I_OCS]=1
-      next
-    }
-    #if no OCS episodes but respiratory review
-    if(length(I_OCS)==0 & length(I_P)>0){
-      events_all$OCS_Keep[I_P]=5
-      next
-    }
-    if(length(I_OCS)>0 & length(I_P)>0) # if both OCS and respiratory review episodes present
-    {
-      for (k_ocs in c(1:length(I_OCS))) # loop through each OCS episode
-      {
-        date_OCS=events_all$event_date[I_OCS[k_ocs]]
-        date_respReview=events_all$event_date[I_P]
-        
-        # create two weeks around OCS date interval
-        int = interval((ymd(date_OCS)-14),(ymd(date_OCS)+14))
-        # check if any respiratory review in interval
-        IC=which(ymd(date_respReview) %within% int)
-        if(length(IC)>0)
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=3 # both present and within 2 weeks
-        }
-        else
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=2 # both present but not within 2 weeks
-        }
-      }
-    }
-    
-  }
-  
-  Hosp_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$Hosp_Keep=Hosp_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_OH=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OtherHospitalisation')
-    I_DA=which(events_all$patid==selectedPatient_ID & events_all$eventType=='DefiniteAsthma')
-  
-      #if no definite asthma and no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)==0){
-      next
-    }
-    #if definite asthma but no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)>0){
-      events_all$Hosp_Keep[I_DA]=1
-      next
-    }
-    #if no definite asthma but other hospitalisation code present
-    if(length(I_DA)==0 & length(I_OH)>0){
-      events_all$Hosp_Keep[I_OH]=2
-      next
-    }
-    if(length(I_DA)>0 & length(I_OH)>0) # if both definite asthma and other hospitalisation present
-    {
-      dates_OH=events_all$event_date[I_OH]
-      dates_DA=events_all$event_date[I_DA]
-      IS=which(dates_OH %in% dates_DA) # only get those dates which have definite asthma
-      events_all$Hosp_Keep[I_OH[IS]]=3
-    }
-  }
-    
-
-  # let us now extract the outcome from events_all
- 
- 
-  #Asthma Attacks (in 21 months) 
-  asthmaAttacks_21months<-events_all%>%
-    group_by(patid)%>%
-    mutate(outcome_21months=if(any((OCS_Keep==3 & eventType=='OCS')| (Hosp_Keep==3 & eventType=='OtherHospitalisation') | eventType=='exacerbation' | eventType=='hospitalisation'))1 else 0)%>%
-    filter(row_number()==1)%>%
-    select(patid,outcome_21months) 
-  
-  save(asthmaAttacks_21months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_21months_',kc,'.Rdata',sep=''))
-}
-```
-
-# outcome 8 : exacerbation attack in 24 months (1st Oct 2018-31st Dec 2018)
-```{r}
-rm(list=ls())
-library(tidyverse)
-library(lubridate)
-data_load_folder='ServerData_13Oct2020'
-data_save_folder='Outcome_24months'
-load('selectedPatients_13Oct2020.Rdata')
-
-# let us now get related codes for hospitalization, LRTI, asthma codes etc.
-asthma_exacerbations_codes <- c("Xa1hD", "Xafdy", "Xafdz", "Xafdj","XE0YW","XM0s2","X101y","X1022","H333.","H3301","H3311","H33z0","H33z1") 
-asthma_hospitalisations_codes <- c("663m.","663d.", "8H2P.")
-resp_review_file = read.csv('./ClinicalCodes/cl_lower_resp_events.txt')
-resp_review_codes=resp_review_file$read_code
-oral_ocs_codes <- c("fe6..", "fe3..", "fe31.", "fe32.", "fe33.",
-                       "fe36.", "fe37.", "fe3A.", "fe3B.", "fe3C.",
-                       "fe3r.", "fe3s.", "fe3u.", "fe4..", "fe41.",
-                       "fe42.", "fe43.", "fe44.", "fe45.", "fe4e.",
-                       "fe4f.", "fe4g.", "fe4h.", "fe5..", "fe51.",
-                       "fe52.", "fe53.", "fe5f.", "fe5m.", "fe5n.",
-                       "fe5o.", "fe5p.", "fe61.", "fe62.", "fe64.",
-                       "fe65.", "fe66.", "fe67.", "fe68.", "fe69.",
-                       "fe6a.", "fe6c.", "fe6d.", "fe6e.", "fe6f.",
-                       "fe6g.", "fe6h.", "fe6i.", "fe6j.", "fe6k.",
-                       "fe6l.", "fe6m.", "fe6n.", "fe6o.", "fe6p.",
-                       "fe6q.", "fe6r.", "fe6s.", "fe6t.", "fe6v.",
-                       "fe6w.", "fe6z.", "fe7..", "fe71.", "fe72.",
-                       "fe73.", "fe74.", "fe75.", "fe76.", "fe77.",
-                       "fe78.", "fe79.", "fe7x.", "fe7y.", "fe7z.",
-                       "x00yP", "x01Mh", "x01Na", "x01Nb", "fe11.",
-                       "fe12.", "fe1x.", "fe1y.", "fe21.", "fe22.",
-                       "fe23.", "fe24.", "fe25.", "fe26.", "x01MW")
-
-other_hospitalisation_codes = read.csv('./ClinicalCodes/HospitalisationCodes.csv')
-# remove term id from these codes
-other_hospitalisation_codes<-other_hospitalisation_codes %>%
-  mutate(readcode_new=substr(read_code,1,5))
-# also get the specific asthma codes
-load('DefiniteAsthmaCodes.Rdata')
-
-# use the same chunk size that was used during patient selection so that num_files is correctly calculated and you are able to use data from all the selected patients
-chunk_size=10000
-num_files=ceiling(length(selectedPatients$patid)/chunk_size)
-num_patients=length(selectedPatients$patid)
-foreach (kc = 1:num_files, .packages=c('tictoc', 'tidyverse', 'lubridate'))%dopar%{
-  print(paste('Processing File Number:',kc,', Total files:',num_files))
-  load(paste(data_load_folder,'/f_clinical_part',kc,'.Rdata',sep='')) 
-  load(paste(data_load_folder,'/f_therapy_part',kc,'.Rdata',sep=''))
-  
-  # first make sure that you are only dealing with data in the appropriate outcome period
-  f_clinical_part<-f_clinical_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/12/31') & (event_date)>=ymd('2018/10/1'))
-  f_therapy_part<-f_therapy_part%>%
-    group_by(patid)%>%
-    filter((event_date)<=ymd('2018/12/31') & (event_date)>=ymd('2018/10/1'))
-  
-  events_exac <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_exacerbations_codes)%>%
-    mutate(eventType='exacerbation')
-  events_hospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% asthma_hospitalisations_codes)%>%
-    mutate(eventType='hospitalisation')
-  events_respReview <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% resp_review_codes)%>%
-    mutate(eventType='respiratoryReview')
-  events_OCS <- f_therapy_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% oral_ocs_codes)%>%
-    mutate(eventType='OCS')
-  events_OtherHospitalisation <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% other_hospitalisation_codes$readcode_new)%>%
-    mutate(eventType='OtherHospitalisation')
-  events_DefiniteAsthmaCodes <- f_clinical_part %>%
-    select(patid,event_date,code_id) %>%
-    filter(code_id %in% definite_asthma_codes$readcode_new)%>%
-    mutate(eventType='DefiniteAsthma')
-  
-   # combine all in one big dataframe
-  events_all=rbind(events_exac,events_hospitalisation,events_OCS,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  rm(events_OCS,events_hospitalisation,events_exac,events_respReview,events_OtherHospitalisation,events_DefiniteAsthmaCodes)
-  events_all <-events_all %>%
-    arrange(patid,ymd(event_date))
- 
- # get id of all patients
-  patients_subset<-events_all%>%
-    group_by(patid)%>%
-    filter(row_number()==1)%>%
-    select(patid)
-  
-  ### Let's start by getting a flag next to OCS,  and Other Hospitalization to confirm if they are present when there was a respiratory review
-  
-  OCS_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$OCS_Keep=OCS_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_P=which(events_all$patid==selectedPatient_ID & events_all$eventType=='respiratoryReview')
-    I_OCS=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OCS')
-    #if no OCS and no respiratory review episodes
-    if(length(I_P)==0 & length(I_OCS)==0){
-      next
-    }
-    #if OCS episodes but no respiratory review
-    if(length(I_P)==0 & length(I_OCS)>0){
-      events_all$OCS_Keep[I_OCS]=1
-      next
-    }
-    #if no OCS episodes but respiratory review
-    if(length(I_OCS)==0 & length(I_P)>0){
-      events_all$OCS_Keep[I_P]=5
-      next
-    }
-    if(length(I_OCS)>0 & length(I_P)>0) # if both OCS and respiratory review episodes present
-    {
-      for (k_ocs in c(1:length(I_OCS))) # loop through each OCS episode
-      {
-        date_OCS=events_all$event_date[I_OCS[k_ocs]]
-        date_respReview=events_all$event_date[I_P]
-        
-        # create two weeks around OCS date interval
-        int = interval((ymd(date_OCS)-14),(ymd(date_OCS)+14))
-        # check if any respiratory review in interval
-        IC=which(ymd(date_respReview) %within% int)
-        if(length(IC)>0)
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=3 # both present and within 2 weeks
-        }
-        else
-        {
-          events_all$OCS_Keep[I_OCS[k_ocs]]=2 # both present but not within 2 weeks
-        }
-      }
-    }
-    
-  }
-  
-  Hosp_Keep_Vector=rep(-1,length(events_all$patid)) 
-  events_all$Hosp_Keep=Hosp_Keep_Vector
-   for (kpatient in c(1:length(patients_subset$patid))){
-    #print(paste('Processing File Number:',kc,',patient number:',kpatient,',Total Patients:',chunk_size))
-    selectedPatient_ID=patients_subset$patid[kpatient]
-    I_OH=which(events_all$patid==selectedPatient_ID & events_all$eventType=='OtherHospitalisation')
-    I_DA=which(events_all$patid==selectedPatient_ID & events_all$eventType=='DefiniteAsthma')
-  
-      #if no definite asthma and no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)==0){
-      next
-    }
-    #if definite asthma but no other hospitalisation code
-    if(length(I_OH)==0 & length(I_DA)>0){
-      events_all$Hosp_Keep[I_DA]=1
-      next
-    }
-    #if no definite asthma but other hospitalisation code present
-    if(length(I_DA)==0 & length(I_OH)>0){
-      events_all$Hosp_Keep[I_OH]=2
-      next
-    }
-    if(length(I_DA)>0 & length(I_OH)>0) # if both definite asthma and other hospitalisation present
-    {
-      dates_OH=events_all$event_date[I_OH]
-      dates_DA=events_all$event_date[I_DA]
-      IS=which(dates_OH %in% dates_DA) # only get those dates which have definite asthma
-      events_all$Hosp_Keep[I_OH[IS]]=3
-    }
-  }
-    
-
-  # let us now extract the outcome from events_all
- 
- 
-  #Asthma Attacks (in 24 months) 
-  asthmaAttacks_24months<-events_all%>%
-    group_by(patid)%>%
-    mutate(outcome_24months=if(any((OCS_Keep==3 & eventType=='OCS')| (Hosp_Keep==3 & eventType=='OtherHospitalisation') | eventType=='exacerbation' | eventType=='hospitalisation'))1 else 0)%>%
-    filter(row_number()==1)%>%
-    select(patid,outcome_24months) 
-  
-  save(asthmaAttacks_24months,file=paste('PrepareData/',data_save_folder,'/asthmaAttacks_24months_',kc,'.Rdata',sep=''))
-}
-```
-
-Now that we have extracted various features

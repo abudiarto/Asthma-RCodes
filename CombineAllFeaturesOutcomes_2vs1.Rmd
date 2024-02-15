@@ -10,7 +10,7 @@ Features
 rm(list=ls())
 library(tidyverse)
 load('../FinalData/selectedPatients_13Oct2020.Rdata')
-data_load_folder='../PrepareData'
+data_load_folder='../PrepareDataNew'
 num_files=74
 data_features=selectedPatients
 
@@ -172,7 +172,7 @@ for (kfile in c(2:num_files)){
 rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
 
 ### Feature 11, BTS Step ###
-feature_folder='BTS_Step'
+feature_folder='BTS_StepNew'
 # file 1
 kfile=1
 load(paste(data_load_folder,'/',feature_folder,'/feature_BTSstep_',kfile,'.Rdata',sep=''))
@@ -368,8 +368,8 @@ for (kfile in c(2:num_files)){
 }
 rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
 
-save(data_features,file='../FinalData/data_features_08112023.Rdata')
-write.csv(data_features,file='../FinalData/data_features_08112023.csv')
+save(data_features,file='../FinalData/data_features_2vs1_15022024.Rdata')
+write.csv(data_features,file='../FinalData/data_features_2vs1_15022024.csv')
 
 ```
 
@@ -431,7 +431,7 @@ Outcomes (updated where we have an outcome for every 3 months)
 rm(list=ls())
 library(tidyverse)
 load('../FinalData/selectedPatients_13Oct2020.Rdata')
-data_load_folder='../PrepareData'
+data_load_folder='../PrepareDataNew'
 num_files=74
 data_outcomes=selectedPatients
 
@@ -440,10 +440,7 @@ load(paste(data_load_folder,'/Outcome_3months/asthmaAttacks_3months_1.Rdata',sep
 load(paste(data_load_folder,'/Outcome_6months/asthmaAttacks_6months_1.Rdata',sep=''))
 load(paste(data_load_folder,'/Outcome_9months/asthmaAttacks_9months_1.Rdata',sep=''))
 load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_1.Rdata',sep=''))
-load(paste(data_load_folder,'/Outcome_15months/asthmaAttacks_15months_1.Rdata',sep=''))
-load(paste(data_load_folder,'/Outcome_18months/asthmaAttacks_18months_1.Rdata',sep=''))
-load(paste(data_load_folder,'/Outcome_21months/asthmaAttacks_21months_1.Rdata',sep=''))
-load(paste(data_load_folder,'/Outcome_24months/asthmaAttacks_24months_1.Rdata',sep=''))
+
 
 
 
@@ -455,14 +452,7 @@ data_outcomes <-data_outcomes%>%
   left_join(asthmaAttacks_9months,by='patid')
 data_outcomes <-data_outcomes%>%
   left_join(asthmaAttacks_12months,by='patid')
-data_outcomes <-data_outcomes%>%
-  left_join(asthmaAttacks_15months,by='patid')
-data_outcomes <-data_outcomes%>%
-  left_join(asthmaAttacks_18months,by='patid')
-data_outcomes <-data_outcomes%>%
-  left_join(asthmaAttacks_21months,by='patid')
-data_outcomes <-data_outcomes%>%
-  left_join(asthmaAttacks_24months,by='patid')
+
 
 
 for (kfile in c(2:num_files)){
@@ -473,10 +463,6 @@ for (kfile in c(2:num_files)){
   load(paste(data_load_folder,'/Outcome_6months/asthmaAttacks_6months_',kfile,'.Rdata',sep=''))
   load(paste(data_load_folder,'/Outcome_9months/asthmaAttacks_9months_',kfile,'.Rdata',sep=''))
   load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_',kfile,'.Rdata',sep=''))
-  load(paste(data_load_folder,'/Outcome_15months/asthmaAttacks_15months_',kfile,'.Rdata',sep=''))
-  load(paste(data_load_folder,'/Outcome_18months/asthmaAttacks_18months_',kfile,'.Rdata',sep=''))
-  load(paste(data_load_folder,'/Outcome_21months/asthmaAttacks_21months_',kfile,'.Rdata',sep=''))
-  load(paste(data_load_folder,'/Outcome_24months/asthmaAttacks_24months_',kfile,'.Rdata',sep=''))
 
   #join together
   
@@ -484,11 +470,6 @@ for (kfile in c(2:num_files)){
   data_outcomes$outcome_6months[match(asthmaAttacks_6months$patid,data_outcomes$patid)]=asthmaAttacks_6months$outcome_6months
   data_outcomes$outcome_9months[match(asthmaAttacks_9months$patid,data_outcomes$patid)]=asthmaAttacks_9months$outcome_9months
   data_outcomes$outcome_12months[match(asthmaAttacks_12months$patid,data_outcomes$patid)]=asthmaAttacks_12months$outcome_12months
-  data_outcomes$outcome_15months[match(asthmaAttacks_15months$patid,data_outcomes$patid)]=asthmaAttacks_15months$outcome_15months
-  data_outcomes$outcome_18months[match(asthmaAttacks_18months$patid,data_outcomes$patid)]=asthmaAttacks_18months$outcome_18months
-  data_outcomes$outcome_21months[match(asthmaAttacks_21months$patid,data_outcomes$patid)]=asthmaAttacks_21months$outcome_21months
-  data_outcomes$outcome_24months[match(asthmaAttacks_24months$patid,data_outcomes$patid)]=asthmaAttacks_24months$outcome_24months
-  
 }
 
 # assign 0 to all NAs as that suggests that no event happened
@@ -496,11 +477,7 @@ data_outcomes$outcome_3months[is.na(data_outcomes$outcome_3months)]=0
 data_outcomes$outcome_6months[is.na(data_outcomes$outcome_6months)]=0
 data_outcomes$outcome_9months[is.na(data_outcomes$outcome_9months)]=0
 data_outcomes$outcome_12months[is.na(data_outcomes$outcome_12months)]=0
-data_outcomes$outcome_15months[is.na(data_outcomes$outcome_15months)]=0
-data_outcomes$outcome_18months[is.na(data_outcomes$outcome_18months)]=0
-data_outcomes$outcome_21months[is.na(data_outcomes$outcome_21months)]=0
-data_outcomes$outcome_24months[is.na(data_outcomes$outcome_24months)]=0
 
-save(data_outcomes,file='../FinalData/data_outcomes_08112023.Rdata')
-write.csv(data_outcomes,file='../FinalData/data_outcomes_08112023.csv')
+save(data_outcomes,file='../FinalData/data_outcomes_2vs1_15112023.Rdata')
+write.csv(data_outcomes,file='../FinalData/data_outcomes_2vs1_15112023.csv')
 ```
