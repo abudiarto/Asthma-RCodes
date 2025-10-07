@@ -1,7 +1,0 @@
-read_code,read_term
-66YB0,Chronic obstructive pulmonary disease 3 monthly review
-66YB1,Chronic obstructive pulmonary disease 6 monthly review
-66YM.,Chronic obstructive pulmonary disease annual review
-XaIet,Chronic obstructive pulmonary disease annual review
-XaXCa,Chronic obstructive pulmonary disease 3 monthly review
-XaXCb,Chronic obstructive pulmonary disease 6 monthly review
