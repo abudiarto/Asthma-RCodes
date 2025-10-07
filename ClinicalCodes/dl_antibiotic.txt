@@ -1,0 +1,809 @@
+read_code,read_term
+e1...,PENICILLINASE SENS PENICILLINS
+e121.,*TRIPLOPEN injection
+e14..,*PHENETHICILLIN
+e141.,*BROXIL 250mg capsules
+e142.,*BROXIL 125mg/5mL syrup
+e14y.,*PHENETHICILLIN 250mg capsules
+e14z.,PHENETHICILLIN 125mg/5mL syrup
+e15..,PHENOXYMETHYLPENICILLIN
+e151.,PHENOXYMETHYLPENICILLIN 250mg capsules
+e152.,PHENOXYMETHYLPENICILLIN 125mg capsules
+e153.,PHENOXYMETHYLPENICILLIN 250mg tablets
+e154.,PHENOXYMETHYLPENICILLIN 62.5mg/5mL syrup
+e155.,PHENOXYMETHYLPENICILLIN 125mg/5mL syrup
+e156.,PHENOXYMETHYLPENICILLIN granules 125mg/sachet
+e157.,PHENOXYMETHYLPENICILLIN 250mg/5mL syrup
+e158.,*APSIN VK 250mg tablets
+e159.,*APSIN VK 125mg/5mL syrup
+e15A.,PHENOXYMETHYLPENICILLIN 125mg tablets
+e15B.,*RIMAPEN 250mg tablets
+e15a.,APSIN VK 250mg/5mL syrup
+e15b.,*CRYSTAPEN V 125mg/5mL syrup
+e15c.,*CRYSTAPEN V 250mg/5mL syrup
+e15d.,*DISTAQUAINE V-K 125mg tablets
+e15e.,*DISTAQUAINE V-K 250mg tablets
+e15f.,DISTAQUAINE V-K 62.5mg/5mL syrup
+e15g.,DISTAQUAINE V-K 125mg/5mL syrup
+e15h.,*DISTAQUAINE 250mg/5mL syrup
+e15i.,*ECONOCIL VK 250mg capsules
+e15j.,*ECONOCIL VK 125mg tablets
+e15k.,*ECONOCIL VK 250mg tablets
+e15l.,*STABILLIN V-K 250mg tablets
+e15m.,STABILLIN V-K 62.5mg/5mL syrup
+e15n.,*STABILLIN V-K 125mg/5mL syrup
+e15o.,*STABILLIN V-K 250mg/5mL syrup
+e15p.,*V-CIL-K 250mg capsules
+e15q.,*V-CIL-K 125mg tablets
+e15r.,*V-CIL-K 250mg tablets
+e15s.,V-CIL-K PAEDIATRIC 62.5mg/5mL syrup
+e15t.,V-CIL-K PAEDIATRIC 125mg/5mL syrup
+e15u.,*V-CIL-K 250mg/5mL syrup
+e15v.,*TENKICIN 250mg tablets
+e15w.,PHENOXYMETHYLPENICILLIN 125mg/5mL s/f oral solution
+e15x.,PHENOXYMETHYLPENICILLIN 250mg/5mL s/f oral solution
+e16..,PROCAINE PENICILLIN
+e161.,*BICILLIN injection 6mL
+e162.,*DEPOCILLIN 3g injection
+e163.,FORTIFIED PROCAINE PENICILLIN injection BP
+e16z.,PROCAINE PENICILLIN 3g injection
+e2...,PENICILLINASE-RESISTANT PENICILLINS
+e21..,CLOXACILLIN
+e211.,*ORBENIN 250mg capsules
+e212.,*ORBENIN 500mg capsules
+e213.,*ORBENIN 125mg/5mL syrup
+e214.,*ORBENIN 250mg injection
+e215.,*ORBENIN 500mg injection
+e216.,*ORBENIN 1g injection
+e217.,*CLOXACILLIN 250mg injection
+e218.,*CLOXACILLIN 500mg injection
+e219.,*CLOXACILLIN 1g injection
+e21u.,*CLOXACILLIN 250mg capsules
+e21v.,*CLOXACILLIN 500mg capsules
+e21w.,*CLOXACILLIN 125mg/5mL syrup
+e22..,FLUCLOXACILLIN
+e221.,FLUCLOXACILLIN 250mg capsules
+e222.,FLUCLOXACILLIN 500mg capsules
+e223.,FLOXAPEN 250mg capsules
+e224.,FLOXAPEN 500mg capsules
+e225.,FLOXAPEN 125mg/5mL syrup
+e226.,FLOXAPEN FORTE 250mg/5mL syrup
+e227.,*FLOXAPEN 250mg injection
+e228.,*FLOXAPEN 500mg injection
+e229.,*FLOXAPEN 1g injection
+e22A.,FLUCLOXIN 125mg/5mL oral suspension
+e22B.,FLUCLOXACILLIN 250mg/5mL oral suspension
+e22C.,FLUCLOXACILLIN 125mg/5mL s/f oral solution
+e22D.,FLUCLOXACILLIN 250mg/5mL s/f oral solution
+e22a.,*LADROPEN 250mg capsules
+e22b.,*LADROPEN 500mg capsules
+e22c.,*STAFOXIL 250mg capsules
+e22d.,*STAFOXIL 500mg capsules
+e22e.,*STAPHLIPEN 250mg capsules
+e22f.,*STAPHLIPEN 500mg capsules
+e22g.,*STAPHLIPEN 250mg injection
+e22h.,*STAPHLIPEN 500mg injection
+e22i.,*STAPHLIPEN 1g injection
+e22j.,FLUCLOXACILLIN 125mg/5mL syrup
+e22k.,FLUCLOXACILLIN 250mg/5mL syrup
+e22l.,*FLUCLOMIX 250mg capsules
+e22m.,FLUCLOMIX 500mg capsules
+e22n.,LADROPEN 125mg/5mL suspension 100mL
+e22o.,*LADROPEN 250mg injection
+e22p.,*LADROPEN 500mg injection
+e22q.,FLUCLOXACILLIN 250mg injection
+e22r.,FLUCLOXACILLIN 500mg injection
+e22s.,FLUCLOXACILLIN 1g injection
+e22t.,*GALFLOXIN 250mg capsules
+e22u.,*GALFLOXIN 500mg capsules
+e22v.,FLUCLOXACILLIN 125mg/5mL oral suspension
+e22w.,*ZOXIN 250 capsules
+e22x.,*ZOXIN 500 capsules
+e22y.,*FLUCLOXIN 250mg capsules
+e22z.,*FLUCLOXIN 500mg capsules
+e23..,METHICILLIN SODIUM
+e231.,*CELBENIN 1g injection
+e23z.,METHICILLIN SODIUM 1g injection
+e24..,TEMOCILLIN
+e241.,TEMOCILLIN 500mg injection (pdr for recon)
+e242.,TEMOCILLIN 1g injection (pdr for recon)
+e243.,TEMOPEN 1g injection (pdr for recon)
+e244.,TEMOPEN 500mg injection (pdr for recon)
+e245.,NEGABAN 1g injection (pdr for recon)
+e3...,BROAD SPECTRUM PENICILLINS
+e31..,AMOXICILLIN
+e311.,AMOXICILLIN 250mg capsules
+e312.,AMOXICILLIN 500mg capsules
+e313.,*AMOXIDIN 250mg capsules
+e314.,*AMOXIDIN 500mg capsules
+e315.,AMOXIL 250mg capsules
+e316.,AMOXIL 500mg capsules
+e317.,AMOXIL 500mg dispersible tablets
+e318.,*AMOXIL 125mg/5mL syrup
+e319.,*AMOXIL SF 125mg/5mL syrup
+e31A.,*AMIX 125mg/5mL suspension
+e31B.,*AMIX 250mg/5mL suspension
+e31C.,*AMRIT 125mg/5mL suspension
+e31D.,*AMRIT 250mg/5mL suspension
+e31E.,*AMRIT 250mg capsules
+e31F.,*AMRIT 500mg capsules
+e31G.,*AMOPEN 250mg capsules
+e31H.,*AMOPEN 500mg capsules
+e31I.,*AMOPEN 125mg/5mL suspension
+e31J.,*AMOPEN 250mg/5mL suspension
+e31K.,FLEMOXIN SOLUTAB 375mg dispersible tablets
+e31L.,FLEMOXIN SOLUTAB 750mg dispersible tablets
+e31M.,AMOXIL FIZTAB 125mg chewable tablets
+e31N.,AMOXIL FIZTAB 250mg chewable tablets
+e31O.,AMOXIL FIZTAB 500mg chewable tablets
+e31P.,AUGMENTIN 250/62 in 5mL suspension
+e31Q.,CO-AMOXICLAV 125/31mg in 5mL suspension
+e31R.,*AMOXYMED 250mg capsules
+e31S.,*AMOXYMED 125mg/5mL syrup
+e31T.,AUGMENTIN 625mg tablets
+e31U.,CO-AMOXICLAV 625mg tablets
+e31V.,ALMODAN 125mg/5mL sugar free syrup
+e31W.,ALMODAN 250mg/5mL sugar free syrup
+e31X.,CO-AMOXICLAV 400/57mg in 5mL sugar free suspension
+e31Y.,AUGMENTIN-DUO 400/57 in 5mL sugar free suspension
+e31a.,*AMOXIL SF 250mg/5mL syrup
+e31b.,AMOXIL 125mg/1.25mL paediatric suspension
+e31c.,*AMOXIL SF 750mg sachets
+e31d.,*AMOXIL SF 3g sachets
+e31e.,*AMOXIL 250mg injection
+e31f.,AMOXIL 500mg injection
+e31g.,AMOXIL 1g injection
+e31h.,AUGMENTIN 375mg tablets
+e31i.,AUGMENTIN 375mg dispersible tablets
+e31j.,AUGMENTIN JUNIOR 125/62 in 5mL suspension
+e31k.,AUGMENTIN 125/31 in 5mL paediatric suspension
+e31l.,AUGMENTIN 600mg intravenous injection
+e31m.,AUGMENTIN 1.2g intravenous injection
+e31n.,*ALMODAN 250mg capsules
+e31o.,*ALMODAN 500mg capsules
+e31p.,*ALMODAN 125mg/5mL syrup
+e31q.,*ALMODAN 250mg/5mL syrup
+e31r.,*ALMODAN 250mg injection
+e31s.,*ALMODAN 500mg injection
+e31t.,CO-AMOXICLAV 375mg tablets
+e31u.,CO-AMOXICLAV 375mg dispersible tablets
+e31v.,CO-AMOXICLAV 125mg/5mL suspension
+e31w.,CO-AMOXICLAV 125mg/mL suspension
+e31x.,CO-AMOXICLAV 600mg injection
+e31y.,CO-AMOXICLAV 1.2g injection
+e31z.,CO-AMOXICLAV 250/62 in 5mL suspension
+e32..,AMPICILLIN
+e321.,AMPICILLIN 250mg capsules
+e322.,AMPICILLIN 500mg capsules
+e323.,AMPICILLIN 125mg/5mL mixture
+e324.,AMPICILLIN 250mg/5mL mixture
+e325.,*AMFIPEN 250mg capsules
+e326.,*AMFIPEN 500mg capsules
+e327.,*AMFIPEN 125mg/5mL syrup
+e328.,*AMFIPEN 250mg/5mL syrup
+e329.,*AMFIPEN 250mg injection
+e32A.,*RIMACILLIN 250mg capsules
+e32B.,*RIMACILLIN 500mg capsules
+e32C.,*RIMACILLIN 125mg/5mL syrup
+e32D.,*RIMACILLIN 250mg/5mL syrup
+e32E.,*AMPICILLIN 250mg injection
+e32F.,AMPICILLIN 500mg injection
+e32G.,AMPICILLIN 125mg/1.25mL paediatric suspension
+e32H.,AMPICILLIN 125mg/5mL sugar free suspension
+e32J.,AMPICILLIN 250mg/5mL sugar free suspension
+e32K.,AMPICILLIN 125mg/5mL oral suspension
+e32a.,*AMFIPEN 500mg injection
+e32b.,*AMPILAR 250mg capsules
+e32c.,*AMPILAR 500mg capsules
+e32d.,*AMPILAR 125mg/5mL syrup
+e32e.,*AMPILAR 250mg/5mL syrup
+e32f.,*BRITCIN 250mg capsules
+e32g.,*BRITCIN 500mg capsules
+e32h.,PENBRITIN 250mg capsules
+e32i.,PENBRITIN 500mg capsules
+e32j.,*PENBRITIN 125mg tablets
+e32k.,*PENBRITIN 125mg/5mL syrup
+e32l.,PENBRITIN 250mg/5mL syrup
+e32m.,PENBRITIN 100mg/mL paediatric suspension
+e32n.,*PENBRITIN 250mg injection
+e32o.,*PENBRITIN 500mg injection
+e32p.,*VIDOPEN 250mg capsules
+e32q.,*VIDOPEN 500mg capsules
+e32r.,*VIDOPEN 125mg/5mL syrup
+e32s.,*VIDOPEN 250mg/5mL syrup
+e32t.,*VIDOPEN 250mg injection
+e32u.,*VIDOPEN 500mg injection
+e32v.,*AMPITRIN 250mg capsules
+e32w.,*AMPITRIN 500mg capsules
+e32x.,AMPITRIN 125mg/5mL oral suspension
+e32y.,AMPITRIN 250mg/5mL oral suspension
+e32z.,*AMPICILLIN 125mg tablets
+e33..,AMPICILLIN + PENICILLINASE-RESISTANT PENICILLIN
+e331.,*AMPICLOX injection
+e332.,*AMPICLOX neonatal suspension
+e333.,*AMPICLOX neonatal injection
+e334.,*FLU-AMP 250/250mg capsules
+e335.,MAGNAPEN 500mg capsules
+e336.,*MAGNAPEN 250mg/5mL syrup
+e337.,MAGNAPEN 500mg injection
+e338.,*MAGNAPEN 1g injection
+e339.,CO-FLUAMPICIL 250mg/250mg capsules
+e33a.,CO-FLUAMPICIL 125/125mg syrup
+e33b.,CO-FLUAMPICIL 250/250mg injection
+e33c.,CO-FLUAMPICIL 500/500mg injection
+e33d.,*DICAPEN 750mg injection
+e33e.,*DICAPEN 1.5g injection
+e33f.,*DICAPEN 3g injection
+e33g.,*UNASYN 750mg/10mL injection
+e33h.,*UNASYN 375mg tablets
+e33i.,*SULTAMICILLIN 375mg tablets
+e33j.,SULBACTAM AMPICILLIN 750mg injection
+e33k.,*AMPICLOX 500mg capsules
+e33l.,*AMPICLOX 250mg/5mL syrup
+e33m.,AMPICILLIN+CLOXACILLIN 250mg/250mg injection
+e33n.,AMPICILLIN+CLOXACILLIN 60mg/30mg/0.6mL sugar free suspension
+e33p.,AMPICILLIN+CLOXACILLIN 125mg/125mg/5mL syrup
+e33q.,AMPICILLIN+CLOXACILLIN 250mg/250mg/5mL syrup
+e33r.,AMPICILLIN+CLOXACILLIN 250mg/250mg capsules
+e33s.,AMPICILLIN+CLOXACILLIN 50mg/25mg injection
+e34..,BACAMPICILLIN HYDROCHLORIDE
+e341.,*AMBAXIN 400mg tablets
+e34z.,BACAMPICILLIN HCL 400mg tablets
+e35..,*CICLACILLIN
+e351.,*CALTHOR 250mg tablets
+e352.,*CALTHOR 500mg tablets
+e353.,*CALTHOR 125mg/5mL suspension
+e354.,*CALTHOR 250mg/5mL suspension
+e35w.,*CICLACILLIN 250mg tablets
+e35x.,*CICLACILLIN 500mg tablets
+e35y.,CICLACILLIN 125mg/5mL suspension
+e35z.,CICLACILLIN 250mg/5mL suspension
+e36..,*MEZLOCILLIN
+e361.,*BAYPEN 500mg injection
+e362.,*BAYPEN 1g injection
+e363.,*BAYPEN 2g injection
+e364.,*BAYPEN 5g infusion
+e365.,*BAYPEN 5g injection
+e36w.,*MEZLOCILLIN 500mg injection
+e36x.,*MEZLOCILLIN 1g injection
+e36y.,*MEZLOCILLIN 2g injection
+e36z.,*MEZLOCILLIN 5g infusion
+e37..,PIPERACILLIN
+e371.,*PIPRIL 1g injection
+e372.,*PIPRIL 2g injection
+e373.,*PIPRIL 4g injection
+e374.,*PIPRIL 4g infusion
+e375.,TAZOCIN 2.25g injection (pdr for recon)
+e376.,*TAZOCIN 4.5g infusion pack
+e377.,TAZOCIN 4.5g injection (pdr for recon)
+e37t.,PIPERACILLIN + TAZOBACTAM 4.5g injection (pdr for recon)
+e37u.,PIPERACILLIN + TAZOBACTAM 4.5g infusion pack
+e37v.,PIPERACILLIN + TAZOBACTAM 2.25g injection (pdr for recon)
+e37w.,*PIPERACILLIN 1g injection
+e37x.,*PIPERACILLIN 2g injection
+e37y.,*PIPERACILLIN 4g injection
+e37z.,*PIPERACILLIN 4g infusion
+e38..,PIVAMPICILLIN
+e381.,*PONDOCILLIN 500mg tablets
+e382.,PONDOCILLIN 175mg/5mL suspension 50mL
+e383.,PONDOCILLIN 175mg/5mL suspension 100mL
+e384.,PONDOCILLIN 175mg/sachet granules
+e385.,*MIRAXID 225mg tablets
+e386.,*MIRAXID-450 tablets
+e387.,*MIRAXID paediatric sachet
+e388.,*PONDOCILLIN PLUS tablets
+e389.,PIVAMPICILLIN+PIVMECILLINAM 125mg/100mg tablets
+e38A.,PIVAMPICILLIN+PIVMECILLINAM 250mg/200mg tablets
+e38u.,PIVAMPICILLIN 175mg/5mL sugar free suspension 50mL
+e38v.,PIVAMPICILLIN 175mg/5mL sugar free suspension 100mL
+e38w.,PIVAMPICILLIN 175mg/sachet granules
+e38x.,*PIVAMPICILLIN 500mg tablets
+e38y.,PIVAMPICILLIN 162mg/5mL suspension
+e38z.,*PIVAMPICILLIN 162mg sachet
+e39..,TALAMPICILLIN HYDROCHLORIDE
+e391.,*TALPEN 250mg tablets
+e392.,*TALPEN 125mg/5mL syrup
+e39y.,*TALAMPICILLIN 250mg tablets
+e39z.,*TALAMPICILLIN 125mg/5mL syrup
+e3A..,AMOXICILLIN [2]
+e3A1.,*RESPILLIN 250mg capsules
+e3A2.,*RESPILLIN 500mg capsules
+e3A3.,RESPILLIN 125mg/5mL oral suspension
+e3A4.,RESPILLIN 250mg/5mL oral suspension
+e3A5.,RESPILLIN 125mg/5mL sugar free suspension
+e3A6.,RESPILLIN 250mg/5mL sugar free suspension
+e3A7.,*AMICLAV 250mg/125mg tablets
+e3A8.,*RANCLAV 375mg tablets
+e3A9.,*RANCLAV 625mg tablets
+e3AA.,RANCLAV 125mg/31mg sugar free suspension
+e3AB.,RANCLAV 250mg/62mg sugar free suspension
+e3z..,AMOXICILLIN [GENERIC ADDITIONS]
+e3z1.,*AMORAM 250mg capsules
+e3z2.,*AMORAM 500mg capsules
+e3z3.,*AMORAM 125mg/5mL suspension
+e3z4.,*AMORAM 250mg/5mL suspension
+e3z5.,AMIX 250mg capsules
+e3z6.,AMIX 500mg capsules
+e3z7.,*GALENAMOX 250mg capsules
+e3z8.,*GALENAMOX 500mg capsules
+e3z9.,GALENAMOX 125mg/5mL suspension
+e3zA.,GALENAMOX TP 250mg capsules
+e3zB.,GALENAMOX TP 500mg capsules
+e3zC.,*ZOXYCIL 250 capsules
+e3zD.,*ZOXYCIL 500 capsules
+e3zE.,AMOXICILLIN 125mg/sachet sugar free powder
+e3zF.,AMOXIDENT 250mg capsules
+e3zG.,AMOXIDENT 500mg capsules
+e3za.,GALENAMOX 250mg/5mL suspension
+e3zb.,GALENAMOX 125mg/5mL sugar free suspension
+e3zc.,GALENAMOX 250mg/5mL sugar free suspension
+e3zf.,*RIMOXALLIN 125mg/5mL syrup
+e3zg.,*RIMOXALLIN 250mg capsules
+e3zh.,*RIMOXALLIN 500mg capsules
+e3zj.,*RIMOXALLIN 250mg/5mL syrup
+e3zk.,AMOXICILLIN 125mg/5mL sugar free suspension
+e3zl.,AMOXYCILLIN 500mg dispersible tablets
+e3zm.,AMOXICILLIN 125mg/5mL syrup
+e3zn.,AMOXICILLIN 250mg/5mL syrup
+e3zo.,AMOXICILLIN 125mg/1.25mL paediatric suspension
+e3zp.,AMOXYCILLIN powder 750mg/sachet
+e3zq.,AMOXICILLIN powder 3g/sachet
+e3zr.,AMOXICILLIN 250mg injection
+e3zs.,AMOXICILLIN 500mg injection
+e3zt.,AMOXICILLIN 1g injection
+e3zu.,AMOXICILLIN 250mg/5mL sugar free suspension
+e3zv.,AMOXYCILLIN 125mg s/f chewable tablets
+e3zw.,AMOXYCILLIN 250mg s/f chewable tablets
+e3zx.,AMOXYCILLIN 500mg s/f chewable tablets
+e3zy.,AMOXYCILLIN 375mg s/f dispersible tablets
+e3zz.,AMOXYCILLIN 750mg s/f dispersible tablets
+e4...,ANTIPSEUDOMONAL PENICILLINS
+e41..,AZLOCILLIN
+e411.,*SECUROPEN 500mg injection
+e412.,*SECUROPEN 1g injection
+e413.,*SECUROPEN 2g injection
+e414.,SECUROPEN 5g intravenous infusion x3
+e415.,*SECUROPEN 5g injection
+e416.,AZLOCILLIN 5g intravenous infusion
+e41w.,*AZLOCILLIN 500mg injection
+e41x.,*AZLOCILLIN 1g injection
+e41y.,*AZLOCILLIN 2g injection
+e41z.,*AZLOCILLIN 5g injection
+e42..,CARBENICILLIN
+e421.,*PYOPEN 1g injection
+e422.,*PYOPEN 5g injection
+e42y.,*CARBENICILLIN 1g injection
+e42z.,*CARBENICILLIN 5g injection
+e43..,CARFECILLIN SODIUM
+e431.,*UTICILLIN 500mg tablets
+e43z.,CARFECILLIN SODIUM 500mg tablets
+e44..,TICARCILLIN
+e441.,TICAR 1g injection
+e442.,*TICAR 3g injection
+e443.,*TICAR 5g injection
+e444.,*TICAR 5g intravenous infusion
+e445.,*TIMENTIN 800mg injection
+e446.,*TIMENTIN 1.6g injection
+e447.,TIMENTIN 3.2g injection
+e44u.,TICARCILLIN+CLAVULANIC ACID 1.5g/100mg injection pdr
+e44v.,TICARCILLIN+CLAVULANIC ACID 3g/200mg injection pdr
+e44w.,*TICARCILLIN 1g injection
+e44x.,*TICARCILLIN 3g injection
+e44y.,*TICARCILLIN 5g injection
+e44z.,TICARCILLIN 5g intravenous infusion
+e5...,OTHER PENICILLINS
+e51..,MECILLINAM
+e511.,*SELEXIDIN 200mg injection
+e512.,*SELEXIDIN 400mg injection
+e513.,*MECILLINAM 400mg injection
+e514.,*MECILLINAM 200mg injection
+e52..,PIVMECILLINAM HYDROCHLORIDE
+e521.,SELEXID 200mg tablets
+e522.,SELEXID 100mg/sachet suspension
+e52v.,PIVMECILLINAM 100mg/sachet suspension
+e52w.,PIVMECILLINAM HYDROCHLORIDE 200mg tablets
+e61..,CEFACLOR
+e611.,*DISTACLOR 250mg capsules
+e612.,DISTACLOR 125mg/5mL suspension
+e613.,DISTACLOR 250mg/5mL suspension
+e614.,CEFACLOR 250mg capsules
+e615.,CEFACLOR 125mg/5mL suspension
+e616.,CEFACLOR 250mg/5mL suspension
+e617.,DISTACLOR 500mg capsules
+e618.,CEFACLOR 500mg capsules
+e619.,DISTACLOR MR 375mg m/r tablets
+e61A.,KEFTID 250mg capsules
+e61B.,KEFTID 500mg capsules
+e61C.,CEFACLOR 125mg/5mL sugar free suspension
+e61D.,CEFACLOR 250mg/5mL sugar free suspension
+e61E.,KEFTID 125mg/5mL sugar free suspension
+e61F.,KEFTID 250mg/5mL sugar free suspension
+e61G.,BACTICLOR MR 375mg m/r tablets
+e61a.,CEFACLOR 375mg m/r tablets
+e61b.,DISTACLOR MR 500mg m/r tablets
+e61c.,*CEFACLOR 500mg m/r tablets
+e68..,CEFUROXIME
+e681.,ZINACEF 250mg injection
+e682.,ZINACEF 750mg injection
+e683.,ZINACEF 1.5g injection
+e684.,ZINNAT 125mg tablets
+e685.,*ZINNAT 250mg tablets
+e686.,CEFUROXIME 125mg tablets
+e687.,CEFUROXIME 250mg tablets
+e688.,*ZINACEF 1.5g infusion
+e689.,ZINNAT 125mg/5mL suspension
+e68a.,CEFUROXIME 125mg/5mL suspension
+e68b.,ZINNAT 125mg/sachet suspension
+e68c.,CEFUROXIME 125mg/sach for suspension
+e68d.,ZINACEF 750mg with saline infusion kit
+e68e.,CEFUROXIME 750mg with saline infusion kit
+e68f.,ZINACEF+METRONIDAZOLE 750mg/500mg infusion kit
+e68g.,CEFUROXIME+METRONIDAZOLE 750mg/500mg infusion kit
+e68h.,APROKAM 50mg powder for solution for injection
+e68i.,CEFUROXIME 50mg powder for solution for injection
+e68w.,*CEFUROXIME 1.5g infusion pdr
+e68x.,CEFUROXIME 250mg injection
+e68y.,CEFUROXIME 750mg injection
+e68z.,CEFUROXIME 1.5g injection
+e69..,CEFALEXIN
+e691.,CEFALEXIN 250mg capsules
+e692.,CEFALEXIN 500mg capsules
+e693.,CEFALEXIN 250mg tablets
+e694.,CEFALEXIN 500mg tablets
+e695.,CEFALEXIN 125mg/5mL mixture
+e696.,CEFALEXIN 250mg/5mL mixture
+e697.,CEFALEXIN 500mg/5mL syrup
+e698.,CEPOREX 250mg capsules
+e699.,CEPOREX 500mg capsules
+e69A.,*TENKOREX 250mg capsules
+e69B.,*TENKOREX 500mg capsules
+e69C.,*TENKOREX 125mg/5mL suspension
+e69D.,*TENKOREX 250mg/5mL suspension
+e69E.,*TENKOREX 500mg tablets
+e69F.,*KIFLONE 500mg tablets
+e69G.,*KIFLONE 250mg capsules
+e69H.,*KIFLONE 500mg capsules
+e69J.,*KIFLONE 125mg/5mL syrup
+e69K.,*KIFLONE 250mg/5mL syrup
+e69a.,CEPOREX 250mg tablets
+e69b.,CEPOREX 500mg tablets
+e69c.,CEPOREX 125mg/1.25mL paediatric drops
+e69d.,*CEPOREX 125mg/5mL suspension
+e69e.,*CEPOREX 250mg/5mL suspension
+e69f.,CEPOREX 125mg/5mL syrup
+e69g.,CEPOREX 250mg/5mL syrup
+e69h.,CEPOREX 500mg/5mL syrup
+e69i.,KEFLEX 250mg capsules
+e69j.,KEFLEX 500mg capsules
+e69k.,KEFLEX 250mg tablets
+e69l.,KEFLEX 500mg tablets
+e69m.,KEFLEX 125mg/5mL suspension
+e69n.,KEFLEX 250mg/5mL suspension
+e69o.,KEFLEX-C 125mg chewable tablets
+e69p.,KEFLEX-C 250mg chewable tablets
+e69q.,*CEPOREX 1g tablets
+e69v.,CEFALEXIN 125mg/5mL syrup
+e69w.,CEFALEXIN 250mg/5mL syrup
+e69x.,*CEPHALEXIN 1g tablets
+e69y.,CEPHALEXIN 125mg/1.25mL paediatric drops
+e6h..,CEFIXIME
+e6h1.,CEFIXIME 200mg tablets
+e6h2.,CEFIXIME 100mg/5mL suspension
+e6h3.,SUPRAX 200mg tablets
+e6h4.,SUPRAX 100mg/5mL paediatric suspension 37.5mL
+e6h5.,SUPRAX 100mg/5mL paediatric suspension 75mL
+e6h6.,SUPRAX 100mg/5mL paediatric suspension 50mL
+e6h7.,SUPRAX 100mg/5mL paediatric suspension 100mL
+e6p..,CEFPROZIL
+e6p1.,*CEFPROZIL 250mg tablets
+e6p2.,*CEFPROZIL 500mg tablets
+e6p3.,CEFPROZIL 250mg/5mL oral suspension
+e6p4.,*CEFZIL 250mg tablets
+e6p5.,*CEFZIL 500mg tablets
+e6p6.,CEFZIL 250mg/5mL oral suspension
+e7...,TETRACYCLINES [SYSTEMIC]
+e71..,TETRACYCLINE [SYSTEMIC]
+e711.,TETRACYCLINE 250mg capsules
+e712.,TETRACYCLINE 250mg tablets
+e713.,TETRACYCLINE 125mg/5mL mixture
+e714.,*ACHROMYCIN 250mg capsules
+e715.,*ACHROMYCIN 250mg tablets
+e716.,*ACHROMYCIN 25g powder
+e717.,ACHROMYCIN 100mg intramuscular injection
+e718.,ACHROMYCIN 250mg intravenous injection
+e719.,ACHROMYCIN 500mg intravenous injection
+e71a.,*ACHROMYCIN V 250mg capsules
+e71b.,*ACHROMYCIN V 125mg/5mL syrup
+e71c.,*DETECLO 300mg tablets
+e71d.,ECONOMYCIN 250mg capsules
+e71e.,ECONOMYCIN 250mg tablets
+e71f.,*SUSTAMYCIN 250mg m/r capsules
+e71g.,*TETRABID 250mg m/r capsules
+e71h.,*TETRACHEL 250mg capsules
+e71i.,*TETRACHEL 250mg tablets
+e71j.,*TETREX 250mg capsules
+e71k.,*TETRACYCLINE 25g powder
+e71l.,TETRACYCLINE 100mg intramuscular injection
+e71m.,TETRACYCLINE 250mg intravenous injection
+e71n.,TETRACYCLINE 500mg intravenous injection
+e71o.,*ACHROMYCIN 125mg/5mL syrup
+e71p.,TETRACYCLINE 250mg m/r capsules
+e71z.,COMPOUND TETRACYCLINE 300mg tablets
+e72..,CHLORTETRACYCLINE HYDROCHLORIDE [SYSTEMIC]
+e721.,*AUREOMYCIN 250mg capsules
+e722.,*AUREOMYCIN 25g powder
+e72y.,CHLORTETRACYCLINE 250mg capsules
+e72z.,*CHLORTETRACYCLINE 25g powder
+e73..,*CLOMOCYCLINE SODIUM
+e731.,*MEGACLOR 170mg capsules
+e73z.,CLOMOCYCLINE SODIUM 170mg capsules
+e74..,DEMECLOCYCLINE HYDROCHLORIDE
+e741.,*LEDERMYCIN 150mg capsules
+e742.,*LEDERMYCIN 300mg tablets
+e74y.,DEMECLOCYCLINE HCL 150mg capsules
+e74z.,DEMECLOCYCLINE HCL 300mg tablets
+e75..,DOXYCYCLINE
+e751.,*DOXATET 100mg tablets
+e752.,DOXYLAR 100mg capsules
+e753.,*NORDOX 100mg capsules
+e754.,*VIBRAMYCIN 50mg capsules
+e755.,*VIBRAMYCIN 100mg capsules
+e756.,*VIBRAMYCIN 50mg/5mL syrup
+e757.,VIBRAMYCIN-D 100mg dispersible tablets
+e758.,DOXYCYCLINE 100mg capsules
+e759.,*DEMIX-100 100mg capsules
+e75A.,*RAMYSIS 100mg capsules
+e75B.,*DEMIX-50 50mg capsules
+e75C.,*CYCLODOX 100mg capsules
+e75D.,VIBRAMYCIN ACNE PACK 50mg capsules
+e75E.,DOXYLAR 50mg capsules
+e75F.,*PERIOSTAT 20mg capsules
+e75G.,PERIOSTAT 20mg tablets
+e75H.,EFRACEA 40mg m/r capsules
+e75s.,DOXYCYCLINE 40mg m/r capsules
+e75t.,DOXYCYCLINE 20mg tablets
+e75u.,*DOXYCYCLINE 20mg capsules
+e75v.,*DOXYCYCLINE 100mg tablets
+e75w.,*DOXYCYCLINE 100mg capsules
+e75x.,DOXYCYCLINE 50mg capsules
+e75y.,*DOXYCYCLINE 50mg/5mL syrup
+e75z.,DOXYCYCLINE 100mg dispersible tablets
+e78..,OXYTETRACYCLINE
+e781.,OXYTETRACYCLINE 250mg capsules
+e782.,OXYTETRACYCLINE 250mg tablets
+e783.,OXYTETRACYCLINE 125mg/5mL mixture
+e784.,*BERKMYCEN 250mg tablets
+e785.,*CHEMOCYCLINE 250mg tablets
+e786.,*CHEMOCYCLINE 125mg/5mL syrup
+e787.,*GALENOMYCIN 250mg tablets
+e788.,*IMPERACIN 250mg tablets
+e789.,OXYMYCIN 250mg tablets
+e78a.,*TERRAMYCIN 250mg capsules
+e78b.,*TERRAMYCIN 250mg tablets
+e78c.,*UNIMYCIN 250mg capsules
+e78d.,*OXYTETRAMIX 250mg tablets
+e78w.,*UNIMYCIN 250mg capsules
+e78y.,OXYTETRACYCLINE 125mg/5mL syrup
+e79..,COMPOUND TETRACYCLINE PREPARATIONS
+e791.,*CHYMOCYCLAR capsules
+e792.,*MYSTECLIN capsules
+e793.,*MYSTECLIN tablets
+e794.,*MYSTECLIN syrup
+e9...,MACROLIDES
+e91..,ERYTHROMYCIN
+e911.,ERYTHROMYCIN 250mg e/c tablets
+e912.,ERYTHROMYCIN 500mg tablets
+e913.,ERYTHROMYCIN STEARATE 250mg tablets
+e914.,ERYTHROMYCIN STEARATE 500mg tablets
+e915.,ARPIMYCIN 125mg/5mL sugar free suspension
+e916.,ARPIMYCIN 250mg/5mL sugar free suspension
+e917.,ARPIMYCIN 500mg/5mL sugar free suspension
+e918.,*ERYCEN 250mg tablets
+e919.,*ERYCEN 500mg tablets
+e91A.,ERYTHROPED FORTE granules 500mg/sachet
+e91B.,ERYTHROPED P.I. granules 125mg/sachet
+e91C.,ERYTHROPED P.I. 125mg/5mL sugar free suspension 140mL
+e91D.,ERYTHROPED 250mg/5mL sugar free suspension 140mL
+e91E.,ERYTHROMYCIN 125mg/5mL sugar free suspension
+e91F.,ERYTHROMYCIN 250mg/5mL sugar free suspension
+e91G.,*ROMMIX-125 suspension
+e91H.,*ROMMIX-250 tablets
+e91I.,KERYMAX 250mg e/c granules in capsules
+e91J.,*ROMMIX-500 tablets
+e91K.,ERYTHROCIN 1g intravenous infusion
+e91L.,*ERYTHROMYCIN 250mg capsules
+e91M.,ERYTHROMYCIN 125mg/sachet granules
+e91N.,ERYTHROMYCIN 250mg/sachet granules
+e91P.,ERYTHROMYCIN 500mg/sachet granules
+e91Q.,ERYTHROMYCIN 1g/sachet granules
+e91R.,ERYTHROMYCIN 500mg/5mL sugar free suspension
+e91S.,TILORYTH 250mg e/c granules in capsules
+e91T.,ERYMIN 250mg/5mL sugar free suspension
+e91U.,ARPIMYCIN 125mg/5mL suspension
+e91V.,ARPIMYCIN 250mg/5mL suspension
+e91W.,ARPIMYCIN 500mg/5mL suspension
+e91X.,ERYTHROMYCIN 250mg e/c granules in capsules
+e91Y.,ERYTHROPED FORTE SF 500mg/5mL sugar free suspension
+e91Z.,PRIMACINE 125mg/5mL suspension 100mL
+e91a.,ERYMAX 250mg e/c granules in capsules
+e91b.,ERYTHROCIN 250mg tablets
+e91c.,ERYTHROCIN 500mg tablets
+e91d.,ERYTHROMYCIN LACTOBION 1g intravenous injection
+e91e.,*ERYTHROLAR 250mg tablets
+e91f.,*ERYTHROLAR 500mg tablets
+e91g.,ERYTHROLAR 250mg/5mL suspension
+e91h.,*ERYTHROMID 250mg tablets
+e91i.,*ERYTHROMID DS 500mg tablets
+e91j.,ERYTHROPED P.I. 125mg/5mL suspension
+e91k.,ERYTHROPED 250mg/5mL suspension 140mL
+e91l.,ERYTHROPED 250mg/sachet sugar free granules
+e91m.,ERYTHROPED FORTE 500mg/5mL suspension
+e91n.,ERYTHROPED A 500mg tablets
+e91o.,*ILOSONE 250mg capsules
+e91p.,*ILOSONE 500mg tablets
+e91q.,*ILOSONE 125mg/5mL suspension
+e91r.,ILOSONE FORTE 250mg/5mL suspension
+e91s.,*ILOTYCIN 250mg tablets
+e91t.,RETCIN 250mg tablets
+e91u.,ERYTHROMYCIN 125mg/5mL suspension
+e91v.,ERYTHROMYCIN 250mg/5mL suspension
+e91w.,ERYTHROMYCIN 500mg/5mL suspension
+e91x.,ERYTHROPED A 1g/sachet granules
+e91y.,ERYMAX SPRINKLE 125mg capsules
+e91z.,ERYTHROPED 250mg/sachet granules
+e92..,CLARITHROMYCIN
+e921.,CLARITHROMYCIN 250mg tablets
+e922.,KLARICID 250mg tablets 14CP
+e923.,CLARITHROMYCIN 125mg/5mL paediatric suspension
+e924.,KLARICID 125mg/5mL paediatric suspension
+e925.,CLARITHROMYCIN 500mg injection (pdr for recon)
+e926.,KLARICID IV 500mg injection (pdr for recon)
+e927.,CLARITHROMYCIN 500mg tablets
+e928.,KLARICID 500mg tablets
+e929.,CLARITHROMYCIN 500mg m/r tablets
+e92A.,KLARICID XL 500mg m/r tablets
+e92B.,CLARITHROMYCIN 250mg/sachet granules
+e92C.,KLARICID adult 250mg/sachet granules
+e92D.,CLARITHROMYCIN 250mg/5mL paediatric suspension
+e92E.,KLARICID 250mg/5mL paediatric suspension
+e92F.,CLARITHROMYCIN 125mg granules straw
+e92G.,*CLAROSIP 125mg granules straw
+e92H.,CLARITHROMYCIN 187.5mg granules straw
+e92I.,CLAROSIP 187.5mg granules straw
+e92J.,CLARITHROMYCIN 250mg granules straw
+e92K.,CLAROSIP 250mg granules straw
+e92L.,XETININ XL 500mg m/r tablets
+e92M.,FEBZIN XL 500mg m/r tablets
+e92N.,MYCIFOR XL 500mg m/r tablets
+e93..,AZITHROMYCIN DIHYDRATE
+e931.,AZITHROMYCIN 250mg capsules
+e932.,AZITHROMYCIN 40mg/mL suspension
+e933.,ZITHROMAX 250mg capsules
+e934.,ZITHROMAX 40mg/mL suspension 15mL
+e935.,ZITHROMAX 40mg/mL suspension 22.5mL
+e936.,ZITHROMAX 40mg/mL suspension 30mL
+e937.,AZITHROMYCIN 500mg tablets
+e938.,*ZITHROMAX 500mg tablets
+e939.,CLAMELLE AZITHROMYCIN 500mg tablets
+e93C.,ZEDBAC 500mg powder for solution for infusion
+e93D.,AZITHROMYCIN 500mg powder for solution for injection
+e94..,SPIRAMYCIN
+e941.,SPIRAMYCIN 250mg tablets
+e942.,ROVAMYCINE 250mg tablets
+e943.,SPIRAMYCIN 125mg/5mL syrup
+e944.,ROVAMYCINE 125mg/5mL syrup
+e95..,ERYTHROMYCIN [2]
+e951.,PRIMACINE 125mg/5mL suspension 140mL
+e952.,PRIMACINE 250mg/5mL suspension 100mL
+e953.,PRIMACINE 250mg/5mL suspension 140mL
+e954.,PRIMACINE 500mg/5mL suspension 100mL
+e955.,PRIMACINE 500mg/5mL suspension 140mL
+e96..,TELITHROMYCIN
+e961.,TELITHROMYCIN 400mg tablets
+e96a.,KETEK 400mg tablets
+ea1..,CLINDAMYCIN
+ea11.,DALACIN C 75mg capsules
+ea12.,DALACIN C 150mg capsules
+ea13.,DALACIN C 75mg/5mL paediatric suspension
+ea14.,DALACIN C PHOSPHATE 300mg/2mL injection
+ea15.,DALACIN C PHOSPHATE 600mg/4mL injection
+ea1v.,CLINDAMYCIN 75mg capsules
+ea1w.,CLINDAMYCIN 150mg capsules
+ea1x.,*CLINDAMYCIN 75mg/5mL syrup
+ea1y.,CLINDAMYCIN 300mg/2mL injection
+ea1z.,CLINDAMYCIN 600mg/4mL injection
+eg6..,CIPROFLOXACIN
+eg61.,CIPROXIN 250mg tablets
+eg62.,CIPROXIN 100mg/50mL intravenous infusion
+eg63.,CIPROXIN 200mg/100mL intravenous infusion
+eg64.,CIPROXIN 500mg tablets
+eg65.,CIPROXIN 750mg tablets
+eg66.,CIPROXIN 400mg/200mL intravenous infusion
+eg67.,CIPROFLOXACIN 100mg tablets
+eg68.,*CIPROXIN 100mg tablets
+eg69.,CIPROFLOXACIN 5g/100mL oral suspension
+eg6A.,CIPROXIN 5g/100mL oral suspension
+eg6u.,CIPROFLOXACIN 2mg/mL intravenous infusion 200mL
+eg6v.,CIPROFLOXACIN 750mg tablets
+eg6w.,CIPROFLOXACIN 500mg tablets
+eg6x.,CIPROFLOXACIN 250mg tablets
+eg6y.,CIPROFLOXACIN 2mg/mL intravenous infusion 50mL
+eg6z.,CIPROFLOXACIN 2mg/mL intravenous infusion 100mL
+eg8..,OFLOXACIN
+eg81.,OFLOXACIN 200mg tablets
+eg82.,TARIVID 200mg tablets
+eg83.,TARIVID 200mg/100mL intravenous infusion
+eg84.,OFLOXACIN 200mg/100mL intravenous infusion
+eg85.,TARIVID 100mg/50mL intravenous infusion
+eg86.,OFLOXACIN 100mg/50mL intravenous infusion
+eg87.,TARIVID 400mg tablets
+eg88.,OFLOXACIN 400mg tablets
+egC..,LEVOFLOXACIN
+egC1.,LEVOFLOXACIN 250mg tablets
+egC2.,LEVOFLOXACIN 500mg tablets
+egC3.,LEVOFLOXACIN 500mg/100mL intravenous infusion
+egC4.,TAVANIC 250mg tablets
+egC5.,TAVANIC 500mg tablets
+egC6.,TAVANIC 500mg/100mL intravenous infusion
+egCB.,LEVOFLOXACIN 250mg/50mL solution for infusion
+egCC.,EVOXIL 250mg/50mL solution for infusion
+egCD.,EVOXIL 500mg/100mL solution for infusion
+egCE.,EVOXIL 250mg tablets
+egCF.,EVOXIL 500mg tablets
+egD..,MOXIFLOXACIN
+egD1.,MOXIFLOXACIN 400mg tablets
+egD2.,AVELOX 400mg tablets
+egD3.,AVELOX 400mg/250mL solution for infusion
+egD4.,MOXIFLOXACIN 400mg/250mL solution for infusion
+g52..,CLINDAMYCIN PHOSPHATE
+lb71.,TETRACYCLINE 125mg/5mL mixture
+x000J,Ampicillin+cloxacillin
+x001n,Cefuroxime+metronidazole
+x002A,Co-amoxiclav
+x002F,Co-fluampicil
+x009C,Penicillin
+x009U,Piperacillin+tazobactam
+x009W,Pivampicillin+pivmecillinam
+x00BK,Ticarcillin+clavulanic acid
+x00LB,Erythromycin 500mg e/c tablet
+x00QN,Securopen 5g infusion set
+x00Rq,Bicillin injection (pdr for recon)
+x00Y1,Zithromax 200mg/5mL oral suspension
+x00YU,Suprax 100mg/5mL paediatric oral suspension
+x00Zq,Aureomycin powder
+x00Zv,Chlortetracycline hydrochloride powder
+x00bg,Pivampicillin 175mg/5mL s/f suspension
+x00bh,Pondocillin 175mg/5mL s/f suspension
+x00eN,Erythroped 250mg/5mL suspension
+x00eO,Erythroped PI SF 125mg/5mL suspension
+x00eP,Erythroped SF 250mg/5mL suspension
+x00eS,Ladropen 125mg/5mL suspension
+x00fR,Klaricid 250mg tablet
+x01HU,Oral cefuroxime
+x01HV,Parenteral cefuroxime
+x01Hl,Oral clindamycin
+x01Hm,Parenteral clindamycin
+x01Ho,Oral erythromycin
+x01Hp,Parenteral erythromycin
+x01Hy,Oral amoxycillin
+x01Hz,Parenteral amoxycillin
+x01I0,Oral ampicillin
+x01I1,Parenteral ampicillin
+x01I2,Bacampicillin
+x01I3,Talampicillin
+x01I4,Carfecillin
+x01I5,Oral flucloxacillin
+x01I6,Parenteral flucloxacillin
+x01I7,Methicillin
+x01I8,Pivmecillinam
+x01I9,Combined penicillin preparation
+x01IE,Chlortetracycline
+x01IG,Demeclocycline
+x01IH,Oral tetracycline
+x01II,Parenteral tetracycline
+x02Lo,Benzylpenicillin
+x02Lp,Tetracyclines
+x02Lq,Tetracycline
+x04xD,Primacine 125mg/5mL suspension
+x04xE,Primacine 250mg/5mL suspension
+x04xF,Primacine 500mg/5mL suspension

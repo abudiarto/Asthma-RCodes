@@ -1,0 +1,74 @@
+read_code,read_term,strength
+fe3..,DEXAMETHASONE [ENDOCRINE],
+fe31.,DEXAMETHASONE 500micrograms tablets,0.5
+fe32.,DEXAMETHASONE 2mg tablets,2
+fe33.,DECADRON 500micrograms tablets,0.5
+fe36.,*ORADEXON 500microgram tablets,0.5
+fe37.,*ORADEXON 2mg tablets,2
+fe3A.,DEXSOL 2mg/5mL oral solution,2
+fe3B.,DEXAMETHASONE 10mg/5mL oral solution,10
+fe3C.,MARTAPAN 2mg/5mL oral solution,2
+fe3r.,DEXAMETHASONE 500micrograms/5mL solution,0.5
+fe3s.,DEXAMETHASONE 2mg/5mL sugar free solution,2
+fe3u.,DEXAMETHASONE 2mg/5mL liquid,2
+fe4..,HYDROCORTISONE,
+fe41.,HYDROCORTISONE 10mg tablets,10
+fe42.,HYDROCORTISONE 20mg tablets,20
+fe43.,*HYDROCORTISTAB 20mg tablets,20
+fe44.,*HYDROCORTONE 10mg tablets,10
+fe45.,*HYDROCORTONE 20mg tablets,20
+fe4e.,PLENADREN 5mg m/r tablets,5
+fe4f.,HYDROCORTISONE 5mg m/r tablets,5
+fe4g.,PLENADREN 20mg m/r tablets,20
+fe4h.,HYDROCORTISONE 20mg m/r tablets,20
+fe5..,METHYLPREDNISOLONE [ENDOCRINE],
+fe51.,MEDRONE 2mg tablets,2
+fe52.,MEDRONE 4mg tablets,4
+fe53.,MEDRONE 16mg tablets,16
+fe5f.,MEDRONE 100mg tablets,100
+fe5m.,METHYLPREDNISOLONE 100mg tablets,100
+fe5n.,METHYLPREDNISOLONE 2mg tablets,2
+fe5o.,METHYLPREDNISOLONE 4mg tablets,4
+fe5p.,METHYLPREDNISOLONE 16mg tablets,16
+fe6..,PREDNISOLONE [ENDOCRINE],
+fe61.,PREDNISOLONE 1mg tablets,1
+fe62.,PREDNISOLONE 5mg tablets,5
+fe64.,*DELTA-PHORICOL 5mg tablets,5
+fe65.,DELTACORTRIL ENTERIC 2.5mg tablets,2.5
+fe66.,DELTACORTRIL ENTERIC 5mg tablets,5
+fe67.,*DELTALONE 1mg tablets,1
+fe68.,*DELTALONE 5mg tablets,5
+fe69.,*DELTASTAB 1mg tablets,1
+fe6a.,*DELTASTAB 5mg tablets,5
+fe6c.,*PRECORTISYL 1mg tablets,1
+fe6d.,*PRECORTISYL 5mg tablets,5
+fe6e.,PRECORTISYL FORTE 25mg tablets,25
+fe6f.,*PREDNESOL 5mg tablets,5
+fe6g.,*SINTISONE 5mg tablets,5
+fe6h.,PREDNISOLONE 2.5mg e/c tablets,2.5
+fe6i.,PREDNISOLONE 5mg e/c tablets,5
+fe6j.,PREDNISOLONE 5mg soluble tablets,5
+fe6k.,PREDNISOLONE 50mg tablets,50
+fe6l.,DILACORT 5mg gastro-resistant tablets,5
+fe6m.,DILACORT 2.5mg gastro-resistant tablets,2.5
+fe6t.,PREDNISOLONE 10mg tablets,10
+fe6v.,*PREDNISOLONE 2.5mg tablets,2.5
+fe6w.,*PREDNISOLONE 2.5mg tablets,2.5
+fe6z.,PREDNISOLONE 25mg tablets,25
+fe7..,PREDNISONE,
+fe71.,*PREDNISONE 1mg tablets,1
+fe72.,*PREDNISONE 5mg tablets,5
+fe73.,*DECORTISYL 5mg tablets,5
+fe74.,*ECONOSONE 1mg tablets,1
+fe75.,*ECONOSONE 5mg tablets,5
+fe76.,Prednisone 20mg tablet,20
+fe77.,LODOTRA 2mg m/r tablets,2
+fe78.,LODOTRA 5mg m/r tablets,5
+fe79.,LODOTRA 1mg m/r tablets,1
+fe7x.,PREDNISONE 5mg m/r tablets,5
+fe7y.,PREDNISONE 2mg m/r tablets,2
+fe7z.,PREDNISONE 1mg m/r tablets,1
+x00yP,Oral prednisolone,
+x01Mh,Oral dexamethasone,
+x01Na,Oral hydrocortisone,
+x01Nb,Oral methylprednisolone,

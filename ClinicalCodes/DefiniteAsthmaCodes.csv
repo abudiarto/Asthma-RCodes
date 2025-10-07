@@ -1,0 +1,122 @@
+readcode,readterm
+H33..00,asthma
+663..11,asthma monitoring
+H333.00,acute exacerbation of asthma
+H33z100,asthma attack
+H33z011,severe asthma attack
+H33..11,bronchial asthma
+H330.11,allergic asthma
+663V100,mild asthma
+663V300,severe asthma
+663V000,occasional asthma
+H331.11,late onset asthma
+H33z.00,asthma unspecified
+H33zz11,exercise induced asthma
+H33z000,status asthmaticus nos
+H331.00,intrinsic asthma
+H330011,hay fever with asthma
+H312000,chronic asthmatic bronchitis
+173A.00,exercise induced asthma
+H330111,extrinsic asthma with asthma attack
+8H2P.00,"emergency admission, asthma"
+H330.00,extrinsic (atopic) asthma
+663P.00,asthma limiting activities
+663U.00,asthma management plan given
+663N.00,asthma disturbing sleep
+H330.14,pollen asthma
+H33z111,asthma attack nos
+9OJA.11,asthma monitored
+663y.00,number of asthma exacerbations in past year
+66Y5.00,change in asthma management plan
+66Y9.00,step up change in asthma management plan
+66YJ.00,asthma annual review
+8B3j.00,asthma medication review
+663j.00,asthma - currently active
+1O2..00,asthma confirmed
+H33z200,late-onset asthma
+663V.00,asthma severity
+663V200,moderate asthma
+663N200,asthma disturbs sleep frequently
+66YK.00,asthma follow-up
+H330000,extrinsic asthma without status asthmaticus
+H330.13,hay fever with asthma
+H33zz00,asthma nos
+8795.00,asthma control step 2
+8794.00,asthma control step 1
+66YA.00,step down change in asthma management plan
+8796.00,asthma control step 3
+H331111,intrinsic asthma with asthma attack
+66YQ.00,asthma monitoring by nurse
+663p.00,asthma treatment compliance unsatisfactory
+663n.00,asthma treatment compliance satisfactory
+9OJA.00,asthma monitoring check done
+8798.00,asthma control step 5
+8797.00,asthma control step 4
+H33zz12,allergic asthma nec
+173c.00,occupational asthma
+663d.00,emergency asthma admission since last appointment
+8791.00,further asthma - drug prevent.
+663u.00,asthma causes daytime symptoms 1 to 2 times per week
+663e.00,asthma restricts exercise
+8CR0.00,asthma clinical management plan
+663s.00,asthma never causes daytime symptoms
+663v.00,asthma causes daytime symptoms most days
+663f.00,asthma never restricts exercise
+663e100,asthma severely restricts exercise
+663e000,asthma sometimes restricts exercise
+H330100,extrinsic asthma with status asthmaticus
+H331000,intrinsic asthma without status asthmaticus
+66YR.00,asthma monitoring by doctor
+663N000,asthma causing night waking
+66YP.00,asthma night-time symptoms
+663t.00,asthma causes daytime symptoms 1 to 2 times per month
+663O000,asthma never disturbs sleep
+663w.00,asthma limits walking up hills or stairs
+663x.00,asthma limits walking on the flat
+663N100,asthma disturbs sleep weekly
+H35y700,wood asthma
+663r.00,asthma causes night symptoms 1 to 2 times per month
+H334.00,brittle asthma
+1780.00,aspirin induced asthma
+66YC.00,absent from work or school due to asthma
+663q.00,asthma daytime symptoms
+H331z00,intrinsic asthma nos
+H330z00,extrinsic asthma nos
+9OJ1.00,attends asthma monitoring
+663m.00,asthma accident and emergency attendance since last visit
+H47y000,detergent asthma
+H331100,intrinsic asthma with status asthmaticus
+173d.00,work aggravated asthma
+H35y600,sequoiosis (red-cedar asthma)
+388t.00,royal college of physicians asthma assessment
+38DL.00,asthma control test
+8CMA000,patient has a written asthma personal action plan
+679J000,health education - asthma self management
+38DT.00,asthma control questionnaire
+9NNX.00,under care of asthma specialist nurse
+679J100,health education - structured asthma discussion
+66Yp.00,asthma review using roy colleg of physicians three questions
+38DV.00,mini asthma quality of life questionnaire
+1787.00,asthma trigger - seasonal
+1781.00,asthma trigger - pollen
+66Yr.00,asthma causes symptoms most nights
+66Yq.00,asthma causes night time symptoms 1 to 2 times per week
+1789.00,asthma trigger - respiratory infection
+663P000,asthma limits activities 1 to 2 times per month
+178B.00,asthma trigger - exercise
+663P100,asthma limits activities 1 to 2 times per week
+1783.00,asthma trigger - warm air
+679J200,health education - structured patient focused asthma discuss
+1786.00,asthma trigger - animals
+66Ys.00,asthma never causes night symptoms
+388t000,royal college physician asthma assessment 3 question score
+1788.00,asthma trigger - cold air
+178A.00,asthma trigger - airborne dust
+1785.00,asthma trigger - damp
+1784.00,asthma trigger - emotion
+1782.00,asthma trigger - tobacco smoke
+663P200,asthma limits activities most days
+661N100,asthma self-management plan review
+661M100,asthma self-management plan agreed
+H335.00,chronic asthma with fixed airflow obstruction
+66Yu.00,number days absent from school due to asthma in past 6 month

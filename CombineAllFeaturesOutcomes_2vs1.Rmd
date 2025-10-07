@@ -1,0 +1,614 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Let's bring all the features and outcome together
+
+Features 
+```{r}
+rm(list=ls())
+library(tidyverse)
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
+data_load_folder='../PrepareDataNew_20162018'
+num_files=74
+data_features=selectedPatients
+
+
+### Feature 1-2, Sex, and Age ###
+feature_folder='SexAndAge'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_sex_age_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_sex_age,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_sex_age_',kfile,'.Rdata',sep=''))
+  data_features$sex[match(feature_sex_age$patid,data_features$patid)]=feature_sex_age$sex
+  data_features$age[match(feature_sex_age$patid,data_features$patid)]=feature_sex_age$age
+  data_features$practice_id[match(feature_sex_age$patid,data_features$patid)]=feature_sex_age$practice_id
+}
+
+### Feature 3, BMI calculated from height and weight ###
+feature_folder='BMI'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_BMI_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_BMI,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_BMI_',kfile,'.Rdata',sep=''))
+  data_features$BMI[match(feature_BMI$patid,data_features$patid)]=feature_BMI$BMI
+  data_features$height[match(feature_BMI$patid,data_features$patid)]=feature_BMI$height
+  data_features$weight[match(feature_BMI$patid,data_features$patid)]=feature_BMI$weight
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 3, BMI new directly from read code###
+feature_folder='BMI'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_BMINew_',kfile,'.Rdata',sep=''))
+feature_BMI<-feature_BMI %>% 
+  rename('BMINew'= 'BMI')
+data_features<-data_features%>%
+    left_join(feature_BMI[,c('patid', 'BMINew')],by='patid')
+
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_BMINew_',kfile,'.Rdata',sep=''))
+  feature_BMI<-feature_BMI %>% 
+    rename('BMINew'= 'BMI')
+  data_features$BMINew[match(feature_BMI$patid,data_features$patid)]=feature_BMI$BMINew
+
+}
+# write.csv(data_features,file='../FinalData/data_features_BMINew_31072024.csv')
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 4, Ethnicity ###
+feature_folder='Ethnicity'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_Ethnicity_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_Ethnicity,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_Ethnicity_',kfile,'.Rdata',sep=''))
+  data_features$ethnicity[match(feature_Ethnicity$patid,data_features$patid)]=feature_Ethnicity$ethnicity
+  data_features$ethnic_group[match(feature_Ethnicity$patid,data_features$patid)]=feature_Ethnicity$ethnic_group
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 5, Smoking Status ###
+feature_folder='Smoking'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_Smoking_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_Smoking,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_Smoking_',kfile,'.Rdata',sep=''))
+  data_features$smokingStatus[match(feature_Smoking$patid,data_features$patid)]=feature_Smoking$smokingStatus
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+
+### Feature 6, Charlson Comorbidity Index ###
+feature_folder='CharlsonCI'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_CharlsonScore_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_CharlsonScore,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_CharlsonScore_',kfile,'.Rdata',sep=''))
+  data_features$CharlsonScore[match(feature_CharlsonScore$patid,data_features$patid)]=feature_CharlsonScore$CharlsonScore
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature comorbidity ###
+feature_folder='Comorbidity'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_comorbid_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_comorbid,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_comorbid_',kfile,'.Rdata',sep=''))
+  data_features$count_rhinitis[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_rhinitis
+  data_features$count_cardiovascular[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_cardiovascular
+  data_features$count_heartfailure[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_heartfailure
+  data_features$count_psoriasis[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_psoriasis
+  data_features$count_anaphylaxis[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_anaphylaxis
+  data_features$count_diabetes[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_diabetes
+  data_features$count_ihd[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_ihd
+  data_features$count_anxiety[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_anxiety
+  data_features$count_eczema[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_eczema
+  data_features$count_nasalpolyps[match(feature_comorbid$patid,data_features$patid)]=feature_comorbid$count_nasalpolyps
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature comedication ###
+feature_folder='Comedication'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_comedication_',kfile,'.Rdata',sep=''))
+data_features<-data_features%>%
+    left_join(feature_comedication,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_comedication_',kfile,'.Rdata',sep=''))
+  data_features$count_paracetamol[match(feature_comedication$patid,data_features$patid)]=feature_comedication$count_paracetamol
+  data_features$count_nsaids[match(feature_comedication$patid,data_features$patid)]=feature_comedication$count_nsaids
+  data_features$count_betablocker[match(feature_comedication$patid,data_features$patid)]=feature_comedication$count_betablocker
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+
+### Feature 9, PredictedPEF ###
+feature_folder='PredictedPEF'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_PEF_',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_PEF,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_PEF_',kfile,'.Rdata',sep=''))
+  data_features$PEFStatus[match(feature_PEF$patid,data_features$patid)]=feature_PEF$PEFStatus
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 10, Eosinophil Count ###
+feature_folder='EosinophilCount'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_Eosinophil_',kfile,'.Rdata',sep=''))
+feature_Eosinophil<-feature_Eosinophil%>%
+  select(patid,EosinophilLevel)
+
+data_features<-data_features%>%
+    left_join(feature_Eosinophil,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_Eosinophil_',kfile,'.Rdata',sep=''))
+  data_features$EosinophilLevel[match(feature_Eosinophil$patid,data_features$patid)]=feature_Eosinophil$EosinophilLevel
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 11, BTS Step ###
+feature_folder='BTS_StepNew'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_BTSstep_',kfile,'.Rdata',sep=''))
+feature_BTSstep<-feature_BTSstep%>%
+  group_by(patid)%>%
+  arrange(event_date,.by_group = TRUE)%>%
+  filter(row_number()==n())%>%
+  select(patid,BTS_step)
+  
+data_features<-data_features%>%
+    left_join(feature_BTSstep,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_BTSstep_',kfile,'.Rdata',sep=''))
+  
+  feature_BTSstep<-feature_BTSstep%>%
+    group_by(patid)%>%
+    arrange(event_date,.by_group = TRUE)%>%
+    filter(row_number()==n())%>%
+    select(patid,BTS_step)
+  
+  data_features$BTS_step[match(feature_BTSstep$patid,data_features$patid)]=feature_BTSstep$BTS_step
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Features 12-16, ICS Information ###
+feature_folder='ICS_info'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_ICSinfo',kfile,'.Rdata',sep=''))
+feature_ICSinfo<-feature_ICSinfo%>%
+  group_by(patid)%>%
+  arrange(event_date,.by_group = TRUE)%>%
+  filter(row_number()==n())%>%
+  select(patid,average_daily_dose_ICS,prescribed_daily_dose_ICS,ICS_medication_possesion_ratio,DeviceType,Spacer)
+  
+data_features<-data_features%>%
+    left_join(feature_ICSinfo,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_ICSinfo',kfile,'.Rdata',sep=''))
+  data_features$average_daily_dose_ICS[match(feature_ICSinfo$patid,data_features$patid)]=feature_ICSinfo$average_daily_dose_ICS
+  data_features$prescribed_daily_dose_ICS[match(feature_ICSinfo$patid,data_features$patid)]=feature_ICSinfo$prescribed_daily_dose_ICS
+  data_features$ICS_medication_possesion_ratio[match(feature_ICSinfo$patid,data_features$patid)]=feature_ICSinfo$ICS_medication_possesion_ratio
+  data_features$DeviceType[match(feature_ICSinfo$patid,data_features$patid)]=feature_ICSinfo$DeviceType
+  data_features$Spacer[match(feature_ICSinfo$patid,data_features$patid)]=feature_ICSinfo$Spacer
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+
+### Feature 17, Oral OCS Use ###
+feature_folder='OralOCSUSe'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_OCS_',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_OCS,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_OCS_',kfile,'.Rdata',sep=''))
+
+  data_features$numOCS[match(feature_OCS$patid,data_features$patid)]=feature_OCS$numOCS
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 18, Prior Asthma Education ###
+feature_folder='PriorAsthmaEducation'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaEducation',kfile,'.Rdata',sep=''))
+
+feature_priorAsthmaEducation<-feature_priorAsthmaEducation%>%
+  select(patid,PriorEducation)
+
+data_features<-data_features%>%
+    left_join(feature_priorAsthmaEducation,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaEducation',kfile,'.Rdata',sep=''))
+
+  data_features$PriorEducation[match(feature_priorAsthmaEducation$patid,data_features$patid)]=feature_priorAsthmaEducation$PriorEducation
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 18b, Prior asthma management ###
+feature_folder='PriorAsthmaManagement'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaManagement',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_priorAsthmaManagement,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaManagement',kfile,'.Rdata',sep=''))
+
+  data_features$numAsthmaManagement[match(feature_priorAsthmaManagement$patid,data_features$patid)]=feature_priorAsthmaManagement$numAsthmaManagement
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 18c, prior asthma annual review ###
+feature_folder='PriorAsthmaAnnualReview'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaAnnualReview',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_priorAsthmaAnnualReview,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaAnnualReview',kfile,'.Rdata',sep=''))
+
+  data_features$numAsthmaReview[match(feature_priorAsthmaAnnualReview$patid,data_features$patid)]=feature_priorAsthmaAnnualReview$numAsthmaReview
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 18d, prior asthma medication review ###
+feature_folder='PriorAsthmaMedReview'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaMedReview',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_priorAsthmaMedReview,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaMedReview',kfile,'.Rdata',sep=''))
+
+  data_features$numAsthmaMedReview[match(feature_priorAsthmaMedReview$patid,data_features$patid)]=feature_priorAsthmaMedReview$numAsthmaMedReview
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 18e, prior asthma review RCP###
+feature_folder='PriorAsthmaReviewRCP'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaReviewRCP',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_priorAsthmaReviewRCP,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_priorAsthmaReviewRCP',kfile,'.Rdata',sep=''))
+
+  data_features$numAsthmaReviewRCP[match(feature_priorAsthmaReviewRCP$patid,data_features$patid)]=feature_priorAsthmaReviewRCP$numAsthmaReviewRCP
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+
+### Feature 19, Primary Care Consults ###
+feature_folder='PrimaryCareConsults'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_primarycare',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_primarycare,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_primarycare',kfile,'.Rdata',sep=''))
+
+  data_features$numPCS[match(feature_primarycare$patid,data_features$patid)]=feature_primarycare$numPCS
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Feature 20, Primary Care Consultations for Asthma ###
+feature_folder='PrimaryCareConsultsAsthma'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_primarycareasthma',kfile,'.Rdata',sep=''))
+
+feature_primarycareasthma<-feature_primarycareasthma%>%
+  mutate(numPCSAsthma=numPCS)%>%
+  select(patid,numPCSAsthma)
+data_features<-data_features%>%
+    left_join(feature_primarycareasthma,by='patid')
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_primarycareasthma',kfile,'.Rdata',sep=''))
+
+  feature_primarycareasthma<-feature_primarycareasthma%>%
+    mutate(numPCSAsthma=numPCS)%>%
+    select(patid,numPCSAsthma)
+  data_features$numPCSAsthma[match(feature_primarycareasthma$patid,data_features$patid)]=feature_primarycareasthma$numPCSAsthma
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+### Features 21-27, Antibiotics/Asthma Attacks/Hpspitalization/OCS Use etc. ###
+feature_folder='CompoundFeatures'
+# file 1
+kfile=1
+load(paste(data_load_folder,'/',feature_folder,'/feature_numAntibiotics_',kfile,'.Rdata',sep=''))
+load(paste(data_load_folder,'/',feature_folder,'/feature_numAntibioticswithLRTI_',kfile,'.Rdata',sep=''))
+load(paste(data_load_folder,'/',feature_folder,'/feature_numOCS_',kfile,'.Rdata',sep=''))
+load(paste(data_load_folder,'/',feature_folder,'/feature_numOCSwithLRTI_',kfile,'.Rdata',sep=''))
+load(paste(data_load_folder,'/',feature_folder,'/feature_asthmaAttacks_',kfile,'.Rdata',sep=''))
+load(paste(data_load_folder,'/',feature_folder,'/feature_acuteRespEvents_',kfile,'.Rdata',sep=''))
+load(paste(data_load_folder,'/',feature_folder,'/feature_numHospitals_',kfile,'.Rdata',sep=''))
+# load(paste(data_load_folder,'/',feature_folder,'/feature_asthmaAttacksMonth_',kfile,'.Rdata',sep=''))
+
+data_features<-data_features%>%
+    left_join(feature_numAntibiotics,by='patid')
+data_features<-data_features%>%
+    left_join(feature_numAntibioticswithLRTI,by='patid')
+data_features<-data_features%>%
+    left_join(feature_numOCS,by='patid')
+data_features<-data_features%>%
+    left_join(feature_numOCSwithLRTI,by='patid')
+data_features<-data_features%>%
+    left_join(feature_asthmaAttacks,by='patid')
+data_features<-data_features%>%
+    left_join(feature_acuteRespEvents,by='patid')
+data_features<-data_features%>%
+    left_join(feature_numHospitals,by='patid')
+# data_features<-data_features%>%
+#     left_join(feature_asthmaAttacks_month,by='patid')
+
+
+# remaining files
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  
+  load(paste(data_load_folder,'/',feature_folder,'/feature_numAntibiotics_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_numAntibioticswithLRTI_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_numOCS_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_numOCSwithLRTI_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_asthmaAttacks_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_acuteRespEvents_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/',feature_folder,'/feature_numHospitals_',kfile,'.Rdata',sep=''))
+  # load(paste(data_load_folder,'/',feature_folder,'/feature_asthmaAttacksMonth_',kfile,'.Rdata',sep=''))
+
+  data_features$numAntibioticsEvents[match(feature_numAntibiotics$patid,data_features$patid)]=feature_numAntibiotics$numAntibioticsEvents
+  data_features$numAntibioticswithLRTI[match(feature_numAntibioticswithLRTI$patid,data_features$patid)]=feature_numAntibioticswithLRTI$numAntibioticswithLRTI
+  data_features$numOCSEvents[match(feature_numOCS$patid,data_features$patid)]=feature_numOCS$numOCSEvents
+  data_features$numOCSwithLRTI[match(feature_numOCSwithLRTI$patid,data_features$patid)]=feature_numOCSwithLRTI$numOCSwithLRTI
+  data_features$numAsthmaAttacks[match(feature_asthmaAttacks$patid,data_features$patid)]=feature_asthmaAttacks$numAsthmaAttacks
+  data_features$numAsthmaAttacks[match(feature_asthmaAttacks$patid,data_features$patid)]=feature_asthmaAttacks$numAsthmaAttacks
+  data_features$numHospEvents[match(feature_numHospitals$patid,data_features$patid)]=feature_numHospitals$numHospEvents
+  # data_features$month_1[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_1
+  # data_features$month_2[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_2
+  # data_features$month_3[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_3
+  # data_features$month_4[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_4
+  # data_features$month_5[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_5
+  # data_features$month_6[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_6
+  # data_features$month_7[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_7
+  # data_features$month_8[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_8
+  # data_features$month_9[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_9
+  # data_features$month_10[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_10
+  # data_features$month_11[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_11
+  # data_features$month_12[match(feature_asthmaAttacks_month$patid,data_features$patid)]=feature_asthmaAttacks_month$month_12
+}
+rm(list=setdiff(ls(),c("data_features","data_load_folder","num_files")))
+
+save(data_features,file='../FinalData/data_features_2vs1_2016-2018_21102024.Rdata')
+write.csv(data_features,file='../FinalData/data_features_2vs1_2016-2018_21102024.csv')
+
+```
+
+Outcomes
+```{r}
+rm(list=ls())
+library(tidyverse)
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
+data_load_folder='../PrepareData'
+num_files=74
+data_outcomes=selectedPatients
+
+#file 1
+load(paste(data_load_folder,'/Outcome_3months/asthmaAttacks_3months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_6months/asthmaAttacks_6months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_18months/asthmaAttacks_18months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_24months/asthmaAttacks_24months_1.Rdata',sep=''))
+
+
+
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_3months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_6months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_12months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_18months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_24months,by='patid')
+
+
+for (kfile in c(2:30)){
+  print(paste('Processing file number:',kfile))
+  
+  #load outcome files
+  load(paste(data_load_folder,'/Outcome_3months/asthmaAttacks_3months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_6months/asthmaAttacks_6months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_18months/asthmaAttacks_18months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_24months/asthmaAttacks_24months_',kfile,'.Rdata',sep=''))
+
+  #join together
+  
+  data_outcomes$outcome_3months[match(asthmaAttacks_3months$patid,data_outcomes$patid)]=asthmaAttacks_3months$outcome_3months
+  data_outcomes$outcome_6months[match(asthmaAttacks_6months$patid,data_outcomes$patid)]=asthmaAttacks_6months$outcome_6months
+  data_outcomes$outcome_12months[match(asthmaAttacks_12months$patid,data_outcomes$patid)]=asthmaAttacks_12months$outcome_12months
+  data_outcomes$outcome_18months[match(asthmaAttacks_18months$patid,data_outcomes$patid)]=asthmaAttacks_18months$outcome_18months
+  data_outcomes$outcome_24months[match(asthmaAttacks_24months$patid,data_outcomes$patid)]=asthmaAttacks_24months$outcome_24months
+  
+}
+save(data_outcomes,file='data_outcomes_08Feb2021.Rdata')
+write.csv(data_outcomes,file='data_outcomes_08Feb2021.csv')
+```
+
+Outcomes (updated where we have an outcome for every 3 months)
+```{r}
+rm(list=ls())
+library(tidyverse)
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
+data_load_folder='../PrepareDataNew'
+num_files=74
+data_outcomes=selectedPatients
+
+#file 1
+load(paste(data_load_folder,'/Outcome_3months/asthmaAttacks_3months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_6months/asthmaAttacks_6months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_9months/asthmaAttacks_9months_1.Rdata',sep=''))
+load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_1.Rdata',sep=''))
+
+
+
+
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_3months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_6months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_9months,by='patid')
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_12months,by='patid')
+
+
+
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  
+  #load outcome files
+  load(paste(data_load_folder,'/Outcome_3months/asthmaAttacks_3months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_6months/asthmaAttacks_6months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_9months/asthmaAttacks_9months_',kfile,'.Rdata',sep=''))
+  load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_',kfile,'.Rdata',sep=''))
+
+  #join together
+  
+  data_outcomes$outcome_3months[match(asthmaAttacks_3months$patid,data_outcomes$patid)]=asthmaAttacks_3months$outcome_3months
+  data_outcomes$outcome_6months[match(asthmaAttacks_6months$patid,data_outcomes$patid)]=asthmaAttacks_6months$outcome_6months
+  data_outcomes$outcome_9months[match(asthmaAttacks_9months$patid,data_outcomes$patid)]=asthmaAttacks_9months$outcome_9months
+  data_outcomes$outcome_12months[match(asthmaAttacks_12months$patid,data_outcomes$patid)]=asthmaAttacks_12months$outcome_12months
+}
+
+# assign 0 to all NAs as that suggests that no event happened
+data_outcomes$outcome_3months[is.na(data_outcomes$outcome_3months)]=0
+data_outcomes$outcome_6months[is.na(data_outcomes$outcome_6months)]=0
+data_outcomes$outcome_9months[is.na(data_outcomes$outcome_9months)]=0
+data_outcomes$outcome_12months[is.na(data_outcomes$outcome_12months)]=0
+
+save(data_outcomes,file='../FinalData/data_outcomes_2vs1_15112023.Rdata')
+write.csv(data_outcomes,file='../FinalData/data_outcomes_2vs1_15112023.csv')
+```
+
+
+
+
+
+Outcomes (updated where we have an outcome for every 3 months) - experiment without medication
+```{r}
+rm(list=ls())
+library(tidyverse)
+load('../FinalData/selectedPatients_13Oct2020.Rdata')
+data_load_folder='../PrepareDataNew_20162018'
+num_files=74
+data_outcomes=selectedPatients
+
+#file 1
+load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_1.Rdata',sep=''))
+
+
+data_outcomes <-data_outcomes%>%
+  left_join(asthmaAttacks_12months,by='patid')
+
+
+
+for (kfile in c(2:num_files)){
+  print(paste('Processing file number:',kfile))
+  
+  #load outcome files
+
+  load(paste(data_load_folder,'/Outcome_12months/asthmaAttacks_12months_',kfile,'.Rdata',sep=''))
+
+  #join together
+  data_outcomes$outcome_12months[match(asthmaAttacks_12months$patid,data_outcomes$patid)]=asthmaAttacks_12months$outcome_12months
+}
+
+# assign 0 to all NAs as that suggests that no event happened
+data_outcomes$outcome_12months[is.na(data_outcomes$outcome_12months)]=0
+
+save(data_outcomes,file='../FinalData/data_outcomes_experiment_17102024.Rdata')
+write.csv(data_outcomes,file='../FinalData/data_outcomes_experiment_17102024.csv')
+```
